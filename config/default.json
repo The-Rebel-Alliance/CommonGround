@@ -1,5 +1,11 @@
 {
   "server": {
     "port": 8000
+  },
+  "db": {
+  	"host":"localhost",
+  	"user":"root",
+  	"password":"",
+  	"database":""
   }
 }
