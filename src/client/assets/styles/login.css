@@ -5,14 +5,6 @@ body{
 	background-color: #333842;
 }
 
-html {
-	box-sizing: border-box;
-}
-
-*, *:after, *:before {
-	box-sizing: inherit;
-}
-
 #container{
 	width: 100%
 }
