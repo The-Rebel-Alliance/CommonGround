@@ -19,7 +19,8 @@ const DashboardResultsContainer = React.createClass({
 const DashboardResults = React.createClass({
   render: function () {
     return (
-      
+      <div>
+      </div>
     )
   }
 })
