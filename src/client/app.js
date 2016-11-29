@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom'
 import { Router, Route, browserHistory } from 'react-router'
 
 import 'normalize.scss/normalize.scss'
-import 'assets/styles/style.scss'
 
 import Login from 'components/Login'
 import Register from 'components/Register'

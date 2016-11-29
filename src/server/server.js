@@ -3,6 +3,7 @@ import path from 'path'
 import chalk from 'chalk'
 import bodyParser from 'body-parser'
 import cookieParser from 'cookie-parser'
+import apiRouter from './api/router'
 
 export default function (config) {
   const app = express()
@@ -11,6 +12,9 @@ export default function (config) {
   app.use(bodyParser.urlencoded({extended: true}))
   app.use(cookieParser())
   app.use(express.static(path.resolve('./dist')))
+
+  // API Routes
+  app.use('/api', apiRouter)
 
   app.get('*', function (req, res) {
     res.sendFile(path.resolve('./dist/index.html'))

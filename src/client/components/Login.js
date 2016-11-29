@@ -6,25 +6,24 @@ import 'assets/styles/login.css'
 export default React.createClass({
   handleSubmit: function(e) {
     e.preventDefault()
-    browserHistory.push('/chat')
+    browserHistory.push('/register')
   },
   render: function () {
     return (
       <div id="container">
         <div className="header">
           <h1>Common Ground</h1>
-          <p>"Where different visions can come together and reach a Common Ground"</p>
         </div>
           <div className="loginForm">
             <form onSubmit={this.handleSubmit}>
-              <fieldset>
-                <legend>Login</legend>
-                <input type="text" id="username" placeholder="Username" /><br />
+              <div className="login_form">
+                <p className="login_header">Login</p>
+                <input type="text" id="username" placeholder="First Name" /><br />
                 <input type="password" id="password" placeholder="Password" /><br />
                 <br />
                 <button className="button" type="submit">Login</button>
                 <Link to="/register"><button className="button button--state-register">Register</button></Link>
-              </fieldset>
+              </div>
             </form>
           </div>
       </div>
