@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.5-10.1.19-MariaDB)
 # Database: CommonGround
-# Generation Time: 2016-11-28 18:35:29 +0000
+# Generation Time: 2016-11-29 18:08:15 +0000
 # ************************************************************
 
 
@@ -69,7 +69,8 @@ CREATE TABLE `tokens` (
   `token` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `user_id` (`user_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 

@@ -1,0 +1,12 @@
+{
+  "server": {
+    "port": 8000
+  },
+  "db": {
+    "hostname": "localhost",
+    "username": "CommonGround",
+    "password": "ghWyT5YLTexwy8tc",
+    "database": "CommonGround"
+  },
+  "salt":"cE3du!UQujh-XTQJ"
+}
