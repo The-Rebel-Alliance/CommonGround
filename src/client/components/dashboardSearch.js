@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, browserHistory} from 'react-router'
-import {getTopics} from 'api/data'
+import {getTopics} from 'api/topics'
 import store from 'store'
 
 import 'assets/styles/dashboardSearch.css'

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, browserHistory} from 'react-router'
-import {getProfile} from 'api/data'
+import {getProfile} from 'api/profile'
 import store from 'store'
 
 import 'assets/styles/profileview.css'
@@ -45,6 +45,7 @@ const CommonProfile = React.createClass({
   render: function (){
     return(
      <div id="profile_container">
+      <button onClick{this.goBack}>Go Back</button>
         <span>{this.props.profile.avatar}</span>
         <span>{this.props.profile.first_name}</span>
         <span>{this.props.profile.last_name}</span>
