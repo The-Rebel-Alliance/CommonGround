@@ -23,7 +23,7 @@ export default function (conf) {
     if(req.secure){
       return next()
     }
-    res.redirect('https://'+req.host+':' + config.get('server.https.port') + req.url);
+    res.redirect('https://'+req.hostname+':' + config.get('server.https.port') + req.url);
   })
 
   app.use(bodyParser.json())
