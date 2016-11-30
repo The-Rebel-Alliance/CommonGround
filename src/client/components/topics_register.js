@@ -5,7 +5,7 @@ import store from 'store'
 import 'assets/styles/register.css'
 import 'assets/lib/cloudinary'
 
-const topicsRegisterContainer = React.createClass({
+const TopicsRegisterContainer = React.createClass({
     getInitialState: function() {
         return {
             topics: []
@@ -25,12 +25,12 @@ const topicsRegisterContainer = React.createClass({
     },
     render: function () {
         return (
-            <topicsRegister  />
+            <TopicsRegister  />
         )
     }
 })
 
-const topicsRegister = React.createClass({
+const TopicsRegister = React.createClass({
     render: function () {
         return (
           <div className="select--topic--container">
@@ -44,4 +44,4 @@ const topicsRegister = React.createClass({
 })
 
 
-export default topicsRegisterContainer
+export default TopicsRegisterContainer

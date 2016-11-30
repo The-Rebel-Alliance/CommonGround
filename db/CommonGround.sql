@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.5-10.1.19-MariaDB)
 # Database: CommonGround
-# Generation Time: 2016-11-29 18:08:15 +0000
+# Generation Time: 2016-11-29 18:39:39 +0000
 # ************************************************************
 
 
@@ -82,12 +82,35 @@ DROP TABLE IF EXISTS `topics`;
 
 CREATE TABLE `topics` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `name` int(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+LOCK TABLES `topics` WRITE;
+/*!40000 ALTER TABLE `topics` DISABLE KEYS */;
+
+INSERT INTO `topics` (`id`, `name`, `created_at`, `updated_at`)
+VALUES
+	(1,'Abortion','2016-11-29 10:37:35',NULL),
+	(2,'2016 Election','2016-11-29 10:37:35',NULL),
+	(3,'Foreign Policy','2016-11-29 10:37:35',NULL),
+	(4,'Drug Policy','2016-11-29 10:37:35',NULL),
+	(5,'Gun Control','2016-11-29 10:37:35',NULL),
+	(6,'Race Relations','2016-11-29 10:37:35',NULL),
+	(7,'Gay Rights','2016-11-29 10:37:35',NULL),
+	(8,'Immigration','2016-11-29 10:37:35',NULL),
+	(9,'Environmental Issues','2016-11-29 10:37:35',NULL),
+	(10,'Economy','2016-11-29 10:37:35',NULL),
+	(11,'Healthcare','2016-11-29 10:37:35',NULL),
+	(12,'Women\'s Issues','2016-11-29 10:37:35',NULL),
+	(13,'Income Inequality','2016-11-29 10:37:35',NULL),
+	(14,'Taxes','2016-11-29 10:37:35',NULL),
+	(15,'Death Penalty','2016-11-29 10:37:35',NULL);
+
+/*!40000 ALTER TABLE `topics` ENABLE KEYS */;
+UNLOCK TABLES;
 
 
 # Dump of table user_topics_link

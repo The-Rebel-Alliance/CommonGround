@@ -43,9 +43,9 @@ export default React.createClass({
                 <br />
                 <p className="error">{this.state.errorMsg}</p>
                 <button className="button" type="submit">Login</button>
-                <Link to="/register"><button className="button button--state-register">Register</button></Link>
               </div>
             </form>
+            <Link to="/register" className="button button--state-register">Register</Link>
           </div>
       </div>
     )
