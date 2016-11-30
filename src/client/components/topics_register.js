@@ -23,9 +23,16 @@ const TopicsRegisterContainer = React.createClass({
     componentWillUnmount: function() {
       this.unsubscribe()
     },
+    updateTopics: function(e) {
+      var val = e.target.value
+      var stateArr = []
+      stateArr.push(val)
+      this.setState({topics:stateArr})
+      console.log('stateArr', this.setState)
+    },
     render: function () {
         return (
-            <TopicsRegister topics={this.state.topics}  />
+            <TopicsRegister updateTopics={this.updateTopics} topics={this.state.topics} />
         )
     }
 })
@@ -36,7 +43,7 @@ const TopicsRegister = React.createClass({
           <div className="select--topic--container">
                   <div className="register_topic_select">Select Topics of Interests:</div>
             {this.props.topics.map((topic,i) => {
-              return( <label key={'topic' + i} className="labels"><input onChange={this.handleChange} className="topic_checkbox" type="checkbox" value={topic.name} />{topic.name}</label>
+              return( <label key={'topic' + i} className="labels"><input onChange={this.updateTopics} className="topic_checkbox" type="checkbox" value={topic.name} />{topic.name}</label>
                 )
             })}
           </div>
