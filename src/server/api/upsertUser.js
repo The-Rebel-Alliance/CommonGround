@@ -63,6 +63,7 @@ router.post('/register', function(req, res, next){
   const city = req.body.city || ''
   const state = req.body.state || ''
   const avatar = req.body.avatar || ''
+  const politicalAff = req.body.politicalAffiliation || ''
   const topics = req.body.topics || []
 
   const userSql = 'INSERT INTO users (username, password) VALUES (?, ?)'
@@ -74,10 +75,11 @@ router.post('/register', function(req, res, next){
       })
     } else {
       const insertId = results.insertId
-      const profileSql = `INSERT INTO profiles (first_name, last_name, city, state, avatar, political_affiliation, user_id)
+
+      const profileSql = `INSERT INTO profiles (first_name, last_name, city, state, political_affiliation, avatar, user_id)
                           VALUES (?, ?, ?, ?, ?, ?, ?)`
 
-      conn.query(profileSql, [firstName, lastName, city, state, avatar, insertId], function(err, presults){
+      conn.query(profileSql, [firstName, lastName, city, state, politicalAff, avatar, insertId], function(err, presults){
         if (err) {
           console.log(err)
           res.status(500).send({

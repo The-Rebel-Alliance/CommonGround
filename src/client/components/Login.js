@@ -21,11 +21,11 @@ export default React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault()
-    console.log("I'm in submit")
     login(this.state.username, this.state.password).catch(err => {
       this.setState ({
         errorMsg: 'Invalid username or password'
-      })
+      }) 
+      console.log('err', err)
     })
     
   },

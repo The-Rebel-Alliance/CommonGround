@@ -1,6 +1,11 @@
 {
   "server": {
-    "port": 8000
+    "http": {
+      "port": 8000
+    },
+    "https": {
+      "port": 4443
+    }
   },
   "db": {
     "hostname": "localhost",

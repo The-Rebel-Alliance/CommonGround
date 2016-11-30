@@ -13,9 +13,7 @@ gulp.task('webpack', function () {
 // Simple Server
 gulp.task('serve:web', serve({
   root: './dist',
-  port: config.get('server.port'),
-  hostname: '0.0.0.0',
-  salt: config.get('salt')
+  hostname: '0.0.0.0'
 }))
 
 // Watch for changes and reload stuff

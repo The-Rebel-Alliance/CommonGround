@@ -7,7 +7,7 @@
 #
 # Host: localhost (MySQL 5.5.5-10.1.19-MariaDB)
 # Database: CommonGround
-# Generation Time: 2016-11-29 18:39:39 +0000
+# Generation Time: 2016-11-30 17:24:28 +0000
 # ************************************************************
 
 
@@ -22,8 +22,6 @@
 
 # Dump of table messages
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `messages`;
 
 CREATE TABLE `messages` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -41,8 +39,6 @@ CREATE TABLE `messages` (
 # Dump of table profiles
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `profiles`;
-
 CREATE TABLE `profiles` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `first_name` varchar(255) DEFAULT NULL,
@@ -53,6 +49,7 @@ CREATE TABLE `profiles` (
   `user_Id` int(11) unsigned NOT NULL,
   `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `political_affiliation` enum('D','R','I','O') DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -60,8 +57,6 @@ CREATE TABLE `profiles` (
 
 # Dump of table tokens
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `tokens`;
 
 CREATE TABLE `tokens` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -77,8 +72,6 @@ CREATE TABLE `tokens` (
 
 # Dump of table topics
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `topics`;
 
 CREATE TABLE `topics` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -116,8 +109,6 @@ UNLOCK TABLES;
 # Dump of table user_topics_link
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `user_topics_link`;
-
 CREATE TABLE `user_topics_link` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `topic_id` int(11) unsigned NOT NULL,
@@ -131,8 +122,6 @@ CREATE TABLE `user_topics_link` (
 
 # Dump of table users
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
@@ -148,8 +137,6 @@ CREATE TABLE `users` (
 
 # Dump of table video_links
 # ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `video_links`;
 
 CREATE TABLE `video_links` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
