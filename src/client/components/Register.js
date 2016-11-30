@@ -18,18 +18,6 @@ export default React.createClass({
       political_affilation: ""
     }
   },
-  componentWillMount: function(e) {
-   var obj = {
-        username: this.state.username,
-        password: this.state.password,
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        avatar: this.state.avatar,
-        city: this.state.city,
-        state: this.state.state,
-        political_affilation: this.state.political_affilation
-    }
-  },
   update: function(e){
 
         var val = e.target.value
@@ -41,10 +29,8 @@ export default React.createClass({
     },
   handleSubmit: function(e) {
     e.preventDefault()
-    createUser(obj)
+    createUser(this.state)
   },
-
-  
   upload: function(e) {
     e.preventDefault()
     var settings = {cloud_name: 'dxpodvk7x' , upload_preset: 'v9doyprk'} 

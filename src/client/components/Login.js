@@ -21,6 +21,7 @@ export default React.createClass({
   },
   handleSubmit: function(e) {
     e.preventDefault()
+    console.log("I'm in submit")
     login(this.state.username, this.state.password).catch(err => {
       this.setState ({
         errorMsg: 'Invalid username or password'
@@ -43,9 +44,10 @@ export default React.createClass({
                 <br />
                 <p className="error">{this.state.errorMsg}</p>
                 <button className="button" type="submit">Login</button>
+                <Link to="/register"><button className="button button--state-register">Register</button></Link>
               </div>
             </form>
-            <Link to="/register" className="button button--state-register">Register</Link>
+            
           </div>
       </div>
     )

@@ -25,7 +25,7 @@ const TopicsRegisterContainer = React.createClass({
     },
     render: function () {
         return (
-            <TopicsRegister  />
+            <TopicsRegister topics={this.state.topics}  />
         )
     }
 })
@@ -35,8 +35,9 @@ const TopicsRegister = React.createClass({
         return (
           <div className="select--topic--container">
                   <div className="register_topic_select">Select Topics of Interests:</div>
-            {this.props.topics.map(topic => {
-              <label className="labels"><input onChange={this.handleChange} className="topic_checkbox" type="checkbox" value={topic.name} />{topic.name}</label>
+            {this.props.topics.map((topic,i) => {
+              return( <label key={'topic' + i} className="labels"><input onChange={this.handleChange} className="topic_checkbox" type="checkbox" value={topic.name} />{topic.name}</label>
+                )
             })}
           </div>
         )
