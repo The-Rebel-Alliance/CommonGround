@@ -11,33 +11,39 @@ router.post('/login', function(req, res, next){
   const password = sha512(req.body.password + config.get('salt')).toString('hex')
   const sql = 'SELECT * FROM users WHERE username=? AND password=?'
 
-  conn.query(sql, [username, password], function(err, results){
-    if (results.length > 0) {
-      const token = uuid()
-      const userId = results[0].id
+  if (!username || !password) {
+    res.status(401).send({
+      message: 'Invalid username or password'
+    })
+  } else {
+    conn.query(sql, [username, password], function(err, results){
+      if (results.length > 0) {
+        const token = uuid()
+        const userId = results[0].id
 
-      const upsertSql = `INSERT INTO tokens (user_id, token) VALUES (?, ?) 
-                          ON DUPLICATE KEY UPDATE token=?`
+        const upsertSql = `INSERT INTO tokens (user_id, token) VALUES (?, ?) 
+                            ON DUPLICATE KEY UPDATE token=?`
 
-      conn.query(upsertSql, [userId, token, token], function(err, results){
-        if (err) {
-          console.log(err)
-          res.status(500).send({
-            message: 'Oops! We did something wrong...Our bad!'
-          })
-        } else {
-          res.error = false
-          res.data = {'token':token}
-          res.message = 'Authorization Token'
-          next()
-        }
-      })
-    } else {
-      res.status(401).send({
-        message: 'Invalid username or password'
-      })
-    }
-  })
+        conn.query(upsertSql, [userId, token, token], function(err, results){
+          if (err) {
+            console.log(err)
+            res.status(500).send({
+              message: 'Oops! We did something wrong...Our bad!'
+            })
+          } else {
+            res.error = false
+            res.data = {'token':token}
+            res.message = 'Authorization Token'
+            next()
+          }
+        })
+      } else {
+        res.status(401).send({
+          message: 'Invalid username or password'
+        })
+      }
+    })
+  }
 })
 
 router.get('/topics', function(req, res){
