@@ -2,31 +2,34 @@ import React from 'react'
 import { browserHistory, Link } from 'react-router'
 import 'assets/styles/register.css'
 import 'assets/lib/cloudinary'
+import {createUser} from 'api/users'
+import Topics from 'components/topics_register'
 
 export default React.createClass({
-  getIntialState: function() {
+  getInitialState: function() {
     return {
-      first_name: "",
-      last_name: "",
+      username: "", 
       password: "",
-      avatar: "",
-      city: "",
-      state: "",
-      political_affilation: "",
-      topics: []
+      first_name: "", 
+      last_name: "", 
+      avatar: "", 
+      city: "", 
+      state: "", 
+      political_affilation: ""
     }
   },
-  handleSubmit: function() {
-   var obj = {
-        first_name: this.state.first_name,
-        last_name: this.state.last_name,
-        password: this.state.password,
-        avatar: this.state.photo_avatar,
-        city: this.state.city,
-        state: this.state.state,
-        political_affilation: this.state.political_affilation,
-        topics: this.state.topics
-    }
+  update: function(e){
+
+        var val = e.target.value
+        console.log(val)
+        var id = e.target.id
+        var stateObj = {}
+        stateObj[id] = val
+        this.setState(stateObj)
+    },
+  handleSubmit: function(e) {
+    e.preventDefault()
+    createUser(this.state)
   },
   upload: function(e) {
     e.preventDefault()
@@ -48,12 +51,12 @@ export default React.createClass({
             <form onSubmit={this.handleSubmit}>
               <div className="registerform_container">
                 <p className="register_header">Register</p>
-                <input type="text" id="username" placeholder="Username" /><br />
-                <input type="password" id="password" placeholder="Create Password" /><br />
-                <input type="text" id="firstname" placeholder="First Name" /><br />
-                <input type="text" id="lastname" placeholder="Last Name" />
-                <input type="text" id="city" placeholder="City" />
-                <select className="register_state_select">
+                <input id="username"  onChange={this.update} type="text" id="username" placeholder="Username" /><br />
+                <input id="password" onChange={this.update} type="password" id="password" placeholder="Create Password" /><br />
+                <input id="first_name" onChange={this.update} type="text" id="first_name" placeholder="First Name" /><br />
+                <input id="last_name" onChange={this.update} type="text" id="last_name" placeholder="Last Name" />
+                <input id="city" onChange={this.update} type="text" id="city" placeholder="City" />
+                <select id="state" onChange={this.update} className="register_state_select">
                   <option defaultValue="selected">Select State</option>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -107,33 +110,19 @@ export default React.createClass({
                   <option value="WI">Wisconsin</option>
                   <option value="WY">Wyoming</option>
                 </select>
-                <select className="register_affilation_select">
+                <select id ="political_affilation" onChange={this.update} className="register_affilation_select">
                   <option defaultValue="selected">Select Political Affilation</option>
                   <option value="D">Democrat</option>
                   <option value="R">Republican</option>
                   <option value="I">Independent</option>
+                  <option value="O">Other</option>
                 </select> 
-                <button type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
+                <button onChange={this.update} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
             </div>
-          <div className="select--topic--container">
-                  <div className="register_topic_select">Select Topics of Interests:</div>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Abortion" />Abortion</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Election" />Election</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Foreign Policy"/>Foreign Policy</label> 
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Drug Policy"/>Drug Policy</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Gun Control"/>Gun Control</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Race Relations"/>Race Relations</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="LGBT Rights"/>LGBT Rights</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Immigration"/>Immigration</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Environmental Issues"/>Environmental Issues</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Economic Issues"/>Economic Issues</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Healthcare"/>Healthcare</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Women's Issues"/>Women's Issues</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Income Inequality"/>Income Inequality</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Taxes"/>Taxes</label>
-                   <label className="labels"><input className="topic_checkbox" type="checkbox" value="Death Penalty"/>Death Penalty</label>
-            </div>
-                <Link to="/dashboard/"><button type="submit" className="button button--state-register--register">Register</button></Link>
+          
+                  <Topics/>
+                   
+                <button type="submit" className="button button--state-register--register">Register</button>
           
       </form>
   </div>
