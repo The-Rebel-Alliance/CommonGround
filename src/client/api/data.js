@@ -1,10 +1,24 @@
 import axios from 'axios'
-import react from 'react' 
-import {browserHistory} from 'react-router'
+import store from 'store'
+import { browserHistory } from 'react-router'
+import api from 'lib/api'
 
+api.new('/')
 
-export default function addUser() {
-  axios.post('users', obj).then(resp => {
-    browserHistory.push('/dashboard/' + resp.data.id)
+export function getTopics() {
+  axios.get('api/topics').then (function(resp) {
+    store.dispatch({
+      type: 'GET_TOPICS',
+      topics: resp.data
+    })
+  })
+}
+
+export function getProfile() {
+  axios.get('api/profile').then (function(resp) {
+    store.dispatch({
+      type: 'GET_Profile',
+      profile: resp.data
+    })
   })
 }

@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, browserHistory} from 'react-router'
-import {getProfile} from 'api/commonGroundapi'
+import {getProfile} from 'api/data'
 import store from 'store'
 
 import 'assets/styles/profileview.css'
@@ -8,7 +8,15 @@ import 'assets/styles/profileview.css'
 const ProfileContainer = React.createClass({
   getInitialState: function(){
     return{
-      
+      profile: {
+        first_name:"", 
+        last_name:"", 
+        city:"",
+        state:"", 
+        avatar:"", 
+        user_id:0
+      },
+      topics: []
     }
   },
   componentWillMount: function(){
@@ -17,7 +25,7 @@ const ProfileContainer = React.createClass({
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
         this.setState({
-          
+          profile: appState.currentUser
       }) 
     })
   },
@@ -26,7 +34,7 @@ const ProfileContainer = React.createClass({
   },
   
   render: function(){
-    return (<CommonProfile {...this.state}/>)
+    return (<CommonProfile profile={this.state.profile}/>)
     } 
 })
 const CommonProfile = React.createClass({
@@ -37,11 +45,17 @@ const CommonProfile = React.createClass({
   render: function (){
     return(
      <div id="profile_container">
-        <div>Image</div>
-        <span>FirstName</span>
-        <span>LastName</span>
-        <span>PoliticalAffiliation</span>
-        <div><h3>Topic</h3><p>My Take on "Topic"</p></div>
+        <span>{this.props.profile.avatar}</span>
+        <span>{this.props.profile.first_name}</span>
+        <span>{this.props.profile.last_name}</span>
+        <span>{this.props.profile.city}</span>
+        <span>{this.props.profile.state}</span>
+        {this.props.topics.map(item =>{
+          return(
+          <span>{item.topics}</span>
+          )
+        })}
+        <button>Edit my Profile</button>
      </div>
       )
   }

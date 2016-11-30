@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, browserHistory} from 'react-router'
-
+import {getTopics} from 'api/data'
 import store from 'store'
 
 import 'assets/styles/dashboardSearch.css'
@@ -36,9 +36,14 @@ const CommonDashboard = React.createClass({
      
           <div className="select--topic--container">
             <select>
-              <option></option>
-              <option></option>
+              <option>Search Topics</option>
+                {this.props.topics.map(item => {
+                  return(
+                      <option>{item.topics}</option>
+                    )
+                })}
             </select>
+            <button>Search</button>
           </div>
                   
 
