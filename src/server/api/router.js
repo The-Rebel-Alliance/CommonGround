@@ -21,6 +21,45 @@ router.get('/topics', function(req, res){
   })
 })
 
+router.get('/search/:topic', function(req, res){
+  const term = req.params.topic
+  const getUsers = `SELECT u.username, p.first_name, p.city, p.state, p.avatar
+    FROM profiles p
+      JOIN user_topics_link utl ON p.id = utl.profile_id
+      JOIN users u ON u.id = p.user_Id
+      JOIN topics t ON utl.topic_id = t.id
+       WHERE t.name=?`
+
+  connection.query(getUsers,[term], function(err, results){
+    res.json(results)
+  })
+})
+
+
+router.get('/profile/:profileId', function(req, res){
+  const profilesId = req.params.profilesId
+  const getProfiles = `SELECT p.first_name, p.city, p.state, p.avatar
+    FROM profiles p
+      JOIN users u ON p.user_id = u.id
+        WHERE p.id = ?`
+
+  connection.query(getProfiles,[profilesId], function(err, profile){
+    res.json(profile)
+  })
+})
+
+router.get('/messages/:messageID', function(req, res){
+  const getMessages = `SELECT *
+    FROM messages`
+    
+
+  connection.query(getMessages, function(err, messages){
+    res.json(messages)
+  })
+})
+
+
+
 // router.get('/profiles', function(req, res){
 //   const getProfile ='SELECT * FROM profiles'
 
