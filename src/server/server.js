@@ -10,6 +10,9 @@ import http from 'http'
 import https from 'https'
 import fs from 'fs'
 import config from 'config'
+import { AccessToken } from 'twilio'
+import conn from './api/lib/db'
+const VideoGrant = AccessToken.VideoGrant
 
 export default function (conf) {
   const app = express()
@@ -23,13 +26,49 @@ export default function (conf) {
     if(req.secure){
       return next()
     }
-    res.redirect('https://'+req.host+':' + config.get('server.https.port') + req.url);
+    res.redirect('https://'+req.hostname+':' + config.get('server.https.port') + req.url);
+  })
+
+  app.get('/v/:roomname', function(req, res, next){
+    res.sendFile(path.resolve(conf.root + '/v/index.html'))
   })
 
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({extended: true}))
   app.use(cookieParser())
   app.use(express.static(path.resolve(conf.root)))
+
+  app.get('/token', function(req, res) {
+    const token = req.cookies['token'].trim()
+    const sql = 'SELECT u.username FROM users u JOIN tokens t on t.user_id = u.id WHERE t.token=?'
+
+    conn.query(sql, [token], function(err, response){
+      const identity = response[0].username
+      console.log('response', response)
+      console.log('identity', identity)
+      // Create an access token which we will sign and return to the client,
+      // containing the grant we just created
+      const token = new AccessToken(
+        'AC4ab272e112e605a97762510b1baf1ecb',
+        'SKca7dac4bab069c1b060d39e00765a9d6',
+        '76jD3sDzp9CqBNtuhR6pwPDWuuBHAwEq'
+      )
+
+      // Assign the generated identity to the token
+      token.identity = identity
+
+      //grant the access token Twilio Video capabilities
+      let grant = new VideoGrant()
+      grant.configurationProfileSid = 'VS122c64045f945ca874913c7c871c3dcf'
+      token.addGrant(grant)
+
+      // Serialize the token to a JWT string and include it in a JSON response
+      res.json({
+        identity: identity,
+        token: token.toJwt()
+      })
+    })
+  })
 
   // API Routes
   app.use('/api', authenticate, apiRouter)

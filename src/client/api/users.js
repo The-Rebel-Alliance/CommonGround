@@ -7,7 +7,7 @@ api.new('/')
 api.setTokenPath('/login')
 
 export function createUser(obj) {
-    return axios.post('/register', {username: obj.username, password: obj.password, first_name: obj.first_name, last_name: obj.last_name, avatar: obj.avatar, city: obj.city, state: obj.state, political_affiliation: obj.political_affiliation}).then(function(resp){
+    return axios.post('/register', obj).then(function(resp){
       console.log(resp)
         browserHistory.push("/") 
     })
