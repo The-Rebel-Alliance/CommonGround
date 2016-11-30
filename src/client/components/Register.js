@@ -3,20 +3,35 @@ import { browserHistory, Link } from 'react-router'
 import 'assets/styles/register.css'
 import 'assets/lib/cloudinary'
 import {createUser} from 'api/users'
-import Topics from 'components/topics_register'
+import {getTopics} from 'api/topics'
+import store from 'store'
 
 export default React.createClass({
   getInitialState: function() {
     return {
       username: "", 
       password: "",
-      first_name: "", 
-      last_name: "", 
+      firstName: "", 
+      lastName: "", 
       avatar: "", 
       city: "", 
       state: "", 
-      political_affilation: ""
+      politicalAffiliation: "",
+      displayTopics: [],
+      submitTopics: []
     }
+  },
+  componentWillMount: function() {
+        getTopics()
+        this.unsubscribe = store.subscribe(() => {
+          const appState = store.getState()
+          this.setState({
+              displayTopics: appState.topics
+          })
+        })
+  },
+  componentWillUnmount: function() {
+      this.unsubscribe()
   },
   update: function(e){
 
@@ -27,14 +42,39 @@ export default React.createClass({
         stateObj[id] = val
         this.setState(stateObj)
     },
+
   handleSubmit: function(e) {
     e.preventDefault()
-    createUser(this.state)
+    createUser({
+      username:this.state.username,
+      password:this.state.password,
+      firstName:this.state.firstName,
+      lastName:this.state.lastName,
+      avatar:this.state.avatar,
+      city:this.state.city,
+      state:this.state.state,
+      politicalAffiliation:this.state.politicalAffiliation,
+      topics:this.state.submitTopics
+    })
+  },
+  updateTopics: function (e) {
+    var id = Number(e.target.id.substr(5))
+    var topics = this.state.submitTopics
+    if (topics.indexOf(id) === -1) {
+      topics.push(id)
+    } else {
+      topics.splice(topics.indexOf(id), 1)
+    }
+    this.setState({
+      submitTopics: topics
+    })
+    console.log(topics)
   },
   upload: function(e) {
     e.preventDefault()
     var settings = {cloud_name: 'dxpodvk7x' , upload_preset: 'v9doyprk'} 
     window.cloudinary.openUploadWidget(settings, (error, result)  => {
+      console.log(result)
       this.setState({
         avatar: result[0].avatar
       }) 
@@ -51,10 +91,10 @@ export default React.createClass({
             <form onSubmit={this.handleSubmit}>
               <div className="registerform_container">
                 <p className="register_header">Register</p>
-                <input id="username"  onChange={this.update} type="text" id="username" placeholder="Username" /><br />
-                <input id="password" onChange={this.update} type="password" id="password" placeholder="Create Password" /><br />
-                <input id="first_name" onChange={this.update} type="text" id="first_name" placeholder="First Name" /><br />
-                <input id="last_name" onChange={this.update} type="text" id="last_name" placeholder="Last Name" />
+                <input onChange={this.update} type="text" id="username" placeholder="Username" /><br />
+                <input onChange={this.update} type="password" id="password" placeholder="Create Password" /><br />
+                <input onChange={this.update} type="text" id="firstName" placeholder="First Name" /><br />
+                <input onChange={this.update} type="text" id="lastName" placeholder="Last Name" />
                 <input id="city" onChange={this.update} type="text" id="city" placeholder="City" />
                 <select id="state" onChange={this.update} className="register_state_select">
                   <option defaultValue="selected">Select State</option>
@@ -110,7 +150,7 @@ export default React.createClass({
                   <option value="WI">Wisconsin</option>
                   <option value="WY">Wyoming</option>
                 </select>
-                <select id ="political_affilation" onChange={this.update} className="register_affilation_select">
+                <select id ="politicalAffiliation" onChange={this.update} className="register_affilation_select">
                   <option defaultValue="selected">Select Political Affilation</option>
                   <option value="D">Democrat</option>
                   <option value="R">Republican</option>
@@ -118,12 +158,23 @@ export default React.createClass({
                   <option value="O">Other</option>
                 </select> 
                 <button onChange={this.update} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
+            </div>          
+            <div className="select--topic--container">
+              <div className="register_topic_select">Select Topics of Interests:</div>
+              {this.state.displayTopics.map((topic,i) => {
+                return ( 
+                  <label key={'topic' + i} className="labels">
+                    <input onChange={this.updateTopics} 
+                           id={"topic" + topic.id}
+                           className="topic_checkbox" 
+                           type="checkbox" 
+                           value={topic.id} />
+                    {topic.name}
+                  </label>
+                )
+              })}
             </div>
-          
-                  <Topics/>
-                   
-                <button type="submit" className="button button--state-register--register">Register</button>
-          
+            <button type="submit" className="button button--state-register--register">Register</button>
       </form>
   </div>
 </div>
