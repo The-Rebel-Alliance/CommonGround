@@ -22,7 +22,7 @@ var filesToMove = [
 
 gulp.task('move:static', function () {
   return gulp.src(filesToMove, {base:'./src/client/video'})
-  .pipe(gulp.dest('./dist/v/'))
+    .pipe(gulp.dest('./dist/v/'))
 })
 
 // Watch for changes and reload stuff
