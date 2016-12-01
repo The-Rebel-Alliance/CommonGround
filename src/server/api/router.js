@@ -12,13 +12,31 @@ const connection = mysql.createConnection({
   database: config.get('db.database')
 })
 
-router.get('/topics', function(req, res){
-  const sql = 'SELECT * FROM topics'
+router.get('/search/:topicId?', function(req, res, next){
+  let topicId = req.params.topicId
+  const token = req.cookies['token']
+  if (!topicId) {
+    res.err = true
+    res.data = []
+    res.message = 'No topic provided'
+    next()
+  } else {
+    let sql = `SELECT u.username, p.avatar, p.first_name, p.last_name, p.city, p.state, p.political_affiliation
+               FROM users u
+               JOIN profiles p ON u.id = p.user_id
+               JOIN user_topics_link utl ON p.id = utl.profile_id
+               JOIN topics t ON utl.topic_id = t.id
+               LEFT JOIN tokens ON u.id = tokens.user_id
+               WHERE t.id = ? 
+               AND (tokens.token != ? OR ISNULL(tokens.token))`
 
-  connection.query(sql, function(err, results){
-    const topics = results.map(topic => topic.name)
-    res.json(topics)
-  })
+    conn.query(sql, [topicId, token], function(err, results){
+      res.err = false
+      res.data = results
+      res.message = ''
+      next()
+    })
+  }
 })
 
 // router.get('/profiles', function(req, res){
