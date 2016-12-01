@@ -25,7 +25,7 @@ export default React.createClass({
       this.setState ({
         errorMsg: 'Invalid username or password'
       }) 
-      console.log('err', err)
+      
     })
     
   },

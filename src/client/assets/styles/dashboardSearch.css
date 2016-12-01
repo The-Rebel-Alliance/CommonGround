@@ -1,3 +1,29 @@
 html {box-sizing: border-box;}
 *, *:after, *:before {box-sizing: inherit;}
 
+.search--topic--container{
+	width: 500px;
+	margin: auto;
+	border: none;
+}
+
+.searchbar{
+	width: 400px;
+	height: 40px;
+}
+
+.searchbutton{
+	width: 65px;
+    height: 40px;
+    background-color: #2A4976;
+    color: white;
+    border-radius: 5px;
+    margin-left: 5px;
+    outline: none;
+
+}
+.profiledummybutton{
+	width: 100px;
+	height: 100px;
+	background-color: white;
+}

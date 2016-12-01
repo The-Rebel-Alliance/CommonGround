@@ -9,12 +9,11 @@ const ProfileContainer = React.createClass({
   getInitialState: function(){
     return{
       profile: {
-        first_name:"", 
-        last_name:"", 
+        firstName:"", 
+        lastName:"", 
         city:"",
         state:"", 
-        avatar:"", 
-        user_id:0
+        avatar:""
       },
       topics: []
     }
@@ -25,7 +24,7 @@ const ProfileContainer = React.createClass({
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
         this.setState({
-          profile: appState.currentUser
+          profile: appState.profile
       }) 
     })
   },
@@ -34,7 +33,9 @@ const ProfileContainer = React.createClass({
   },
   
   render: function(){
-    return (<CommonProfile profile={this.state.profile}/>)
+    return (
+      <CommonProfile profile={this.state.profile}/>
+      )
     } 
 })
 const CommonProfile = React.createClass({
@@ -45,17 +46,13 @@ const CommonProfile = React.createClass({
   render: function (){
     return(
      <div id="profile_container">
-      <button onClick{this.goBack}>Go Back</button>
+     
         <span>{this.props.profile.avatar}</span>
-        <span>{this.props.profile.first_name}</span>
-        <span>{this.props.profile.last_name}</span>
+        <span>{this.props.profile.firstName}</span>
+        <span>{this.props.profile.lastName}</span>
         <span>{this.props.profile.city}</span>
         <span>{this.props.profile.state}</span>
-        {this.props.topics.map(item =>{
-          return(
-          <span>{item.topics}</span>
-          )
-        })}
+        
         <button>Edit my Profile</button>
      </div>
       )
@@ -63,3 +60,9 @@ const CommonProfile = React.createClass({
 })
 
 export default ProfileContainer
+
+// {this.props.topics.map(item =>{
+//           return(
+//           <span>{item.topics}</span>
+//           )
+//         })}

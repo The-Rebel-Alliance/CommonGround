@@ -1,6 +1,7 @@
 import React from 'react'
 import {Link, browserHistory} from 'react-router'
 import {getTopics} from 'api/topics'
+import {searchUsers} from 'api/search'
 import store from 'store'
 
 import 'assets/styles/dashboardSearch.css'
@@ -8,47 +9,62 @@ import 'assets/styles/dashboardSearch.css'
 const DashboardContainer = React.createClass({
   getInitialState: function(){
     return{
-      topics: []
+      topics: [],
+      profiles: []
+
     }
   },
   componentWillMount: function(){
-        
+    getTopics()
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
         this.setState({
-          topics: appState.topics
+          topics: appState.topics,
+          profiles: appState.profiles
       }) 
+        console.log(appState.profiles)
     })
   },
   componentWillUnmount: function() {
     this.unsubscribe()
   },
-  
   render: function(){
-    return (<CommonDashboard {...this.state}/>)
+    return (<CommonDashboard topics={this.state.topics} profiles={this.state.profiles}/>)
     } 
 })
 const CommonDashboard = React.createClass({
-  render: function (){
+  submitHandle: function() {
+    e.preventDefault()
+    searchUsers({
+      topics:this.state.id
+    })
+  },
+  render: function () {
     return(
-     <div id="dashboard_container">
+      <div id="dashboard_container">
         <div className="dashboard_header"></div>
-     
-          <div className="select--topic--container">
-            <select>
-              <option>Search Topics</option>
-                {this.props.topics.map(item => {
+        <form onSubmit={this.submitHandle}>
+          <div className="search--topic--container">
+            <select className="searchbar">
+              <option>Select A Topic</option>
+                {this.props.topics.map((item,i) => {
                   return(
-                      <option>{item.topics}</option>
+                      <option id={"item" + item.id} key={'item' + i} value={item.id}>{item.name}</option>
                     )
                 })}
             </select>
-            <button>Search</button>
+            <button type="submit" className="searchbutton">Search</button>
           </div>
-                  
-
-     </div>
-      )
+        </form>
+        <ul>
+          {this.props.profiles.map((user,i) =>{
+            return(
+              <li key={'user' + i} id={'user' + user.id} value={user.id}>{user.avatar} {user.firstName} {user.lastName}</li>
+              )
+          })}
+        </ul>
+      </div>
+    )
   }
 })
 
