@@ -8,7 +8,7 @@ const router = express.Router()
 
 router.get('/search/:topicId?', function(req, res, next){
   let topicId = req.params.topicId
-  const token = req.cookies['token']
+  const token = req.get('token')
   if (!topicId) {
     res.err = true
     res.data = []
