@@ -5,7 +5,7 @@ var videoClient;
 var activeRoom;
 var previewMedia;
 var identity;
-var roomName;
+var roomName = location.href.substr(location.href.lastIndexOf('/') + 1);
 
 // Check for WebRTC
 if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
@@ -17,27 +17,23 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
 window.addEventListener('beforeunload', leaveRoomIfJoined);
 
 $.getJSON('/token', function (data) {
-  console.log(data)
+  console.log('data', data)
   identity = data.identity;
 
   // Create a Video Client and connect to Twilio
   videoClient = new Twilio.Video.Client(data.token);
   document.getElementById('room-controls').style.display = 'block';
+  // document.getElementById('user1').innerHTML = identity
 
   // Bind button to join room
-  document.getElementById('button-join').onclick = function () {
-    roomName = document.getElementById('room-name').value;
     if (roomName) {
-      log("Joining room '" + roomName + "'...");
+      log("Waiting for ");
 
       videoClient.connect({ to: roomName}).then(roomJoined,
         function(error) {
           log('Could not connect to Twilio: ' + error.message);
         });
-    } else {
-      alert('Please enter a room name.');
     }
-  };
 
   // Bind button to leave room
   document.getElementById('button-leave').onclick = function () {
@@ -49,6 +45,7 @@ $.getJSON('/token', function (data) {
 // Successfully connected!
 function roomJoined(room) {
   activeRoom = room;
+  console.log('room.participants', room.participants)
 
   log("Joined as '" + identity + "'");
   document.getElementById('button-join').style.display = 'none';
@@ -62,6 +59,7 @@ function roomJoined(room) {
   room.participants.forEach(function(participant) {
     log("Already in Room: '" + participant.identity + "'");
     participant.media.attach('#remote-media');
+    console.log('participant', participant)
   });
 
   // When a participant joins, draw their video on screen
@@ -85,26 +83,26 @@ function roomJoined(room) {
       participant.media.detach();
     });
     activeRoom = null;
-    document.getElementById('button-join').style.display = 'inline';
+    document.getElementById('button-join').style.display = 'none';
     document.getElementById('button-leave').style.display = 'none';
   });
 }
 
 //  Local video preview
-document.getElementById('button-preview').onclick = function () {
-  if (!previewMedia) {
-    previewMedia = new Twilio.Video.LocalMedia();
-    Twilio.Video.getUserMedia().then(
-    function (mediaStream) {
-      previewMedia.addStream(mediaStream);
-      previewMedia.attach('#local-media');
-    },
-    function (error) {
-      console.error('Unable to access local media', error);
-      log('Unable to access Camera and Microphone');
-    });
-  };
-};
+// document.getElementById('button-preview').onclick = function () {
+//   if (!previewMedia) {
+//     previewMedia = new Twilio.Video.LocalMedia();
+//     Twilio.Video.getUserMedia().then(
+//     function (mediaStream) {
+//       previewMedia.addStream(mediaStream);
+//       previewMedia.attach('#local-media');
+//     },
+//     function (error) {
+//       console.error('Unable to access local media', error);
+//       log('Unable to access Camera and Microphone');
+//     });
+//   };
+// };
 
 // Activity log
 function log(message) {
