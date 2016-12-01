@@ -11,7 +11,6 @@ const DashboardContainer = React.createClass({
     return{
       topics: [],
       profiles: []
-
     }
   },
   componentWillMount: function(){
@@ -22,7 +21,7 @@ const DashboardContainer = React.createClass({
           topics: appState.topics,
           profiles: appState.profiles
       }) 
-        console.log(appState.profiles)
+      console.log(appState.profiles)
     })
   },
   componentWillUnmount: function() {
@@ -33,10 +32,23 @@ const DashboardContainer = React.createClass({
     } 
 })
 const CommonDashboard = React.createClass({
-  submitHandle: function() {
+  getInitialState: function() {
+    return {
+      id:0
+    }
+  },
+  submitHandle: function(e) {
     e.preventDefault()
     searchUsers({
       topics:this.state.id
+    })
+  },
+  handleChange: function(e) {
+    var value = e.target.value
+    console.log(value)
+    
+    this.setState({
+      id:value
     })
   },
   render: function () {
@@ -45,7 +57,7 @@ const CommonDashboard = React.createClass({
         <div className="dashboard_header"></div>
         <form onSubmit={this.submitHandle}>
           <div className="search--topic--container">
-            <select className="searchbar">
+            <select onChange={this.handleChange} className="searchbar">
               <option>Select A Topic</option>
                 {this.props.topics.map((item,i) => {
                   return(

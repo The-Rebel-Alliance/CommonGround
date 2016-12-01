@@ -6,11 +6,12 @@ import api from 'lib/api'
 api.new('/')
 
 export function searchUsers(topicId) {
-  return api.get(`/search/${topicId}`).then(resp => {
+  return api.get(`/api/search/${topicId}`).then(resp => {
+    console.log('resp', resp)
     store.dispatch({
         type: 'GET_PROFILES',
         profiles: resp.data
     })
-    console.log('resp', resp)
+    
   }) 
 }

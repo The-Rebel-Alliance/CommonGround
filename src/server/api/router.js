@@ -15,6 +15,7 @@ const connection = mysql.createConnection({
 router.get('/search/:topicId?', function(req, res, next){
   let topicId = req.params.topicId
   const token = req.cookies['token']
+  console.log(topicId, token)
   if (!topicId) {
     res.err = true
     res.data = []
