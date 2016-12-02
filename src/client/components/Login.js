@@ -24,6 +24,7 @@ export default React.createClass({
     login(this.state.username, this.state.password).catch(err => {
       this.setState ({
         errorMsg: 'Invalid username or password'
+
       }) 
     })
   },

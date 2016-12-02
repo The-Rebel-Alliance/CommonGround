@@ -28,6 +28,9 @@ html {
 	margin-left: 50px;
 	transition: 2s;
 }
+h4 {
+	margin-top: 0px;
+}
 
 .hidden {
 	display: none;
