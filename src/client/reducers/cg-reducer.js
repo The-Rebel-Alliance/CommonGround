@@ -1,16 +1,25 @@
 import * as actions from 'actions'
 
-const defaultState = {}
+const defaultState = {
+  logged: false,
+  profiles: [],
+  topics: [],
+  profile: {}
+}
 
 
 export default function (state = defaultState, action) {
   switch (action.type) {
-    case 'GET_USERS':
-      return {...state, users: action.users}
-    case 'GET_USER': 
-      return {...state, user: action.user}
+    case action.LOGIN:
+      return {...state, logged: true}
+    case 'GET_PROFILES':
+      return {...state, profiles: action.profiles}
+    case 'GET_PROFILE': 
+      return {...state, profile: action.profile}
     case 'GET_TOPICS': 
       return {...state, topics: action.topics}
+    case 'GET_MESSAGES':
+      return {...state, messages: action.messages}
     default:
       return state
   }

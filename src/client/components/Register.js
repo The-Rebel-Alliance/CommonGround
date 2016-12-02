@@ -76,7 +76,7 @@ export default React.createClass({
     window.cloudinary.openUploadWidget(settings, (error, result)  => {
       console.log(result)
       this.setState({
-        avatar: result[0].avatar
+        avatar: result[0].url
       }) 
     });
   },

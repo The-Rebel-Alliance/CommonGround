@@ -10,12 +10,18 @@ import Login from 'components/Login'
 import Register from 'components/Register'
 import MessagingContainer from 'components/MessagingContainer'
 import TextBox from 'components/TextBox'
+import Dashboard from 'components/DashboardSearch'
+import Profile from 'components/ProfileView'
+import Drawer from 'components/Drawer'
+
 
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={Login} />
     <Route path="/register" component={Register} />
     <Route path="/messaging" component={MessagingContainer} />
-    <Route path="/messaging" component={TextBox} />
+    <Route path="/dashboard" component={Dashboard} />
+    <Route path="/profile/:id" component={Profile} />
+    <Route path="/drawer" component={Drawer} />
   </Router>
 ), document.getElementById('app'))

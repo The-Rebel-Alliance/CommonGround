@@ -2,7 +2,6 @@ import React from 'react'
 import { browserHistory, Link } from 'react-router'
 import users from 'api/users'
 import 'assets/styles/MessagingContainer.css'
-import TextBox  from 'components/TextBox'
 
 const MessagingContainer = React.createClass({
     render: function(){
@@ -18,11 +17,17 @@ const MessagingContainer = React.createClass({
                 <img src="http://orig02.deviantart.net/33e4/f/2010/188/6/a/twokinds_fanart___avatar_sized_by_turaiel.gif"></img><div id="time"><h6>(12:00am)</h6></div>
                   <li>:I'm Great! What are your views on (insert topic here)</li> <br />
                 </ul>
-              <TextBox />
-            </div>
-          </div>
-      )
-    }
+          <div id="textboxContainer">
+            <form id="textBox">
+              <input type="text" name="textBox" id="inputBox"></input><button>Submit</button>
+            </form>
+        </div>
+      </div>
+    </div>
+  )
+}
 })
+
+
 
 export default MessagingContainer
