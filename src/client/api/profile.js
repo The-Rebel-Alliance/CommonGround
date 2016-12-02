@@ -5,11 +5,11 @@ import api from 'lib/api'
 
 api.new('/')
 
-export function getTopics() {
-  return axios.get('/topics').then(resp => {
+export function getProfile() {
+  return axios.get('/profile').then(resp => {
     store.dispatch({
-        type: 'GET_TOPICS',
-        topics: resp.data
+      type: 'GET_PROFILE',
+      profile: resp.data
     })
-  }) 
+  })
 }

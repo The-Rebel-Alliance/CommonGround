@@ -13,8 +13,8 @@ export function authenticate(req, res, next) {
   let token = req.body.token || req.params.token || req.get('Authorization')
 
   if (token) {
-    if (/^Authorization /.test(token)) {
-      token = token.substr(14)
+    if (/^Token /.test(token)) {
+      token = token.substr(6)
     }
     conn.query('SELECT user_id FROM tokens WHERE token=?', [token], function(err, results){
       if (results.length > 0) {
