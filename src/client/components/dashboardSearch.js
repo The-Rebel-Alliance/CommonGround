@@ -39,9 +39,7 @@ const CommonDashboard = React.createClass({
   },
   submitHandle: function(e) {
     e.preventDefault()
-    searchUsers({
-      topics:this.state.id
-    })
+    searchUsers(this.state.id)
   },
   handleChange: function(e) {
     var value = e.target.value
