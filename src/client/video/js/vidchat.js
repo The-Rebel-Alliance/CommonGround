@@ -22,7 +22,7 @@ $.getJSON('/token', function (data) {
 
   // Create a Video Client and connect to Twilio
   videoClient = new Twilio.Video.Client(data.token);
-  document.getElementById('room-controls').style.display = 'block';
+  // document.getElementById('room-controls').style.display = 'block';
   // document.getElementById('user1').innerHTML = identity
 
   // Bind button to join room

@@ -1,4 +1,5 @@
 @import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
+/*@import url("node_modules/font-awesome/less/font-awesome.less")*/
 
 body,
 p {
@@ -8,6 +9,8 @@ p {
 
 body {
   background: #333842;
+  display: flex;
+  height: 100%;
 }
 
 #header {
@@ -19,18 +22,18 @@ body {
   padding: 21px;
 }
 
-div#remote-media {
+/*div#remote-media {
   height: 43%;
   width: 100%;
   background-color: #fff;
   text-align: center;
   margin: auto;
-}
+}*/
 
   div#remote-media video {
     border: 1px solid #272726;
     margin: 3em 2em;
-    height: 50%;
+    /*height: 50%;*/
     /*max-width: 27% !important;*/
     background-color: #272726;
     background-repeat: no-repeat;
@@ -38,8 +41,9 @@ div#remote-media {
 
 div#controls {
   padding: 3em;
-  max-width: 1200px;
-  margin: 0 auto;
+  width: 100%;
+/*  max-width: 1200px;
+  margin: 0 auto;*/
 }
 
   div#controls div {
@@ -48,7 +52,7 @@ div#controls {
 
     div#controls div#room-controls,
     div#controls div#preview {
-      width: 16em;
+      width: 100%;
       margin: 0 1.5em;
       text-align: center;
     }
@@ -86,7 +90,7 @@ div#controls {
 
   div#controls div#preview div#local-media {
     width: 450px;
-    height: 338px;
+    /*height: 338px;*/
     border: 1px solid #cececc;
     border-radius: 5px;
     box-sizing: border-box;
@@ -144,7 +148,7 @@ div#controls {
 
   div#controls div#log {
     width: 35%;
-    height: 9.5em;
+    /*height: 9.5em;*/
     margin-top: 2.75em;
     text-align: left;
     padding: 1.5em;
@@ -168,4 +172,35 @@ div#controls {
     clear: both;
     font-size: 35px;
     padding-top: 5px;
+  }
+
+  #sidebar {
+    background: #002522;
+    position: absolute;
+    height: 100%;
+    z-index: -1;
+    padding: 2%;
+   /* float: left;
+    clear: both;
+    flex-direction: column;
+    align-items: stretch;*/
+
+  }
+
+  .fa-comments {
+    color: white;
+  }
+
+  #icon {
+    height: 100px;
+    width: 100px;
+    background: orange;
+    z-index: 2;
+  }
+
+  .fa {
+    font-size: 50px !important;
+    display: block !important;
+    margin-bottom: 100px;
+    color: #7AE0D9;  
   }
