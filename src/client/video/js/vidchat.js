@@ -39,10 +39,10 @@ $.getJSON('/token', function (data) {
     if (roomName) {
       // log("Waiting for ");
        
-      videoClient.connect({ to: roomName}).then(roomJoined,
+      videoClient.connect({ to: roomName}).then(roomJoined) /*,
         function(error) {
           log('Could not connect to Twilio: ' + error.message);
-        });
+        });*/
     }
 
   // Bind button to leave room
