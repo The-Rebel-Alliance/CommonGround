@@ -55,13 +55,11 @@ div#controls {
   div#controls div {
     float: left;
   }
-
-    div#controls div#room-controls,
     div#controls div#preview {
       /*width: 100%;*/
       /*margin: 0 1.5em;*/
       /*text-align: center;*/
-      position: relative;
+      /*position: relative;*/
       /*height: 100%;*/
     }
 
