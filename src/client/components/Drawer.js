@@ -4,6 +4,7 @@ import styles from 'assets/styles/drawer.css'
 import 'font-awesome/css/font-awesome.css'
 import {getMessages} from 'api/messages'
 import store from 'store'
+import MessagingContainer from './MessagingContainer'
 
 
 
@@ -40,13 +41,21 @@ const DrawerContainer = React.createClass ({
 const DrawerView = React.createClass({
   getInitialState: function() {
     return {
-      hidden:true
+      hidden:true,
+      show:false    
     }
   },
   toggleMenu: function() {
     var that = this;
     this.setState({
       hidden:!that.state.hidden
+
+    })
+  },
+  showChat: function() {
+    var that =this;
+    this.setState({
+      show:!that.state.show
     })
   },
   
@@ -68,21 +77,20 @@ const DrawerView = React.createClass({
             <div className={this.state.hidden ? "hidden messageColumn" : "messageColumn"}>
                 <h4 className="messages">My Conversations</h4>
                  <ul className="chatList">
+                  <li> Users I've chatted with...</li>
                    {this.props.profiles.map((user,i) =>{
                     return (
                       <li className='chats' key={'user' + i} id={'user' + user.id}>
-                       {user.first_name}{user.last_name}
+                       {user.first_name}{user.last_name} 
                       </li>
                     )
                   })}
                 </ul>
+                <MessagingContainer></MessagingContainer>
             </div> 
           </div>
-          <div>
-             {this.props.children}
-          </div>
         </div>
-    )
+    )            
   }
 })
 
