@@ -10,7 +10,8 @@ import store from 'store'
 const DrawerContainer = React.createClass ({
   getInitialState: function() {
     return {
-      messages: [],     
+      messages: [], 
+      profiles: []    
     }
   }, 
 
@@ -20,6 +21,7 @@ const DrawerContainer = React.createClass ({
       const appState = store.getState()
       this.setState({
         messages: appState.messages,
+        profiles: []
 
       })
     })
@@ -31,7 +33,7 @@ const DrawerContainer = React.createClass ({
 
   render: function() {
     return (
-      <DrawerView messages={this.state.messages}/>
+      <DrawerView messages={this.state.messages} profiles={this.state.profiles}/>
     )
   }
 })
@@ -47,7 +49,6 @@ const DrawerView = React.createClass({
       hidden:!that.state.hidden
     })
   },
-
   
   render: function () {
     return (
@@ -66,7 +67,18 @@ const DrawerView = React.createClass({
           <div>
             <div className={this.state.hidden ? "hidden messageColumn" : "messageColumn"}>
                 <h4 className="messages">My Conversations</h4>
+                 <ul className="chatList">
+                   {this.props.profiles.map((user,i) =>{
+                    return (
+                      <li className='chats' key={'user' + i} id={'user' + user.id}>
+                       {user.first_name}{user.last_name}
+                      </li>
+                    )
+                  })}
+                </ul>
             </div> 
+          </div>
+          <div>
              {this.props.children}
           </div>
         </div>
@@ -75,3 +87,8 @@ const DrawerView = React.createClass({
 })
 
 export default DrawerContainer
+
+              
+
+
+

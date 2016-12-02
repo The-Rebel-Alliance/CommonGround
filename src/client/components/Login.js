@@ -24,14 +24,8 @@ export default React.createClass({
     login(this.state.username, this.state.password).catch(err => {
       this.setState ({
         errorMsg: 'Invalid username or password'
-      }) 
-<<<<<<< HEAD
-      
-    })
-    
-=======
-    })   
->>>>>>> DEV-2.3
+      })     
+    }) 
   },
   render: function () {
     return (
