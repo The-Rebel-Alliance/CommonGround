@@ -8,6 +8,8 @@ import 'normalize.scss/normalize.scss'
 import Login from 'components/Login'
 import Register from 'components/Register'
 import Dashboard from 'components/DashboardSearch'
+import Profile from 'components/ProfileView'
+import Drawer from 'components/Drawer'
 
 
 
@@ -16,7 +18,8 @@ ReactDOM.render((
     <Route path="/" component={Login} />
     <Route path="/register" component={Register} />
     <Route path="/dashboard" component={Dashboard} />
-    
+    <Route path="/profile/:id" component={Profile} />
+    <Route path="/drawer" component={Drawer} />
+   </Router>
 
-  </Router>
 ), document.getElementById('app'))
