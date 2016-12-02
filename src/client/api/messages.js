@@ -6,10 +6,10 @@ import api from 'lib/api'
 api.new('/')
 
 export function getMessages (){
-  return axios.get('/messages').then resp => {
+  return axios.get('/messages').then(resp =>{  
     store.dispatch({
-      type: 'GET_MESSAGES'
+      type: 'GET_MESSAGES',
       messages: resp.data
     })
-  }
+  })
 }

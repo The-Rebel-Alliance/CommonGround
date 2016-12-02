@@ -2,12 +2,15 @@ import React from 'react'
 import { browserHistory, Link } from 'react-router'
 import styles from 'assets/styles/drawer.css'
 import 'font-awesome/css/font-awesome.css'
+import {getMessages} from 'api/messages'
+import store from 'store'
 
 
-const drawerContainer = React.createClass ({
+
+const DrawerContainer = React.createClass ({
   getInitialState: function() {
     return {
-      messages: []
+      messages: [],     
     }
   }, 
 
@@ -16,7 +19,8 @@ const drawerContainer = React.createClass ({
     this.unsubscribe = store.subscribe(() => {
       const appState = store.getState()
       this.setState({
-        messages: appState.messages
+        messages: appState.messages,
+
       })
     })
   },
@@ -27,23 +31,47 @@ const drawerContainer = React.createClass ({
 
   render: function() {
     return (
-      <drawerView messages={this.state.messages}/>
+      <DrawerView messages={this.state.messages}/>
     )
   }
 })
-const drawerView = React.createClass ({
+const DrawerView = React.createClass({
+  getInitialState: function() {
+    return {
+      hidden:true
+    }
+  },
+  toggleMenu: function() {
+    var that = this;
+    this.setState({
+      hidden:!that.state.hidden
+    })
+  },
+
+  
   render: function () {
     return (
         <div className='drawer'>
-          <span> <i class="fa fa-comments" aria-hidden="true"></i></span>
-          <ul className="messages">
-          {this.props.messages.map(message => (
-              <li key={messages.id}>
-                {message.message}
-              </li>
-            ))}
-          </ul>
+          <div className='iconColumn'> 
+            <button onClick={this.toggleMenu} className="messageButton">
+              <i className="fa fa-comments" aria-hidden="true"></i>   
+            </button> 
+            <button className="messageButton">
+              <i className="fa fa-user-circle-o" aria-hidden="true"></i>
+            </button>
+            <button className="messageButton">
+              <i className="fa fa-search" aria-hidden="true"></i>
+            </button>            
+          </div>
+          <div>
+            <div className={this.state.hidden ? "hidden messageColumn" : "messageColumn"}>
+                <h4 className="messages">My Conversations</h4>
+            </div> 
+             {this.props.children}
+          </div>
         </div>
     )
   }
 })
+
+export default DrawerContainer

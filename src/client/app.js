@@ -7,12 +7,14 @@ import 'normalize.scss/normalize.scss'
 
 import Login from 'components/Login'
 import Register from 'components/Register'
-import Drawer from 'components/drawer.js'
+import Drawer from 'components/Drawer'
+import Topics_register from 'components/Topics_register'
 
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={Login} />
     <Route path="/register" component={Register} />
     <Route path="/drawer" component={Drawer} />
-  </Router>
+    <Route path="/topics_register" component={Topics_register} />
+   </Router>
 ), document.getElementById('app'))
