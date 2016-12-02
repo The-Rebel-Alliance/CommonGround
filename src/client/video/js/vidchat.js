@@ -16,6 +16,16 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
 // from the room, if joined.
 window.addEventListener('beforeunload', leaveRoomIfJoined);
 
+$(document).ready(function() { 
+  $("button").click(function() {
+    $("#local-media").animate({
+      right:'-150px',
+      marginTop: '600px',
+      height: '200px'
+    })
+  })})
+
+
 $.getJSON('/token', function (data) {
   console.log('data', data)
   identity = data.identity;
@@ -28,7 +38,7 @@ $.getJSON('/token', function (data) {
   // Bind button to join room
     if (roomName) {
       // log("Waiting for ");
-
+       
       videoClient.connect({ to: roomName}).then(roomJoined,
         function(error) {
           log('Could not connect to Twilio: ' + error.message);
