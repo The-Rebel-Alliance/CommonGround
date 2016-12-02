@@ -16,17 +16,6 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
 // from the room, if joined.
 window.addEventListener('beforeunload', leaveRoomIfJoined);
 
-$(document).ready(function() { 
-  $("button").click(function() {
-    $("#local-media").animate({
-      right:'5%',
-      marginTop: '35%',
-      height: '20%'
-      // position: 'absolute'
-    })
-  })})
-
-
 $.getJSON('/token', function (data) {
   console.log('data', data)
   identity = data.identity;
@@ -77,6 +66,16 @@ function roomJoined(room) {
   room.on('participantConnected', function (participant) {
     // log("Joining: '" + participant.identity + "'");
     participant.media.attach('#remote-media');
+    // $(document).ready(function() { 
+    //   $("button").click(function() {
+        $("#local-media").animate({
+          right:'5%',
+          marginTop: '35%',
+          height: '20%'
+          // position: 'absolute'
+        })
+    //   })
+    // })
   });
 
   // When a participant disconnects, note in log
