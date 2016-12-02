@@ -34,11 +34,42 @@ router.get('/search/:topicId?', function(req, res, next){
   }
 })
 
-// router.get('/messages', function(req, res, next){
-//   const token = req.cookies['token']
+router.get('/messages', function(req, res, next){
+  const token = req.get('token')
 
+  const tokenSql = `
+    select usernames.* from (
+      select u.username, u.id, p.first_name, p.last_name, p.avatar, p.political_affiliation
+        from users u 
+        join profiles p on p.user_id = u.id
+        join messages mf on mf.from_profile_id = p.id
+        join messages mt on mt.to_profile_id = p.id
+        where 
+          mf.from_profile_id = (select p.id from users u
+              join profiles p ON u.id = p.user_id
+              join tokens t ON t.user_id = u.id
+              where t.token = ?) or
+          mf.to_profile_id = (select p.id from users u
+              join profiles p ON u.id = p.user_id
+              join tokens t ON t.user_id = u.id
+              where t.token = ?) or
+          mt.from_profile_id = (select p.id from users u
+              join profiles p ON u.id = p.user_id
+              join tokens t ON t.user_id = u.id
+              where t.token = ?) or
+          mt.to_profile_id = (select p.id from users u
+              join profiles p ON u.id = p.user_id
+              join tokens t ON t.user_id = u.id
+              where t.token = ?)
+        group by u.id
+      ) as usernames
+      join users on users.id = usernames.id
+      left join tokens on tokens.user_id = users.id
+      where tokens.token != ? or ISNULL(tokens.token)
+  `
 
-// })
+  conn.query(tokenSql, [token, token, token, token, token])
+})
 
 // router.get('/messages/:fromId', function(req, res, next){
 
