@@ -27,7 +27,7 @@ $.getJSON('/token', function (data) {
 
   // Bind button to join room
     if (roomName) {
-      log("Waiting for ");
+      // log("Waiting for ");
 
       videoClient.connect({ to: roomName}).then(roomJoined,
         function(error) {
@@ -37,7 +37,7 @@ $.getJSON('/token', function (data) {
 
   // Bind button to leave room
   document.getElementById('button-leave').onclick = function () {
-    log('Leaving room...');
+    // log('Leaving room...');
     activeRoom.disconnect();
   };
 });
@@ -47,7 +47,7 @@ function roomJoined(room) {
   activeRoom = room;
   console.log('room.participants', room.participants)
 
-  log("Joined as '" + identity + "'");
+  // log("Joined as '" + identity + "'");
   document.getElementById('button-join').style.display = 'none';
   document.getElementById('button-leave').style.display = 'inline';
 
@@ -57,27 +57,27 @@ function roomJoined(room) {
   }
 
   room.participants.forEach(function(participant) {
-    log("Already in Room: '" + participant.identity + "'");
+    // log("Already in Room: '" + participant.identity + "'");
     participant.media.attach('#remote-media');
     console.log('participant', participant)
   });
 
   // When a participant joins, draw their video on screen
   room.on('participantConnected', function (participant) {
-    log("Joining: '" + participant.identity + "'");
+    // log("Joining: '" + participant.identity + "'");
     participant.media.attach('#remote-media');
   });
 
   // When a participant disconnects, note in log
   room.on('participantDisconnected', function (participant) {
-    log("Participant '" + participant.identity + "' left the room");
+    // log("Participant '" + participant.identity + "' left the room");
     participant.media.detach();
   });
 
   // When we are disconnected, stop capturing local video
   // Also remove media for all remote participants
   room.on('disconnected', function () {
-    log('Left');
+    // log('Left');
     room.localParticipant.media.detach();
     room.participants.forEach(function(participant) {
       participant.media.detach();
@@ -105,11 +105,11 @@ function roomJoined(room) {
 // };
 
 // Activity log
-function log(message) {
-  var logDiv = document.getElementById('log');
-  logDiv.innerHTML += '<p>&gt;&nbsp;' + message + '</p>';
-  logDiv.scrollTop = logDiv.scrollHeight;
-}
+// function log(message) {
+//   var logDiv = document.getElementById('log');
+//   logDiv.innerHTML += '<p>&gt;&nbsp;' + message + '</p>';
+//   logDiv.scrollTop = logDiv.scrollHeight;
+// }
 
 function leaveRoomIfJoined() {
   if (activeRoom) {
