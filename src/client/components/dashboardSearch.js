@@ -21,7 +21,6 @@ const DashboardContainer = React.createClass({
           topics: appState.topics,
           profiles: appState.profiles
       }) 
-      console.log(appState.profiles)
     })
   },
   componentWillUnmount: function() {
@@ -43,7 +42,6 @@ const CommonDashboard = React.createClass({
   },
   handleChange: function(e) {
     var value = e.target.value
-    console.log(value)
     
     this.setState({
       id:value
@@ -66,13 +64,17 @@ const CommonDashboard = React.createClass({
             <button type="submit" className="searchbutton">Search</button>
           </div>
         </form>
-        <ul>
-          {this.props.profiles.map((user,i) =>{
-            return(
-              <li key={'user' + i} id={'user' + user.id} value={user.id}>{user.avatar} {user.firstName} {user.lastName}</li>
-              )
-          })}
-        </ul>
+        <div className="usersSearch">
+          <ul>
+            {this.props.profiles.map((user,i) =>{
+              return(
+                <Link to={`/profile/${user.id}`}>
+                  <li key={'user' + i} id={'user' + user.id} value={user.id}><img src={user.avatar}/> {user.first_name} {user.last_name}</li>
+                </Link>
+                )
+            })}
+          </ul>
+        </div>
       </div>
     )
   }

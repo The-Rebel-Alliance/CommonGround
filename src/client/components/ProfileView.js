@@ -46,7 +46,6 @@ const CommonProfile = React.createClass({
   render: function (){
     return(
      <div id="profile_container">
-     
         <span>{this.props.profile.avatar}</span>
         <span>{this.props.profile.firstName}</span>
         <span>{this.props.profile.lastName}</span>
