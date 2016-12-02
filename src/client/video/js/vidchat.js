@@ -19,9 +19,9 @@ window.addEventListener('beforeunload', leaveRoomIfJoined);
 $(document).ready(function() { 
   $("button").click(function() {
     $("#local-media").animate({
-      right:'-50px',
-      marginTop: '600px',
-      height: '200px'
+      right:'5%',
+      marginTop: '35%',
+      height: '20%'
       // position: 'absolute'
     })
   })})
