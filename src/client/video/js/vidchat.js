@@ -50,12 +50,14 @@ function roomJoined(room) {
   room.participants.forEach(function(participant) {
     participant.media.attach('#remote-media');
     adjustVideo()
+    console.log('adjustVideo() not "room.on(participantConnected)")')
   });
 
   // When a participant joins, draw their video on screen
   room.on('participantConnected', function (participant) {
     participant.media.attach('#remote-media');
     adjustVideo()
+    console.log('adjustVideo() room.on("participantConnected"')
   });
 
   // When a participant disconnects, note in log
