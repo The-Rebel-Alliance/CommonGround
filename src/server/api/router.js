@@ -151,4 +151,17 @@ router.get('/profile/:id', function(req, res, next){
   })
 })
 
+router.get('/generateRoomLink', function(req, res, next){
+  const roomId = generateRoomId()
+
+  res.err = false
+  res.data = `/v/${roomId}`
+  res.message = ''
+  next()
+})
+
+function generateRoomId() {
+    return ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4)
+}
+
 export default router
