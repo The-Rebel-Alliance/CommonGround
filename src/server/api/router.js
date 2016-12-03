@@ -87,6 +87,30 @@ router.get('/messages/:fromId', function(req, res, next){
 
 router.post('/message', function(req, res, next){
   const token = req.token
+  const toId = req.body.toId
+  const message = req.body.message
+
+  if (!toId || !message) {
+    res.status(400).send({
+      message: 'Need to provide both the user id to send the message to and the message itself'
+    })
+  } else {
+    const sql = `
+      INSERT INTO messages (to_profile_id, message, from_profile_id) 
+      VALUES (?, ?, (
+        SELECT p.id FROM users u 
+        JOIN profiles p ON p.user_id = u.id
+        JOIN tokens t ON t.user_id = u.id
+        WHERE t.token = ?
+      ))
+    `
+    conn.query(sql, [toId, message, token], function(err, results){
+      res.err = false
+      res.data = {success:true}
+      res.message = 'Message Sent'
+      next()
+    })
+  }
 })
 
 router.get('/profile', function(req, res, next){
