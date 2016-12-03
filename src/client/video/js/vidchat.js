@@ -52,8 +52,8 @@ function roomJoined(room) {
     $("#local-media").animate({
       right:'5%',
       marginTop: '35%',
-      height: '20%'
-      // position: 'absolute'
+      height: '20%',
+      position: 'absolute'
     }, 3000)
     console.log('participant', participant)
   });
@@ -64,8 +64,8 @@ function roomJoined(room) {
     $("#local-media").animate({
       right:'5%',
       marginTop: '35%',
-      height: '20%'
-      // position: 'absolute'
+      height: '20%',
+      position: 'absolute'
     }, 3000)
   });
 

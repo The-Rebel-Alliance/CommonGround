@@ -9,11 +9,23 @@ body {
 
 #remote-media video {
   border-radius: 5px;
+  height: 100%;
+}
+
+#remote-media {
+  height: 700px;
+  position: relative;
+
+}
+
+#local-media {
+  position: absolute;
 }
 
 #controls {
   width: 100%;
   margin-left: 7.3%;
+  /*position: relative;*/
 }
 
 #sidebar {
