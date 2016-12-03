@@ -18,6 +18,8 @@ export default function (state = defaultState, action) {
       return {...state, profile: action.profile}
     case 'GET_TOPICS': 
       return {...state, topics: action.topics}
+    case 'GET_MESSAGES':
+      return {...state, messages: action.messages}
     default:
       return state
   }

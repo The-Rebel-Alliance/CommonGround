@@ -1,0 +1,60 @@
+html {
+	box-sizing: border-box;
+}
+
+*, *:after, *:before {
+	box-sizing: inherit;
+}
+
+.drawer {
+	width:380px;
+	height: 1000px;
+	font-size: 20px;
+	
+	
+}
+.iconColumn {
+	width:50px;
+	height: 1000px;
+	float:left;
+	clear: right;
+	background-color: #01A69A;
+}
+
+.messageColumn {
+	background-color: #01A69A;
+	height:1000px;
+	width:330px;
+	margin-left: 50px;
+	transition: 2s;
+}
+h4 {
+	margin-top: 0px;
+}
+
+.hidden {
+	display: none;
+	transition: width 2s;
+
+}
+
+.titleBar {
+	width:100%;
+	height: 50px;
+	border: 1px solid black;
+}
+
+.messages {
+	padding-top: 10px;
+	padding-left: 60px;
+	font-family: 'Julius Sans One', sans-serif; color: #FFF 
+}
+.messageButton {
+	background-color: #01A69A;
+	outline: none;
+	margin-bottom: 10px;
+	margin-left: 7px;
+	margin-top: 5px;
+
+}
+
