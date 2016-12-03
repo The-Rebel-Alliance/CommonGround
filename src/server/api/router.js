@@ -35,48 +35,92 @@ router.get('/search/:topicId?', function(req, res, next){
 })
 
 router.get('/messages', function(req, res, next){
-  const token = req.get('token')
-
-  const tokenSql = `
-    select usernames.* from (
-      select u.username, u.id, p.first_name, p.last_name, p.avatar, p.political_affiliation
-        from users u 
-        join profiles p on p.user_id = u.id
-        join messages mf on mf.from_profile_id = p.id
-        join messages mt on mt.to_profile_id = p.id
-        where 
-          mf.from_profile_id = (select p.id from users u
-              join profiles p ON u.id = p.user_id
-              join tokens t ON t.user_id = u.id
-              where t.token = ?) or
-          mf.to_profile_id = (select p.id from users u
-              join profiles p ON u.id = p.user_id
-              join tokens t ON t.user_id = u.id
-              where t.token = ?) or
-          mt.from_profile_id = (select p.id from users u
-              join profiles p ON u.id = p.user_id
-              join tokens t ON t.user_id = u.id
-              where t.token = ?) or
-          mt.to_profile_id = (select p.id from users u
-              join profiles p ON u.id = p.user_id
-              join tokens t ON t.user_id = u.id
-              where t.token = ?)
-        group by u.id
-      ) as usernames
-      join users on users.id = usernames.id
-      left join tokens on tokens.user_id = users.id
-      where tokens.token != ? or ISNULL(tokens.token)
+  const token = req.token
+  
+  const sql = `
+    SELECT fp.id, fu.username, fp.first_name, fp.last_name, fp.city, fp.state, fp.avatar, fp.political_affiliation
+    FROM messages m
+    JOIN profiles tp ON tp.id = m.to_profile_id
+    JOIN profiles fp ON fp.id = m.from_profile_id
+    JOIN users fu ON fu.id = fp.user_id
+    JOIN users tu ON tu.id = tp.user_id
+    JOIN tokens tt ON tt.user_id = tu.id
+    WHERE tt.token = ?
+    GROUP BY m.from_profile_id;
   `
 
-  conn.query(tokenSql, [token, token, token, token, token])
+  conn.query(sql, [token], function(err, results){
+    res.err = false
+    res.data = results
+    res.message = ''
+    next()
+  })
 })
 
-// router.get('/messages/:fromId', function(req, res, next){
+router.get('/messages/:fromId', function(req, res, next){
+  const token = req.token
+  const fromId = req.params.fromId
 
-// })
+  const sql = `
+    SELECT
+    IF(tt.token = ?, 'them', 'you') as \`from\`, fu.username, m.message, m.created_at
+    FROM messages m
+    JOIN profiles tp ON tp.id = m.to_profile_id
+    JOIN profiles fp ON fp.id = m.from_profile_id
+    JOIN users fu ON fu.id = fp.user_id
+    JOIN users tu ON tu.id = tp.user_id
+    LEFT JOIN tokens ft ON ft.user_id = fu.id
+    LEFT JOIN tokens tt ON tt.user_id = tu.id
+    WHERE (tt.token = ? AND fu.id = ?) OR (ft.token = ? AND tu.id = ?)
+    ORDER BY m.created_at
+  `
 
-// router.post('/message', function(req, res, next){
-//   const token = req.cookies['token']
-// })
+  conn.query(sql, [token, token, fromId, token, fromId], function(err, results){
+    res.err = false
+    res.data = results
+    res.message = ''
+    next()  
+  })
+})
+
+router.post('/message', function(req, res, next){
+  const token = req.get('token')
+})
+
+router.get('/profile', function(req, res, next){
+  const token = req.get('token')
+
+  const sql = `
+    SELECT u.username, p.first_name, p.last_name, p.city, p.state, p.avatar, p.political_affiliation
+    FROM users u
+    JOIN profiles p ON p.user_id = u.id
+    JOIN tokens t ON t.user_id = u.id
+    WHERE t.token = ?
+  `
+
+  conn.query(sql, [token], function(req, res, next){
+    res.err = false
+    res.data = results
+    res.message = ''
+    next()
+  })
+})
+
+router.get('/profile/:id', function(req, res, next){
+  const sql = `
+    SELECT u.username, p.first_name, p.last_name, p.city, p.state, p.avatar, p.political_affiliation
+    FROM users u
+    JOIN profiles p ON p.user_id = u.id
+    JOIN tokens t ON t.user_id = u.id
+    WHERE u.id = ?
+  `
+
+  conn.query(sql, [token], function(req, res, next){
+    res.err = false
+    res.data = results
+    res.message = ''
+    next()
+  })
+})
 
 export default router
