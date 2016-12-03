@@ -100,7 +100,7 @@ router.get('/profile', function(req, res, next){
     WHERE t.token = ?
   `
 
-  conn.query(sql, [token], function(req, res, next){
+  conn.query(sql, [token], function(err, results){
     res.err = false
     res.data = results
     res.message = ''
@@ -119,7 +119,7 @@ router.get('/profile/:id', function(req, res, next){
     WHERE u.id = ?
   `
 
-  conn.query(sql, [id], function(req, res, next){
+  conn.query(sql, [id], function(err, results){
     res.err = false
     res.data = results
     res.message = ''
