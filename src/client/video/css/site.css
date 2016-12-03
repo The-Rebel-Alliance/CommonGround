@@ -3,8 +3,10 @@
 body {
   background: url('http://api.thumbr.it/whitenoise-361x370.png?');
   height: 100%;
+  width: 100%;
   padding: 0;
   margin: 0;
+  position: absolute;
 }
 
 #remote-media video {
@@ -13,19 +15,28 @@ body {
 }
 
 #remote-media {
-  height: 700px;
+  height: 100%;
+  width: 100%;
   position: relative;
 
 }
 
 #local-media {
   position: absolute;
+  right: 59.5257%;
+  height: 69.1429%;
+  margin-top: 6.51159e-05%;
 }
 
 #controls {
-  width: 100%;
+  /*position: fixed !important;*/
+  position: absolute;
+  top: 0;
+  right: 2.6%;
+  bottom: 0;
+  left: 0;
+  /*width: 100%;*/
   margin-left: 7.3%;
-  /*position: relative;*/
 }
 
 #sidebar {

@@ -49,40 +49,19 @@ function roomJoined(room) {
 
   room.participants.forEach(function(participant) {
     participant.media.attach('#remote-media');
-    $("#local-media").animate({
-      right:'5%',
-      marginTop: '35%',
-      height: '20%',
-      position: 'absolute'
-    }, 3000)
-    console.log('participant', participant)
+    adjustVideo()
   });
 
   // When a participant joins, draw their video on screen
   room.on('participantConnected', function (participant) {
     participant.media.attach('#remote-media');
-    $("#local-media").animate({
-      right:'5%',
-      marginTop: '35%',
-      height: '20%',
-      position: 'absolute'
-    }, 3000)
+    adjustVideo()
   });
 
   // When a participant disconnects, note in log
   room.on('participantDisconnected', function (participant) {
     participant.media.detach();
-  });
-
-  // When we are disconnected, stop capturing local video
-  // Also remove media for all remote participants
-  room.on('disconnected', function () {
-    room.localParticipant.media.detach();
-    room.participants.forEach(function(participant) {
-      participant.media.detach();
-    });
-    activeRoom = null;
-    // document.getElementById('button-leave').style.display = 'none';
+    adjustBackVideo()
   });
 }
 
@@ -90,4 +69,20 @@ function leaveRoomIfJoined() {
   if (activeRoom) {
     activeRoom.disconnect();
   }
+}
+
+function adjustVideo() {
+  $("#local-media").animate({
+      right:'-=25%',
+      marginTop: '+=31%',
+      height: '-=40%'
+    }, 3000)
+}
+
+function adjustBackVideo() {
+  $("#local-media").animate({
+      right:'+=25%',
+      marginTop: '-=31%',
+      height: '+=40%'
+    }, 3000)
 }
