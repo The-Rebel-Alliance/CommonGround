@@ -59,6 +59,12 @@ function roomJoined(room) {
   room.participants.forEach(function(participant) {
     // log("Already in Room: '" + participant.identity + "'");
     participant.media.attach('#remote-media');
+    $("#local-media").animate({
+      right:'5%',
+      marginTop: '35%',
+      height: '20%'
+      // position: 'absolute'
+    })
     console.log('participant', participant)
   });
 
