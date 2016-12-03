@@ -86,11 +86,12 @@ router.get('/messages/:fromId', function(req, res, next){
 })
 
 router.post('/message', function(req, res, next){
-  const token = req.get('token')
+  const token = req.token
 })
 
 router.get('/profile', function(req, res, next){
-  const token = req.get('token')
+  const token = req.token
+  console.log('token', token)
 
   const sql = `
     SELECT u.username, p.first_name, p.last_name, p.city, p.state, p.avatar, p.political_affiliation
@@ -101,6 +102,8 @@ router.get('/profile', function(req, res, next){
   `
 
   conn.query(sql, [token], function(err, results){
+    console.log('err', err)
+    console.log('results', results)
     res.err = false
     res.data = results
     res.message = ''
