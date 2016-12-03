@@ -16,14 +16,16 @@ router.get('/search/:topicId?', function(req, res, next){
     res.message = 'No topic provided'
     next()
   } else {
-    let sql = `SELECT u.id, u.username, p.avatar, p.first_name, p.last_name, p.city, p.state, p.political_affiliation
-               FROM users u
-               JOIN profiles p ON u.id = p.user_id
-               JOIN user_topics_link utl ON p.id = utl.profile_id
-               JOIN topics t ON utl.topic_id = t.id
-               LEFT JOIN tokens ON u.id = tokens.user_id
-               WHERE t.id = ? 
-               AND (tokens.token != ? OR ISNULL(tokens.token))`
+    let sql = `
+      SELECT u.id, u.username, p.avatar, p.first_name, p.last_name, p.city, p.state, p.political_affiliation
+      FROM users u
+      JOIN profiles p ON u.id = p.user_id
+      JOIN user_topics_link utl ON p.id = utl.profile_id
+      JOIN topics t ON utl.topic_id = t.id
+      LEFT JOIN tokens ON u.id = tokens.user_id
+      WHERE t.id = ? 
+      AND (tokens.token != ? OR ISNULL(tokens.token))
+    `
 
     conn.query(sql, [topicId, token], function(err, results){
       res.err = false
@@ -107,6 +109,8 @@ router.get('/profile', function(req, res, next){
 })
 
 router.get('/profile/:id', function(req, res, next){
+  const id = req.params.id
+
   const sql = `
     SELECT u.username, p.first_name, p.last_name, p.city, p.state, p.avatar, p.political_affiliation
     FROM users u
@@ -115,7 +119,7 @@ router.get('/profile/:id', function(req, res, next){
     WHERE u.id = ?
   `
 
-  conn.query(sql, [token], function(req, res, next){
+  conn.query(sql, [id], function(req, res, next){
     res.err = false
     res.data = results
     res.message = ''
