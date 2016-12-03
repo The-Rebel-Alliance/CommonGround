@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, browserHistory} from 'react-router'
-import {getProfile} from 'api/profile'
+import {getProfiles} from 'api/profile'
 import store from 'store'
 
 import 'assets/styles/profileview.css'
@@ -8,9 +8,9 @@ import 'assets/styles/profileview.css'
 const ProfileContainer = React.createClass({
   getInitialState: function(){
     return{
-      profile: {
-        firstName:"", 
-        lastName:"", 
+      profiles: {
+        first_name:"", 
+        last_name:"", 
         city:"",
         state:"", 
         avatar:""
@@ -19,12 +19,12 @@ const ProfileContainer = React.createClass({
     }
   },
   componentWillMount: function(){
-    getProfile(this.props.params.id)
+    getProfiles(this.props.params.id)
         
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
         this.setState({
-          profile: appState.profile
+          profiles: appState.profiles
       }) 
     })
   },
@@ -34,7 +34,7 @@ const ProfileContainer = React.createClass({
   
   render: function(){
     return (
-      <CommonProfile profile={this.state.profile}/>
+      <CommonProfile profiles={this.state.profiles}/>
       )
     } 
 })
@@ -46,11 +46,11 @@ const CommonProfile = React.createClass({
   render: function (){
     return(
      <div id="profile_container">
-        <span>{this.props.profile.avatar}</span>
-        <span>{this.props.profile.firstName}</span>
-        <span>{this.props.profile.lastName}</span>
-        <span>{this.props.profile.city}</span>
-        <span>{this.props.profile.state}</span>
+        <img src={this.props.profiles.avatar}/>
+        <span>{this.props.profiles.first_name}</span>
+        <span>{this.props.profiles.last_name}</span>
+        <span>{this.props.profiles.city}</span>
+        <span>{this.props.profiles.state}</span>
         
         <button>Edit my Profile</button>
      </div>
