@@ -8,8 +8,8 @@ export default React.createClass({
   getInitialState: function () {
     return {
       errorMsg: '',
-      username: 'holysmidt',
-      password: 'password'
+      username: '',
+      password: ''
     }
   },
   handleChange: function(e) {
@@ -38,8 +38,8 @@ export default React.createClass({
             <form onSubmit={this.handleSubmit}>
               <div className="login_form">
                 <p className="login_header">Login</p>
-                <input onChange={this.handleChange} value={this.state.username} type="text" id="username" placeholder="Username" /><br />
-                <input onChange={this.handleChange} value={this.state.password} type="password" id="password" placeholder="Password" /><br />
+                <input onChange={this.handleChange}  type="text" id="username" placeholder="Username" /><br />
+                <input onChange={this.handleChange}  type="password" id="password" placeholder="Password" /><br />
                 <br />
                 <p className="error">{this.state.errorMsg}</p>
                 <button className="button" type="submit">Login</button>
