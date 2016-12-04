@@ -5,6 +5,7 @@ import 'font-awesome/css/font-awesome.css'
 import {getMessages} from 'api/messages'
 import store from 'store'
 import MessagingContainer from './MessagingContainer'
+import Logo from 'assets/images/cg-logo.png'
 
 
 
@@ -52,16 +53,13 @@ const DrawerView = React.createClass({
 
     })
   },
-  showChat: function() {
-    var that =this;
-    this.setState({
-      show:!that.state.show
-    })
-  },
-  
   render: function () {
-    return (
-        <div className='drawer'>
+    return ( 
+        <div className="layout">
+          <div className="header">
+              <h1><img className="logo_cg" src={Logo}/></h1>
+          </div>
+          
           <div className='iconColumn'> 
             <button onClick={this.toggleMenu} className="messageButton">
               <i className="fa fa-comments" aria-hidden="true"></i>   
@@ -73,7 +71,7 @@ const DrawerView = React.createClass({
               <i className="fa fa-search" aria-hidden="true"></i>
             </button>            
           </div>
-          <div>
+          <div className="movingParts">
             <div className={this.state.hidden ? "hidden messageColumn" : "messageColumn"}>
                 <h4 className="messages">My Conversations</h4>
                  <ul className="chatList">
@@ -86,10 +84,11 @@ const DrawerView = React.createClass({
                     )
                   })}
                 </ul>
-                <MessagingContainer></MessagingContainer>
+            <MessagingContainer></MessagingContainer>
             </div> 
           </div>
-        </div>
+       
+          </div>
     )            
   }
 })
