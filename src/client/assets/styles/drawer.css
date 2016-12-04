@@ -6,7 +6,7 @@ html {
 	box-sizing: inherit;
 }
 .layout {
-	position:absolute;
+	position:relative;
 
 }
 .header{
@@ -14,7 +14,7 @@ html {
     height: 50px;
     background-color: #333842;
     display: inline-table;
-    border: 1px solid white;
+    
 }
 h1{
     margin: 0px;
@@ -34,11 +34,11 @@ h1{
 	float:left;
 	clear: right;
 	background-color: #01A69A;
-	border:1px solid yellow;
+	
 }
 
 .messageColumn {
-	border:1px solid blue;
+	
 	background-color: #01A69A;
 	height:1000px;
 	width:330px;
