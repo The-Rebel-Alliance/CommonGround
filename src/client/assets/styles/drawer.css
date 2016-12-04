@@ -10,7 +10,7 @@ html {
 	width:380px;
 	height: 1000px;
 	font-size: 20px;
-	margin-left: 10px;
+	
 	
 }
 .iconColumn {
@@ -27,6 +27,9 @@ html {
 	width:330px;
 	margin-left: 50px;
 	transition: 2s;
+}
+h4 {
+	margin-top: 0px;
 }
 
 .hidden {

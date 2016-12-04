@@ -20,15 +20,17 @@ html {
 
 .logo_cg {
     width: 175px;
+    height: 175px;
+    float: none;
 }
 
 .header{
     width: 100%;
     height: 50px;
-    background-color: #002522;
+    background-color: #333842;
     display: inline-table;
 }
-h1{
+.logo_h1{
     margin: 0px;
     background-color: #333842;
     text-align: center;
@@ -50,6 +52,14 @@ h1{
  }
 
  .register_header {
+    width: 250px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 12px;
+    font-size: 20px;
+    font-family: 'Cabin', sans-serif;
+    outline: none;
+    color: white;
     text-decoration: underline;
  }
 
@@ -91,7 +101,7 @@ h1{
  }
 
  .button--state-register--register{
- 	margin-top: 15px;
+ 	margin-top: 40px;
     margin-right: 15px;
     color: white;
     background-color: #ED283C;;
@@ -113,7 +123,7 @@ h1{
     outline: none;
     font-size: 14px;
     border: 1px solid #ccc;
-    margin-top: 45px;
+    margin-top: 70px;
     position: absolute;
     right: 455px;
     margin-bottom: 60px;

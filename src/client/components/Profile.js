@@ -13,7 +13,8 @@ const ProfileContainer = React.createClass({
         lastName:"", 
         city:"",
         state:"", 
-        avatar:""
+        avatar:"",
+        politicalAffiliation: ""
       },
       topics: []
     }
@@ -45,23 +46,12 @@ const CommonProfile = React.createClass({
   },
   render: function (){
     return(
-     <div id="profile_container">
-        <span>{this.props.profile.avatar}</span>
-        <span>{this.props.profile.firstName}</span>
-        <span>{this.props.profile.lastName}</span>
-        <span>{this.props.profile.city}</span>
-        <span>{this.props.profile.state}</span>
-        
-        <Link to={`/editprofile/${id}`}><button>Edit my Profile</button></Link>
-     </div>
+      <div>
+        <div className="profile_container">
+          <div className="profile_pic"></div>
+        </div>
+      </div>
+    
       )
   }
 })
-
-export default ProfileContainer
-
-// {this.props.topics.map(item =>{
-//           return(
-//           <span>{item.topics}</span>
-//           )
-//         })}
