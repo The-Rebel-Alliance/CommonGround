@@ -23,6 +23,7 @@ body {
 
 #local-media {
   position: absolute;
+  left: 0;
   height: 69.1429%;
   margin-top: 6.51159e-05%;
 }
