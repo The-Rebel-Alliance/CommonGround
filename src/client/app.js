@@ -20,11 +20,9 @@ ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={Login} />
     <Route path="/register" component={Register} />
-    <Router component={Layout}>
-      <Route path="/messaging" component={MessagingContainer} />
+    <Route component={Layout}>
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/profile/:id" component={Profile} />
-      <Route path="/drawer" component={Drawer} />
-    </Router>
+    </Route>
   </Router>
 ), document.getElementById('app'))

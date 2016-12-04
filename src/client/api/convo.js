@@ -5,13 +5,11 @@ import api from 'lib/api'
 
 api.new('/')
 
-export function getMessages(){
-  return api.get( '/api/messages').then(resp =>{  
+export function getConvo(from_profile_id){
+  return api.get( `/api/messages${from_profile_id}`).then(resp =>{  
     store.dispatch({
-      type: 'GET_MESSAGES',
-      messages: resp.data
+      type: 'GET_CONVO',
+      message: resp.data
     })
   })
 }
-
-
