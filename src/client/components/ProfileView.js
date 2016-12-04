@@ -8,7 +8,7 @@ import 'assets/styles/profileview.css'
 const ProfileContainer = React.createClass({
   getInitialState: function(){
     return{
-      profiles: {
+      profile: {
         first_name:"", 
         last_name:"", 
         city:"",
@@ -24,7 +24,7 @@ const ProfileContainer = React.createClass({
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
         this.setState({
-          profiles: appState.profiles
+          profile: appState.profile
       }) 
     })
   },
@@ -34,7 +34,7 @@ const ProfileContainer = React.createClass({
   
   render: function(){
     return (
-      <CommonProfile profiles={this.state.profiles}/>
+      <CommonProfile profile={this.state.profile}/>
       )
     } 
 })
@@ -46,11 +46,11 @@ const CommonProfile = React.createClass({
   render: function (){
     return(
      <div id="profile_container">
-        <img src={this.props.profiles.avatar}/>
-        <span>{this.props.profiles.first_name}</span>
-        <span>{this.props.profiles.last_name}</span>
-        <span>{this.props.profiles.city}</span>
-        <span>{this.props.profiles.state}</span>
+        <img src={this.props.profile.avatar}/>
+        <span>{this.props.profile.first_name}</span>
+        <span>{this.props.profile.last_name}</span>
+        <span>{this.props.profile.city}</span>
+        <span>{this.props.profile.state}</span>
         
         <button>Edit my Profile</button>
      </div>

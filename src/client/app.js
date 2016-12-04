@@ -19,9 +19,12 @@ ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={Login} />
     <Route path="/register" component={Register} />
-    <Route path="/messaging" component={MessagingContainer} />
+    
     <Route path="/dashboard" component={Dashboard} />
     <Route path="/profile/:id" component={Profile} />
-    <Route path="/drawer" component={Drawer} />
+    
+
   </Router>
 ), document.getElementById('app'))
+//<Route path="/drawer" component={Drawer} />
+//<Route path="/messaging" component={MessagingContainer}/>
