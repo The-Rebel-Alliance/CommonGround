@@ -5,23 +5,40 @@ html {
 *, *:after, *:before {
 	box-sizing: inherit;
 }
+.layout {
+	position:relative;
 
-.drawer {
-	width:380px;
-	height: 1000px;
-	font-size: 20px;
-	
-	
 }
+.header{
+	width: 100%;
+    height: 50px;
+    background-color: #333842;
+    display: inline-table;
+    
+}
+h1{
+    margin: 0px;
+    background-color: #333842;
+    text-align: center;
+}
+
+.logo_cg {
+    width: 175px;
+    height: 175px;
+    float: none;
+}
+
 .iconColumn {
 	width:50px;
 	height: 1000px;
 	float:left;
 	clear: right;
 	background-color: #01A69A;
+	
 }
 
 .messageColumn {
+	
 	background-color: #01A69A;
 	height:1000px;
 	width:330px;

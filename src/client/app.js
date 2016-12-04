@@ -13,18 +13,20 @@ import TextBox from 'components/TextBox'
 import Dashboard from 'components/DashboardSearch'
 import Profile from 'components/ProfileView'
 import Drawer from 'components/Drawer'
+import Layout from 'layouts/Layout'
 
 
 ReactDOM.render((
   <Router history={browserHistory}>
     <Route path="/" component={Login} />
     <Route path="/register" component={Register} />
+
     
     <Route path="/dashboard" component={Dashboard} />
     <Route path="/profile/:id" component={Profile} />
-    
+    </Router>
 
-  </Router>
+
 ), document.getElementById('app'))
 //<Route path="/drawer" component={Drawer} />
 //<Route path="/messaging" component={MessagingContainer}/>
