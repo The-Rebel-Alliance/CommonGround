@@ -120,6 +120,7 @@ router.get('/profile', function(req, res, next){
     SELECT u.username, p.first_name, p.last_name, p.city, p.state, p.avatar, p.political_affiliation
     FROM users u
     JOIN profiles p ON p.user_id = u.id
+    JOIN tokens t ON t.user_id = u.id
     WHERE t.token = ?
   `
 
@@ -138,13 +139,12 @@ router.get('/profile/:id', function(req, res, next){
     SELECT u.username, p.first_name, p.last_name, p.city, p.state, p.avatar, p.political_affiliation
     FROM users u
     JOIN profiles p ON p.user_id = u.id
-    JOIN tokens t ON t.user_id = u.id
     WHERE u.id = ?
   `
 
   conn.query(sql, [id], function(err, results){
     res.err = false
-    res.data = results
+    res.data = results[0]
     res.message = ''
     next()
   })
