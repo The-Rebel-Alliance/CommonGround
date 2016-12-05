@@ -62,7 +62,7 @@ body {
   margin-top: 100%;
 }
 
-.fa {
+#sidebar .fa {
   font-size: 50px !important;
   display: block !important;
   margin-bottom: 100px;
@@ -101,13 +101,21 @@ h2 span {
 
 #interactions-div {
   display: flex;
-  flex-wrap: wrap;
-  padding: 10%;
+  width: 62%;
+  /*flex-wrap: wrap;*/
+  /*padding: 10%;*/
+}
+
+
+#chat-window {
+  height: 55%;
+  background: #fff;
 }
 
 .interaction-icons {
   margin: 10% 10%;
   display: inline-block;
+  font-size: 40px !important;
 }
 
 #interactions-row1, #interactions-row2 {
