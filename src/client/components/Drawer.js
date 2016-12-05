@@ -3,6 +3,7 @@ import { browserHistory, Link } from 'react-router'
 import styles from 'assets/styles/drawer.css'
 import 'font-awesome/css/font-awesome.css'
 import { getMessageUsers } from 'api/messages'
+import { getConvo } from 'api/convo'
 import store from 'store'
 import MessagingContainer from './MessagingContainer'
 import Logo from 'assets/images/cg-logo.png'
@@ -20,10 +21,10 @@ const DrawerContainer = React.createClass ({
     getMessageUsers()
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
+      console.log(appState.messageusers)
       this.setState({
         messageusers: appState.messageusers,
         myconvo: appState.myconvo
-
       })
     })
   },
@@ -39,8 +40,7 @@ const DrawerContainer = React.createClass ({
 const DrawerView = React.createClass({
   getInitialState: function() {
     return {
-      hidden:true,
-      id:0  
+      hidden:true
     }
   },
   toggleMenu: function() {
@@ -51,7 +51,9 @@ const DrawerView = React.createClass({
   },
   selectUser: function(e) {
     e.preventDefault()
-    getConvo(this.state.id)
+    var id = e.currentTarget.id
+    console.log(id)
+    getConvo(id)
   },
 
   render: function () {
@@ -74,16 +76,19 @@ const DrawerView = React.createClass({
           <div className="movingParts">
             <div className={this.state.hidden ? "hidden messageColumn" : "messageColumn"}>
                 <h4 className="myConvo">My Conversations</h4>
-                 <ul className="chatList">
-                  <li> Users I've chatted with...</li>                            
+                 <ul className="chatList">                            
                      {this.props.messageusers.map((user, i) =>{
                       return (
-                         <li onClick={this.selectUser} key={user.id} value={user.id}><img src={user.avatar}/> {user.first_name} {user.last_name}                          
-                         </li>
+                        <li id={'msguser' + user.id} onClick={this.selectUser} key={'messagesuser' + user.id}>
+                          <img src={user.avatar}/> 
+                          {user.first_name} {user.last_name}                    
+                        </li>
                       )
                     })}
                 </ul>
-            <MessagingContainer></MessagingContainer>
+            <MessagingContainer>
+              {this.props.children}
+            </MessagingContainer>
             </div> 
           </div>
        
