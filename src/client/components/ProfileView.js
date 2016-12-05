@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, browserHistory} from 'react-router'
-import {getProfiles} from 'api/profile'
+import {getProfile} from 'api/profile'
 import store from 'store'
 
 import 'assets/styles/profileview.css'
@@ -9,17 +9,17 @@ const ProfileContainer = React.createClass({
   getInitialState: function(){
     return{
       profile: {
-        first_name:"", 
-        last_name:"", 
-        city:"",
-        state:"", 
-        avatar:""
+        "first_name":"", 
+        "last_name":"", 
+        "city":"",
+        "state":"", 
+        "avatar":""
       },
       topics: []
     }
   },
   componentWillMount: function(){
-    getProfiles(this.props.params.id)
+    getProfile(this.props.params.id)
         
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
@@ -47,12 +47,12 @@ const CommonProfile = React.createClass({
     return(
      <div id="profile_container">
         <img src={this.props.profile.avatar}/>
-        <span>{this.props.profile.first_name}</span>
-        <span>{this.props.profile.last_name}</span>
-        <span>{this.props.profile.city}</span>
-        <span>{this.props.profile.state}</span>
+        <p>{this.props.profile.first_name}</p>
+        <p>{this.props.profile.last_name}</p>
+        <p>{this.props.profile.city}</p>
+        <p>{this.props.profile.state}</p>
         
-        <button>Edit my Profile</button>
+       
      </div>
       )
   }

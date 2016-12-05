@@ -68,7 +68,7 @@ const CommonDashboard = React.createClass({
           <ul>
             {this.props.profiles.map((user,i) =>{
               return(
-                <Link to={`/profile/${user.id}`}>
+                <Link to={"/profile/" + user.id}>
                   <li key={'user' + i} id={'user' + user.id} value={user.id}><img src={user.avatar}/> {user.first_name} {user.last_name}</li>
                 </Link>
                 )

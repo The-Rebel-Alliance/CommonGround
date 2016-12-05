@@ -5,11 +5,11 @@ import api from 'lib/api'
 
 
 
-export function getProfiles(userId) {
-  return api.get('/api/profile/:id').then(resp => {
+export function getProfile(id) {
+  return api.get('/api/profile/' + id).then(resp => {
     console.log('profile_resp', resp)
     store.dispatch({
-      type: 'GET_PROFILES',
+      type: 'GET_PROFILE',
       profile: resp.data
     })
   })
