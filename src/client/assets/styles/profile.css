@@ -1,0 +1,74 @@
+.profile_container {
+	display: inline-block;
+    width: 1000px;
+    background-color: #ED283C;
+    margin-left: 200px;
+    border-radius: 15px;
+    margin-top: 35px;
+    padding: 10px;
+}
+
+.profile_pic {
+	border: 5px solid white;
+	border-radius: 15px;
+	width: 200px;
+	height: auto;
+	transition: 0.5s;
+}
+
+.profile_pic_container {
+	width: 500px;
+	background-color: #ED283C;
+}
+
+.info_container {
+	width: 500px;
+	display: inline-block;
+}
+
+.profile_names {
+	font-family: 'Muli', sans-serif;
+    color: white;
+    margin-left: 10px;
+    float: left;
+    background: none;
+    margin-top: 25px;
+}
+
+.profile_username {
+	font-family: Helvetica, sans-serif;
+    font-style: italic;
+    color: white;
+    margin-left: 10px;
+    clear: both;
+    background: none;
+    margin-top: 35px;
+}
+
+.city_state {
+    font-family: 'Muli', sans-serif;
+    color: white;
+    clear: left;
+    margin-left: 10px;
+    font-size: 17px;
+    margin-top: 0px;
+}
+
+.fa.fa-pencil-square-o {
+	color: white;
+	font-size: 23px;
+	float: right;
+	margin-left: 5px;
+}
+
+.edit_button {
+	color: white;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-right: 10px;
+    float: right;
+    background-color: #ED283C;
+    border: 2px solid white;
+    border-radius: 5px;
+}
+

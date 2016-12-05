@@ -1,11 +1,17 @@
 html {box-sizing: border-box;}
 *, *:after, *:before {box-sizing: inherit;}
 
+.dashboard_container {
+	position: fixed;
+	z-index: -1;
+}
+
 .search--topic--container{
 	width: 500px;
 	margin: auto;
-	border: none;
+	border: none;	
 }
+
 
 .searchbar{
 	width: 400px;

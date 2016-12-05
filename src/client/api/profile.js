@@ -4,7 +4,7 @@ import {browserHistory} from 'react-router'
 import api from 'lib/api'
 
 export function getProfile() {
-  return api.get('/api/profile/').then(resp => {
+  return api.get('/api/profile').then(resp => {
     store.dispatch({
       type: 'GET_PROFILE',
       profile: resp.data
@@ -12,10 +12,10 @@ export function getProfile() {
   })
 }
 
-export function getProfiles(id) {
+export function getOtherProfiles(id) {
   return api.get('/api/profile/' + id).then(resp => {
     store.dispatch({
-      type: 'GET_PROFILES',
+      type: 'GET_PROFILE',
       profile: resp.data
     })
   })
