@@ -16,6 +16,7 @@ export function authenticate(req, res, next) {
     if (/^Token /.test(token)) {
       token = token.substr(6)
     }
+
     conn.query('SELECT user_id FROM tokens WHERE token=?', [token], function(err, results){
       if (results.length > 0) {
         req.token = token

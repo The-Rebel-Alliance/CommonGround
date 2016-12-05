@@ -42,7 +42,6 @@ const CommonDashboard = React.createClass({
   },
   handleChange: function(e) {
     var value = e.target.value
-    
     this.setState({
       id:value
     })
