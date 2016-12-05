@@ -15,6 +15,13 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
 // from the room, if joined.
 window.addEventListener('beforeunload', leaveRoomIfJoined);
 
+$(document).ready(function() {
+  $("#test").click(function() {
+    $("#interaction-response").css({display:"block"})
+  })
+})
+
+
 $.getJSON('/token', function (data) {
   console.log('data', data)
   identity = data.identity;
@@ -75,8 +82,8 @@ function leaveRoomIfJoined() {
 
 function adjustVideo() {
   $("#local-media").animate({
-      left:'+=63%',
-      marginTop: '+=48%',
+      left:'+=68%',
+      marginTop: '+=51%',
       height: '-=40%'
     }, 3000)
   $("#waiting-overlay").css({display:"none"})
@@ -84,8 +91,8 @@ function adjustVideo() {
 
 function adjustBackVideo() {
   $("#local-media").animate({
-      left:'-=63%',
-      marginTop: '-=48%',
+      left:'-=68%',
+      marginTop: '-=51%',
       height: '+=40%'
     }, 3000)
   $("#waiting-overlay").css({display:"block"})
