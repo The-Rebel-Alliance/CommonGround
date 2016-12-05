@@ -7,7 +7,8 @@ import * as actions from 'actions'
 api.new('/')
 
 export function getConvo(id){
-  return api.get('/api/messages/:fromId').then(resp =>{  
+  console.log('id', id)
+  return api.get('/api/messages/' + id).then(resp =>{  
     console.log ("chats", resp)
     store.dispatch({
       type: actions.GET_MYCONVO,
