@@ -102,6 +102,7 @@ h2 span {
 #interactions-div {
   display: flex;
   width: 62%;
+  color: #7AE0D9;
   /*flex-wrap: wrap;*/
   /*padding: 10%;*/
 }
@@ -110,6 +111,7 @@ h2 span {
 #chat-window {
   height: 55%;
   background: #fff;
+  overflow: auto;
 }
 
 .interaction-icons {

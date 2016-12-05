@@ -15,12 +15,6 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
 // from the room, if joined.
 window.addEventListener('beforeunload', leaveRoomIfJoined);
 
-$(document).ready(function() {
-  $("#test").click(function() {
-    $("#user1-response-square").fadeTo(1000, 1).delay(1000).fadeTo(1000, 0)
-  })
-})
-
 
 $.getJSON('/token', function (data) {
   console.log('data', data)
@@ -30,15 +24,20 @@ $.getJSON('/token', function (data) {
   videoClient = new Twilio.Video.Client(data.token);
  
   // Bind button to join room
-    if (roomName) {
-      videoClient.connect({ to: roomName}).then(roomJoined) 
-    }
+  if (roomName) {
+    videoClient.connect({ to: roomName}).then(roomJoined) 
+  }
 
   // Bind button to leave room
   // document.getElementById('button-leave').onclick = function () {
   //   // log('Leaving room...');
   //   activeRoom.disconnect();
   // };
+
+  $("form").submit(function(e) {
+    e.preventDefault()  
+    updateMessaging()
+  })
 });
 
 // Successfully connected!
@@ -98,3 +97,25 @@ function adjustBackVideo() {
   $("#waiting-overlay").css({display:"block"})
 
 }
+
+// function addToChat(userName, message) {
+//   message = $("input").val()
+//   console.log(message) 
+// }
+
+function updateMessaging() {
+  $("input").keyup(function() {
+    value = $(this).val()
+    $("#chat-window").append("<li>" + value + "</li>")  
+  })  
+}
+
+
+
+
+$(document).ready(function() {
+  // $("#test").click(function() {
+  //   $("#user1-response-square").fadeTo(1000, 1).delay(1000).fadeTo(1000, 0)
+  // })
+})
+
