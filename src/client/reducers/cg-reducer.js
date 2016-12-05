@@ -4,7 +4,9 @@ const defaultState = {
   logged: false,
   profiles: [],
   topics: [],
-  profile: {}
+  profile: {},
+  messageUsers:[],
+  myconvo: []
 }
 
 
@@ -18,10 +20,10 @@ export default function (state = defaultState, action) {
       return {...state, profile: action.profile}
     case 'GET_TOPICS': 
       return {...state, topics: action.topics}
-    case 'GET_MESSAGES':
-      return {...state, messages: action.messages}
-    case 'GET_CONVO':
-      return {...state, message: action.messages}
+    case actions.GET_MESSAGE_USERS:
+      return {...state, messageUsers: action.messageUsers}
+    case actions.GET_MYCONVO:
+      return {...state, myconvo: action.myconvo}
     default:
       return state
   }
