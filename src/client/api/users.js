@@ -15,8 +15,6 @@ export function createUser(obj) {
 export function login(username, password) {
   return api.login(username, password, function success() {
     browserHistory.push("/drawer")
-
-
   })
 }
 
