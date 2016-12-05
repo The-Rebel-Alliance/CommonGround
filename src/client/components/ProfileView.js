@@ -13,9 +13,10 @@ const ProfileContainer = React.createClass({
         "last_name":"", 
         "city":"",
         "state":"", 
-        "avatar":""
-      },
-      topics: []
+        "avatar":"",
+        "topics":[]
+      }
+      
     }
   },
   componentWillMount: function(){
@@ -24,8 +25,7 @@ const ProfileContainer = React.createClass({
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
         this.setState({
-          profile: appState.profile,
-          topics: appState.topics
+          profile: appState.profile
       }) 
     })
   },
@@ -35,15 +35,11 @@ const ProfileContainer = React.createClass({
   
   render: function(){
     return (
-      <CommonProfile profile={this.state.profile} topics={this.state.topics}/>
+      <CommonProfile profile={this.state.profile}/>
       )
     } 
 })
 const CommonProfile = React.createClass({
-  goBack: function (e) {
-    e.preventDefault()
-    hashHistory.goBack()
-  },
   render: function (){
     return(
       <div>
@@ -57,6 +53,18 @@ const CommonProfile = React.createClass({
 
           </div>
         </div>
+        <div className="topic_table">Topic Positions:</div>
+          <div className="topics_container">
+            {this.props.topics.map(item => {
+              return (
+                <div className="indiv_topic_container">
+                  <h3 className="topic_header">{item.name}</h3>
+                  <p className="topic_stance">{item.stance}</p>
+                </div>
+              )
+            })}
+          </div>
+
 
       </div>
       )
