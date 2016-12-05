@@ -75,16 +75,16 @@ function leaveRoomIfJoined() {
 
 function adjustVideo() {
   $("#local-media").animate({
-      left:'+=55%',
-      marginTop: '+=40%',
+      left:'+=63%',
+      marginTop: '+=48%',
       height: '-=40%'
     }, 3000)
 }
 
 function adjustBackVideo() {
   $("#local-media").animate({
-      left:'-=55%',
-      marginTop: '-=40%',
+      left:'-=63%',
+      marginTop: '-=48%',
       height: '+=40%'
     }, 3000)
 }

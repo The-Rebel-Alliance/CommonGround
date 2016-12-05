@@ -4,7 +4,7 @@
 <html>
 <head>
   <title>Twilio Video - Video Quickstart</title>
-  <link href="https://fonts.googleapis.com/css?family=Cabin|Julius+Sans+One" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css"/>
   <link rel="stylesheet" href="css/css/font-awesome.css">
 </head>
@@ -16,10 +16,18 @@
     <i class="fa fa-user" aria-hidden="true"></i>
     <i class="fa fa-desktop" aria-hidden="true"></i>
   </div>
+
+  <div id="interactions-sidebar">
+    <img src="css/cg-logo.png"/>
+  </div>
   
   <div id="controls">
     <div id="remote-media">
-      <div id="local-media"></div>
+      <div id="local-media">
+        <div id="waiting-overlay">
+         <h2><span>Waiting for discussion partner...</span></h2>
+        </div>
+      </div>
     </div>
   </div>
 
