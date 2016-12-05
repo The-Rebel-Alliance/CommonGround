@@ -7,7 +7,7 @@ api.new('/')
 
 export function getMessageUsers(){
   return api.get( '/api/messages').then(resp =>{ 
-  console.log("message", resp ) 
+  console.log("messageusers", resp ) 
     store.dispatch({
       type: 'GET_MESSAGEUSERS',
       messageusers: resp.data

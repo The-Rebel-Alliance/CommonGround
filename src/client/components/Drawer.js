@@ -12,8 +12,8 @@ import Logo from 'assets/images/cg-logo.png'
 const DrawerContainer = React.createClass ({
   getInitialState: function() {
     return {
-      messages: [], 
-      profiles: []    
+      messageusers: [], 
+      myconvo: []    
     }
   }, 
   componentWillMount: function(){
@@ -21,8 +21,8 @@ const DrawerContainer = React.createClass ({
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
       this.setState({
-        messages: appState.messages,
-        profiles: appState.profiles
+        messageusers: appState.messageusers,
+        myconvo: appState.myconvo
 
       })
     })
@@ -32,7 +32,7 @@ const DrawerContainer = React.createClass ({
   },
   render: function() {
     return (
-      <DrawerView messages={this.state.messages} profiles={this.state.profiles}/>
+      <DrawerView messageusers={this.state.messageusers} myconvo={this.state.myconvo}/>
     )
   }
 })
@@ -76,12 +76,10 @@ const DrawerView = React.createClass({
                 <h4 className="myConvo">My Conversations</h4>
                  <ul className="chatList">
                   <li> Users I've chatted with...</li>                            
-                     {this.props.profiles.map((user, i) =>{
+                     {this.props.messageusers.map((user, i) =>{
                       return (
-                      <Link to={`/messages/${from_profile_id}`}>
                          <li onClick={this.selectUser} key={user.id} value={user.id}><img src={user.avatar}/> {user.first_name} {user.last_name}                          
                          </li>
-                      </Link>
                       )
                     })}
                 </ul>
