@@ -17,7 +17,7 @@ window.addEventListener('beforeunload', leaveRoomIfJoined);
 
 $(document).ready(function() {
   $("#test").click(function() {
-    $("#interaction-response").css({display:"block"})
+    $("#user1-response-square").fadeTo(1000, 1).delay(1000).fadeTo(1000, 0)
   })
 })
 

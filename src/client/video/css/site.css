@@ -116,6 +116,16 @@ h2 span {
   padding: 0 18%;
 }
 
-#interaction-response {
-  display: none;
+#user1-response-row, #user2-response-row, #user-strikes-row {
+  display: flex;
 }
+
+#user1-response-square {
+  opacity: 0;
+  min-width: 25%;
+}
+
+#user-strikes-row {
+  width: 75%;
+}
+
