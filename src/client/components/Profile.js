@@ -10,6 +10,7 @@ const ProfileContainer = React.createClass({
   getInitialState: function(){
     return{
       profile: {
+        "id": "",
         "first_name": "", 
         "last_name": "",
         "username": "",
@@ -26,7 +27,6 @@ const ProfileContainer = React.createClass({
         
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
-      console.log('appState', appState)
         this.setState({
           profile: appState.profile
       }) 
@@ -43,12 +43,16 @@ const ProfileContainer = React.createClass({
     } 
 }) 
 const CommonProfile = React.createClass({
+  goToEdit: function(id) {
+    browserHistory.push(`/editprofile/${id}`)
+    console.log('id', id)
+  },
   render: function (){
     return(
       <div>
           <div className="profile_container">
             <div className="profile_pic_container"><img className="profile_pic" src={this.props.profile.avatar}/></div>
-            <div><button className="edit_button"><i className="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button></div>
+            <div><button onClick={() => this.goToEdit(this.props.profile.id)} className="edit_button"><i className="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button></div>
             <div className="info_container"><h1 className="profile_names">{this.props.profile.first_name}</h1>&nbsp;<h1 className="profile_names">{this.props.profile.last_name}</h1>
             <h3 className="profile_username">({this.props.profile.username})</h3>
               <p className="city_state">{this.props.profile.city}&nbsp;{this.props.profile.state}</p>

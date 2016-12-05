@@ -1,10 +1,12 @@
 import React from 'react'
 import {getProfile} from 'api/profile'
+import store from 'store'
 
 const ProfileEditContainer = React.createClass({
   getInitialState: function() {
     return {
       profile: {
+        id: '',
         username: '',
         firstName: '',
         lastName: '',
@@ -27,7 +29,7 @@ const ProfileEditContainer = React.createClass({
   },
   render: function () {
     return (
-      <ProfileEdit />
+      <ProfileEdit profile={this.state.profile} />
     )
   }
 })
