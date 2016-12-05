@@ -18,10 +18,9 @@ img{
 }
 
 input#inputBox{
-  width: 90%;
+  width: 88%;
   border: 2px solid #7AE0D9;
-  position: relative;
-  margin-top: 350px;
+  margin-top: 238px;
   border-radius: 5px 0px 0px 5px;
   height: 29px;
 }
