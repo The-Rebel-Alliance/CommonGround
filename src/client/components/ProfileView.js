@@ -24,7 +24,8 @@ const ProfileContainer = React.createClass({
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
         this.setState({
-          profile: appState.profile
+          profile: appState.profile,
+          topics: appState.topics
       }) 
     })
   },
@@ -34,7 +35,7 @@ const ProfileContainer = React.createClass({
   
   render: function(){
     return (
-      <CommonProfile profile={this.state.profile}/>
+      <CommonProfile profile={this.state.profile} topics={this.state.topics}/>
       )
     } 
 })
@@ -45,23 +46,22 @@ const CommonProfile = React.createClass({
   },
   render: function (){
     return(
-     <div id="profile_container">
-        <img src={this.props.profile.avatar}/>
-        <p>{this.props.profile.first_name}</p>
-        <p>{this.props.profile.last_name}</p>
-        <p>{this.props.profile.city}</p>
-        <p>{this.props.profile.state}</p>
-        
-       
-     </div>
+      <div>
+        <div className="profile_container">
+          <div className="profile_pic_container"><img className="profile_pic" src={this.props.profile.avatar}/></div>
+          <div><button className="edit_button"><i className="fa fa-pencil-square-o" aria-hidden="true"></i>Edit</button></div>
+          <div className="info_container"><h1 className="profile_names">{this.props.profile.first_name}</h1>&nbsp;<h1 className="profile_names">{this.props.profile.last_name}</h1>
+          <h3 className="profile_username">({this.props.profile.username})</h3>
+            <p className="city_state">{this.props.profile.city}&nbsp;{this.props.profile.state}</p>
+            <p className="city_state">Political Affiliation:&nbsp;{this.props.profile.political_affiliation}</p>
+
+          </div>
+        </div>
+
+      </div>
       )
   }
 })
 
 export default ProfileContainer
 
-// {this.props.topics.map(item =>{
-//           return(
-//           <span>{item.topics}</span>
-//           )
-//         })}

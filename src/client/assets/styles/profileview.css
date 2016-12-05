@@ -1,3 +1,97 @@
 html {box-sizing: border-box;}
 *, *:after, *:before {box-sizing: inherit;}
 
+.profile_container {
+	display: inline-block;
+    width: 1000px;
+    background: linear-gradient(#CECFD2, #eaedef);
+    margin-left: 90px;
+    border-radius: 15px;
+    margin-top: 35px;
+    padding: 10px;
+}
+
+.profile_pic {
+	border: 5px solid white;
+	border-radius: 10px;
+	width: 200px;
+	height: auto;
+	transition: 0.5s;
+}
+
+.profile_pic_container {
+	width: 500px;
+	background-color: #ED283C;
+}
+
+.info_container {
+	width: 500px;
+	display: inline-block;
+}
+
+.profile_names {
+	font-family: 'Muli', sans-serif;
+    color: #333842;
+    margin-left: 10px;
+    float: left;
+    background: none;
+    margin-top: 25px;
+}
+
+.profile_username {
+	font-family: Helvetica, sans-serif;
+    font-style: italic;
+    color: #333842;
+    margin-left: 10px;
+    clear: both;
+    background: none;
+    margin-top: 35px;
+}
+
+.city_state {
+    font-family: 'Muli', sans-serif;
+    color: #333842;
+    clear: left;
+    margin-left: 10px;
+    font-size: 17px;
+    margin-top: 0px;
+}
+
+.fa.fa-pencil-square-o {
+	color: #333842;
+	font-size: 23px;
+	float: right;
+	margin-left: 5px;
+}
+
+.edit_button {
+	color: #333842;
+    font-size: 20px;
+    margin-top: 5px;
+    margin-right: 10px;
+    float: right;
+    background: none;
+    border-radius: 5px;
+}
+
+.topics_container {
+	margin-top: 30px;
+    border-left: 3px solid #ccc;
+    border-right: 3px solid #ccc;
+    border-top: 3px solid #ccc;
+    width: 955px;
+    margin-left: 115px;
+
+}
+
+.topic_header {
+	font-family: 'Muli', sans-serif;
+	font-size: 20px;
+	color: white;
+	margin-left: 20px;
+}
+
+.indiv_topic_container {
+	border-bottom: 3px solid #CCC;
+
+}
