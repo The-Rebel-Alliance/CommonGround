@@ -2,7 +2,7 @@ import React from 'react'
 import { browserHistory, Link } from 'react-router'
 import styles from 'assets/styles/drawer.css'
 import 'font-awesome/css/font-awesome.css'
-import { getMessages } from 'api/messages'
+import { getMessageUsers } from 'api/messages'
 import store from 'store'
 import MessagingContainer from './MessagingContainer'
 import Logo from 'assets/images/cg-logo.png'
@@ -17,7 +17,7 @@ const DrawerContainer = React.createClass ({
     }
   }, 
   componentWillMount: function(){
-    getMessages()
+    getMessageUsers()
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
       this.setState({
@@ -40,7 +40,7 @@ const DrawerView = React.createClass({
   getInitialState: function() {
     return {
       hidden:true,
-      show:false    
+      id:0  
     }
   },
   toggleMenu: function() {
@@ -49,6 +49,11 @@ const DrawerView = React.createClass({
       hidden:!that.state.hidden
     })
   },
+  selectUser: function(e) {
+    e.preventDefault()
+    getConvo(this.state.id)
+  },
+
   render: function () {
     return ( 
         <div className="layout">
@@ -73,9 +78,10 @@ const DrawerView = React.createClass({
                   <li> Users I've chatted with...</li>                            
                      {this.props.profiles.map((user, i) =>{
                       return (
-                       <li key={'user' + i} id={'user' + user.id} value={user.id}><img src={user.avatar}/> {user.first_name} {user.last_name}
-                          
-                        </li>
+                      <Link to={`/messages/${from_profile_id}`}>
+                         <li onClick={this.selectUser} key={user.id} value={user.id}><img src={user.avatar}/> {user.first_name} {user.last_name}                          
+                         </li>
+                      </Link>
                       )
                     })}
                 </ul>

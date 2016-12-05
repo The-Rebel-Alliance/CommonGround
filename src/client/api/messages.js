@@ -5,11 +5,12 @@ import api from 'lib/api'
 
 api.new('/')
 
-export function getMessages(){
-  return api.get( '/api/messages').then(resp =>{  
+export function getMessageUsers(){
+  return api.get( '/api/messages').then(resp =>{ 
+  console.log("message", resp ) 
     store.dispatch({
-      type: 'GET_MESSAGES',
-      messages: resp.data
+      type: 'GET_MESSAGEUSERS',
+      messageusers: resp.data
     })
   })
 }
