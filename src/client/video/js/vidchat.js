@@ -79,6 +79,7 @@ function adjustVideo() {
       marginTop: '+=48%',
       height: '-=40%'
     }, 3000)
+  $("#waiting-overlay").css({display:"none"})
 }
 
 function adjustBackVideo() {
@@ -87,4 +88,6 @@ function adjustBackVideo() {
       marginTop: '-=48%',
       height: '+=40%'
     }, 3000)
+  $("#waiting-overlay").css({display:"block"})
+
 }
