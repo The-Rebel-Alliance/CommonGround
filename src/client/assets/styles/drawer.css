@@ -30,9 +30,10 @@ h1{
 }
 
 .logo_cg {
-    width: 175px;
-    height: 175px;
+    width: 150px;
+    height: 150px;
     float: none;
+    margin-top: -17px;
 }
 
 .iconColumn {
@@ -45,9 +46,19 @@ h1{
 
 .messageColumn {
 	background-color: #01A69A;
+  border-bottom:1px solid white;
+  border-radius: 5px;
+	
+}
+
+.messageColumn {
+	border-radius: 5px;
+	background-color: #01A69A;
 	width:330px;
+  height:542px;
 	margin-left: 50px;
 	transition: 2s;
+  border-bottom:1px solid white;
 }
 
 h4 {
