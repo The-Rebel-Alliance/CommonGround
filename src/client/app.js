@@ -8,11 +8,8 @@ import 'normalize.scss/normalize.scss'
 //Components
 import Login from 'components/Login'
 import Register from 'components/Register'
-import MessagingContainer from 'components/MessagingContainer'
-import TextBox from 'components/TextBox'
 import Dashboard from 'components/DashboardSearch'
 import Profile from 'components/ProfileView'
-import Drawer from 'components/Drawer'
 import Layout from 'layouts/Layout'
 
 
