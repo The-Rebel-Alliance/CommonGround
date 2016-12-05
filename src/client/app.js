@@ -26,7 +26,7 @@ ReactDOM.render((
     <Route path="/dashboard" component={Dashboard} />
     <Route path="/profile" component={Profile} />
     <Route path="/profile/:id" component={ProfileView} />
-    <Route path="/editprofile/:id" component={ProfileEdit} />
+    <Route path="/editprofile" component={ProfileEdit} />
     <Route path="/drawer" component={Drawer} />
   </Router>
 ), document.getElementById('app'))
