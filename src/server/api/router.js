@@ -117,18 +117,43 @@ router.get('/profile', function(req, res, next){
   const token = req.token
 
   const sql = `
-    SELECT u.username, p.first_name, p.last_name, p.city, p.state, p.avatar, p.political_affiliation
+    SELECT p.id, u.username, p.first_name, p.last_name, p.city, p.state, p.avatar, p.political_affiliation
     FROM users u
     JOIN profiles p ON p.user_id = u.id
-    JOIN tokens t ON t.user_id = u.id
-    WHERE t.token = ?
+    JOIN tokens tkn ON tkn.user_id = u.id
+    WHERE tkn.token = ?
   `
 
   conn.query(sql, [token], function(err, results){
-    res.err = false
-    res.data = results
-    res.message = ''
-    next()
+    const id = results[0].id
+    const topicSql = `
+      SELECT t.id, t.name, utl.stance
+      FROM topics t
+      JOIN user_topics_link utl ON utl.topic_id = t.id
+      WHERE utl.profile_id = ?
+    `
+
+    conn.query(topicSql, [id], function(err, tresults){
+      res.err = false
+      res.data = {
+        username: results[0].username,
+        first_name: results[0].first_name,
+        last_name: results[0].last_name,
+        city: results[0].city,
+        state: results[0].state,
+        avatar: results[0].avatar,
+        political_affiliation: results[0].political_affiliation,
+        topics: tresults.map(topic => (
+          {
+            id: topic.id,
+            name: topic.name,
+            stance: topic.stance
+          }
+        ))
+      }
+      res.message = ''
+      next()
+    })
   })
 })
 
@@ -136,20 +161,46 @@ router.get('/profile/:id', function(req, res, next){
   const id = req.params.id
 
   const sql = `
-    SELECT u.username, p.first_name, p.last_name, p.city, p.state, p.avatar, p.political_affiliation
+    SELECT p.id, u.username, p.first_name, p.last_name, p.city, p.state, p.avatar, p.political_affiliation
     FROM users u
     JOIN profiles p ON p.user_id = u.id
-    JOIN tokens t ON t.user_id = u.id
     WHERE u.id = ?
   `
 
   conn.query(sql, [id], function(err, results){
-    res.err = false
-    res.data = results
-    res.message = ''
-    next()
+    const id = results[0].id
+    const topicSql = `
+      SELECT t.id, t.name, utl.stance
+      FROM topics t
+      JOIN user_topics_link utl ON utl.topic_id = t.id
+      WHERE utl.profile_id = ?
+    `
+
+    conn.query(topicSql, [id], function(err, tresults){
+      res.err = false
+      res.data = {
+        username: results[0].username,
+        first_name: results[0].first_name,
+        last_name: results[0].last_name,
+        city: results[0].city,
+        state: results[0].state,
+        avatar: results[0].avatar,
+        political_affiliation: results[0].political_affiliation,
+        topics: tresults.map(topic => (
+          {
+            id: topic.id,
+            name: topic.name,
+            stance: topic.stance
+          }
+        ))
+      }
+      res.message = ''
+      next()
+    })
   })
 })
+
+router.put('/profile')
 
 router.get('/generateRoomLink', function(req, res, next){
   const roomId = generateRoomId()
