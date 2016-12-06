@@ -60,7 +60,7 @@ const CommonProfile = React.createClass({
         <div className="topics_container">
         {this.props.topics.map(item => {
           return (
-          <div className="indiv_topic_container">
+          <div key={item.id} className="indiv_topic_container">
             <h3 className="topic_header">{item.name}</h3>
             <p className="topic_stance">{item.stance}</p>
           </div>
