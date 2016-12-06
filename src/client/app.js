@@ -13,6 +13,7 @@ import ProfileView from 'components/ProfileView'
 import ProfileEdit from 'components/ProfileEdit'
 import Profile from 'components/Profile'
 
+
 // Layout
 
 import Layout from 'layouts/Layout'
@@ -30,4 +31,8 @@ ReactDOM.render((
       <Route path="/editprofile" component={ProfileEdit} />
     </Route>
   </Router>
+
 ), document.getElementById('app'))
+
+
+

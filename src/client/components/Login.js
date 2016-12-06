@@ -34,19 +34,18 @@ export default React.createClass({
         <div className="header">
           <h1 className="logo_h1"><img className="logo_cg" src={Logo}/></h1>
         </div>
-          <div className="loginForm">
-            <form onSubmit={this.handleSubmit}>
-              <div className="login_form">
-
+        <div className="loginForm">
+          <form onSubmit={this.handleSubmit}>
+            <div className="login_form">
                 <input onChange={this.handleChange} type="text" id="username" placeholder="Username" /><br />
                 <input onChange={this.handleChange} type="password" id="password" placeholder="Password" /><br />
                 <br />
                 <p className="error">{this.state.errorMsg}</p>
                 <button className="button" type="submit">Login</button>
                 <Link to="/register"><button className="button button--state-register">Register</button></Link>
-              </div>
-            </form> 
-          </div>
+            </div>
+          </form> 
+        </div>
       </div>
     )
   }

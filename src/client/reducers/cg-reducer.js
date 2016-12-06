@@ -21,6 +21,8 @@ export default function (state = defaultState, action) {
       return {...state, profile: action.profile}
     case 'GET_TOPICS': 
       return {...state, topics: action.topics}
+    case 'GET_USER_PROFILE':
+      return {...state, profile: action.profile}
     case actions.GET_MESSAGE_USERS:
       return {...state, messageUsers: action.messageUsers}
     case actions.GET_MYCONVO:

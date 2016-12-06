@@ -5,7 +5,7 @@ import 'font-awesome/css/font-awesome.css'
 import { getMessageUsers } from 'api/getMessages'
 import { getConvo } from 'api/getConvo'
 import store from 'store'
-import MessagingView from './MessagingView'
+// import MessagingView from 'MessagingView'
 import Logo from 'assets/images/cg-logo.png'
 
 
@@ -39,6 +39,7 @@ const DrawerContainer = React.createClass ({
     )
   }
 })
+
 const DrawerView = React.createClass({
   getInitialState: function() {
     return {
@@ -97,7 +98,6 @@ const DrawerView = React.createClass({
                       )
                     })}
                 </ul>
-            <MessagingView  myconvo={this.props.myconvo}/>
             </div> 
           </div>
         </div>
@@ -106,7 +106,7 @@ const DrawerView = React.createClass({
 })
 
 export default DrawerContainer
+// <MessagingView  myconvo={this.props.myconvo}/>
 
-  
 
 
