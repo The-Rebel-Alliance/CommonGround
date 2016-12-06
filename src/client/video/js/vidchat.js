@@ -1,12 +1,12 @@
-// const roomname = location.href.substr(location.href.lastIndexOf('/') + 1)
-// console.log(roomname)
+
 
 var videoClient;
 var activeRoom;
 var previewMedia;
 var identity;
 var roomName = location.href.substr(location.href.lastIndexOf('/') + 1);
-
+var user = "test"
+var socket = io()
 // Check for WebRTC
 if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
   alert('WebRTC is not available in your browser.');
@@ -16,30 +16,84 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
 // from the room, if joined.
 window.addEventListener('beforeunload', leaveRoomIfJoined);
 
+$(document).ready(function() {
+  socket.emit('join', roomName)
+  socket.on('vid message', function(msg) {
+    console.log('msg', msg)
+    updateMessaging(msg.user, msg.message)
+  })
+})
+
+
 $.getJSON('/token', function (data) {
   console.log('data', data)
   identity = data.identity;
 
   // Create a Video Client and connect to Twilio
   videoClient = new Twilio.Video.Client(data.token);
-  document.getElementById('room-controls').style.display = 'block';
-  // document.getElementById('user1').innerHTML = identity
-
+ 
   // Bind button to join room
-    if (roomName) {
-      log("Waiting for ");
-
-      videoClient.connect({ to: roomName}).then(roomJoined,
-        function(error) {
-          log('Could not connect to Twilio: ' + error.message);
-        });
-    }
+  if (roomName) {
+    videoClient.connect({ to: roomName}).then(roomJoined) 
+  }
 
   // Bind button to leave room
-  document.getElementById('button-leave').onclick = function () {
-    log('Leaving room...');
-    activeRoom.disconnect();
-  };
+  // document.getElementById('button-leave').onclick = function () {
+  //   // log('Leaving room...');
+  //   activeRoom.disconnect();
+  // };
+
+  $("form").submit(function(e) {
+    e.preventDefault()
+    var user = 'test'
+    var value = $("#message").val()
+    socket.emit('vid message', {
+      message: $("#message").val()
+    })
+    $("#message").val("");
+  })
+
+
+  $("#interactions-div > i").click(function(e) {
+    console.log('e.toElement.id:', e.toElement.id)
+    var value = ""
+    switch(e.toElement.id) {
+      case "interaction-agree":
+        value="<i class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>"
+        break;
+      case "interaction-disagree":
+        value="<i class='fa fa-thumbs-down interaction-icons' aria-hidden='true'></i>"
+        break;
+      case "interaction-question":
+        value="<i class='fa fa-question-circle interaction-icons' aria-hidden='true'></i>"
+        break;
+      case "interaction-strike":
+        value="<i id='interaction-strike' class='fa fa-times-circle interaction-icons' aria-hidden='true'></i>"
+        break;
+      default:
+        value=""
+    }
+    socket.emit('vid message', {
+      message: value
+    })
+  })
+
+  // $("#interaction-agree").click(function(e) {
+  //   e.preventDefault()
+  //   var user = 'test'
+  //   var value = "<i class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>"
+  //   updateMessaging(user, value)
+  //   console.log('event', e)
+  // })
+
+  // $("#interaction-disagree").click(function(e) {
+  //   e.preventDefault()
+  //   var user = 'test'
+  //   var value = "<i class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>"
+  //   updateMessaging(user, value)
+  //   console.log('event', e)
+  // })
+
 });
 
 // Successfully connected!
@@ -47,9 +101,8 @@ function roomJoined(room) {
   activeRoom = room;
   console.log('room.participants', room.participants)
 
-  log("Joined as '" + identity + "'");
-  document.getElementById('button-join').style.display = 'none';
-  document.getElementById('button-leave').style.display = 'inline';
+  // log("Joined as '" + identity + "'");
+  // document.getElementById('button-leave').style.display = 'inline';
 
   // Draw local video, if not already previewing
   if (!previewMedia) {
@@ -57,58 +110,23 @@ function roomJoined(room) {
   }
 
   room.participants.forEach(function(participant) {
-    log("Already in Room: '" + participant.identity + "'");
     participant.media.attach('#remote-media');
-    console.log('participant', participant)
+    adjustVideo()
+    console.log('adjustVideo() not "room.on(participantConnected)")')
   });
 
   // When a participant joins, draw their video on screen
   room.on('participantConnected', function (participant) {
-    log("Joining: '" + participant.identity + "'");
     participant.media.attach('#remote-media');
+    adjustVideo()
+    console.log('adjustVideo() room.on("participantConnected"')
   });
 
   // When a participant disconnects, note in log
   room.on('participantDisconnected', function (participant) {
-    log("Participant '" + participant.identity + "' left the room");
     participant.media.detach();
+    adjustBackVideo()
   });
-
-  // When we are disconnected, stop capturing local video
-  // Also remove media for all remote participants
-  room.on('disconnected', function () {
-    log('Left');
-    room.localParticipant.media.detach();
-    room.participants.forEach(function(participant) {
-      participant.media.detach();
-    });
-    activeRoom = null;
-    document.getElementById('button-join').style.display = 'none';
-    document.getElementById('button-leave').style.display = 'none';
-  });
-}
-
-//  Local video preview
-// document.getElementById('button-preview').onclick = function () {
-//   if (!previewMedia) {
-//     previewMedia = new Twilio.Video.LocalMedia();
-//     Twilio.Video.getUserMedia().then(
-//     function (mediaStream) {
-//       previewMedia.addStream(mediaStream);
-//       previewMedia.attach('#local-media');
-//     },
-//     function (error) {
-//       console.error('Unable to access local media', error);
-//       log('Unable to access Camera and Microphone');
-//     });
-//   };
-// };
-
-// Activity log
-function log(message) {
-  var logDiv = document.getElementById('log');
-  logDiv.innerHTML += '<p>&gt;&nbsp;' + message + '</p>';
-  logDiv.scrollTop = logDiv.scrollHeight;
 }
 
 function leaveRoomIfJoined() {
@@ -116,3 +134,42 @@ function leaveRoomIfJoined() {
     activeRoom.disconnect();
   }
 }
+
+function adjustVideo() {
+  $("#local-media").animate({
+      left:'+=68%',
+      marginTop: '+=51%',
+      height: '-=40%'
+    }, 3000)
+  $("#waiting-overlay").css({display:"none"})
+}
+
+function adjustBackVideo() {
+  $("#local-media").animate({
+      left:'-=68%',
+      marginTop: '-=51%',
+      height: '+=40%'
+    }, 3000)
+  $("#waiting-overlay").css({display:"block"})
+
+}
+
+// function addToChat(userName, message) {
+//   message = $("input").val()
+//   console.log(message) 
+// }
+
+function updateMessaging(user, value) {
+    $("#chat-window").append(`<div class=chat-window-row>${user}: <li class=chat-window-item>${value}</li>`).scrollTop($("#chat-window")[0].scrollHeight);
+}
+
+function scroll() {
+  $("")
+}
+
+$(document).ready(function() {
+  // $("#test").click(function() {
+  //   $("#user1-response-square").fadeTo(1000, 1).delay(1000).fadeTo(1000, 0)
+  // })
+})
+
