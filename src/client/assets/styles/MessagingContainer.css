@@ -1,0 +1,84 @@
+html{
+  text-decoration-color: white;
+}
+
+aside{
+  max-width:100px;
+}
+
+p{
+  font-size: 11px;
+}
+
+img{
+  float:left;
+  height:30px;
+  width:30px;
+  margin:5px;
+}
+
+input#inputBox{
+  width: 90%;
+  border: 2px solid #7AE0D9;
+  position: relative;
+  margin-top: 450px;
+  border-radius: 5px 0px 0px 5px;
+  height: 29px;
+}
+
+h6{
+  margin: 2px 0px -5px 96px;
+  color:white;
+}
+
+h6 > #time{
+  color:grey;
+  float:right;
+}
+
+#messages{
+  height: 100%;
+}
+
+#messagingContainer{
+  color:#0097A7;
+  height:550px;
+  width:800px;
+  background-color: #333842;
+  margin-left: 350px;
+  border:1px solid white;
+  padding:10px;
+}
+
+ul{
+  list-style: none;
+  padding-left: 5px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  margin-top: 0px;
+}
+
+button{
+  height: 29px;
+  border-radius: 0px 5px 5px 0px;
+  margin: -5px;
+  border-style: none;
+  color:white;
+  background-color: #01A69A;
+  z-index: 200;
+}
+
+
+li{
+    padding-top: 7px;
+    font-size: 16px;
+    font-style: italic;
+    display: flex;
+    
+}
+
+#textboxContainer {
+  margin-top: -500px;
+}
+

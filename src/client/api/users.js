@@ -8,14 +8,15 @@ api.setTokenPath('/login')
 
 export function createUser(obj) {
     return axios.post('/register', obj).then(function(resp){
-      console.log(resp)
         browserHistory.push("/") 
     })
   }
 
-
 export function login(username, password) {
   return api.login(username, password, function success() {
-    browserHistory.push("/")
+    browserHistory.push("/dashboard")
   })
 }
+
+
+
