@@ -65,9 +65,9 @@ const DrawerView = React.createClass({
             <button onClick={this.toggleMenu} className="messageButton">
               <i className="fa fa-comments" aria-hidden="true"></i>   
             </button> 
-            <button className="messageButton">
+            <Link to="/profile"><button className="messageButton">
               <i className="fa fa-user-circle-o" aria-hidden="true"></i>
-            </button>
+            </button></Link>
             <button className="messageButton">
               <i className="fa fa-search" aria-hidden="true"></i>
             </button>            
