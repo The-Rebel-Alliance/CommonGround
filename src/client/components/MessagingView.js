@@ -5,27 +5,45 @@ import users from 'api/users'
 import 'assets/styles/MessagingContainer.css'
 import Drawer from './Drawer'
 import { getConvo } from 'api/convo'
+import { sendMsg } from 'api/sendMsg'
 
 
 const MessagingView = React.createClass({ 
+  getInitialState: function() {
+    return {
+      username:'',
+      message:'',
+      id: ''
+    }
+  },
+  handleSubmit: function (e) {
+    e.preventDefault()
+    var msg = {
+      username:this.state.username,
+      message:this.state.message,
+      id: this.state.id
+    }
+    sendMsg(msg)   
+  },
   render: function(){
     return(
       <div id="messagingContainer">
         <div id="messages">
-          <h4>My conversation with (user)</h4>
+          <h4>My conversation </h4>
           <ul>
             {this.props.myconvo.map((chat,i) => {
               return (
                 <li id={'chat' + i} key={'chat' + i}>
-                  {chat.first_name}{chat.message}
+                  {chat.username}:  {chat.message}
                 </li>
               )
              })}
           </ul>
         </div>
         <div id="textboxContainer">
-          <form id="textBox">
-            <input type="text" name="textBox" id="inputBox"></input><button>Submit</button>
+          <form onSubmit={this.handleSubmit}id="textBox">
+            <input type="text" name="textBox" id="inputBox"></input>
+            <button type="submit">Submit</button>
           </form>
         </div>
       </div>
