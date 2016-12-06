@@ -33,7 +33,7 @@ const MessagingView = React.createClass({
   }
 })
 
-export default MessagingView
+// export default MessagingView
  
  
  

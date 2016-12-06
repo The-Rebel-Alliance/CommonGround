@@ -32,6 +32,7 @@ const DashboardContainer = React.createClass({
     )
   } 
 })
+
 const CommonDashboard = React.createClass({
   getInitialState: function() {
     return {

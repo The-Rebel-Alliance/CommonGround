@@ -3,7 +3,7 @@ import {Link, browserHistory} from 'react-router'
 import {getUserProfile} from 'api/profile'
 import store from 'store'
 
-import 'assets/styles/profileview.css'
+import 'assets/styles/profile.css'
 
 const OtherProfileContainer = React.createClass({
   getInitialState: function(){
