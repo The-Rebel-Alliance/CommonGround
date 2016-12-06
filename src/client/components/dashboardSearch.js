@@ -67,15 +67,15 @@ const CommonDashboard = React.createClass({
           </div>
         </form>
         <div className="usersSearch">
-          <ul>
-            {this.props.profiles.map((user,i) => {
+            {this.props.profiles.map((user,i) =>{
               return(
-                <Link to={`/profile/${user.id}`}>
-                  <li key={'user' + i} id={'user' + user.id} value={user.id}><img src={user.avatar}/> <p className="userinfo">{user.first_name}&nbsp;{user.last_name}&nbsp;Political Affiliation:&nbsp;{user.political_affiliation}</p></li>
-                </Link>
-              )
+                <ul className="user_li">
+                <Link className="profile_link" to={`/profile/${user.id}`}>
+                  <li className="user_list" key={'user' + i} id={'user' + user.id} value={user.id}><img className="user_avatar" src={user.avatar}/> <p className="userinfo">{user.first_name}&nbsp;{user.last_name}&nbsp;Political Affiliation:&nbsp;{user.political_affiliation}</p></li>
+                </Link> </ul>
+                )
             })}
-          </ul>
+         
         </div>
       </div>
     )

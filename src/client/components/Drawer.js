@@ -71,7 +71,7 @@ const DrawerView = React.createClass({
             </button></Link>
             <Link to="/dashboard"><button className="messageButton">
               <i className="fa fa-search" aria-hidden="true"></i>
-            </button></Link>            
+            </button></Link>          
           </div>
           <div className="movingParts">
             <div className={this.state.hidden ? "hidden messageColumn" : "messageColumn"}>
