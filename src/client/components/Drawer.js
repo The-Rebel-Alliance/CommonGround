@@ -26,7 +26,7 @@ const DrawerContainer = React.createClass ({
       this.setState({
         messageUsers: appState.messageUsers,
         myconvo: appState.myconvo,
-        roomLink: appState
+        roomLink: appState.roomLink
       })
     })
   },
@@ -83,21 +83,20 @@ const DrawerView = React.createClass({
           </div>
           <div className="movingParts">
             <div className={this.state.hidden ? "hidden messageColumn" : "messageColumn"}>
-                <h4 className="myConvo">My Conversations</h4>
+                <h4 className="myConvo">My Conversations
+                 
+                </h4>
                  <ul className="chatList">                            
                      {this.props.messageUsers.map((user, i) =>{
                       return (
-                        <li id={'msguser' + user.id} onClick={this.selectUser} key={'messagesUser' + user.id}>
+                        <li className="userList" id={'msguser' + user.id} onClick={this.selectUser} key={'messagesUser' + user.id}>
                           <img src={user.avatar}/> 
                           {user.first_name} {user.last_name}
-                          <a href="{this.props.roomLink}" target="" id="videoIcon">
-                           <i className="fa fa-video-camera" aria-hidden="true" ></i>                  
-                          </a>
                         </li>
                       )
                     })}
                 </ul>
-            <MessagingView  myconvo={this.props.myconvo}/>
+            <MessagingView myconvo={this.props.myconvo}/>
             </div> 
           </div>
         </div>

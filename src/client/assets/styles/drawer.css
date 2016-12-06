@@ -37,8 +37,7 @@ h1{
 	background-color: #01A69A;
 	font-size: 16px;
 	position: fixed;
-	top: 0;
-	
+	top: 0;	
 }
 
 .messageColumn {
@@ -51,6 +50,7 @@ h1{
     position: fixed;
     top: 0;
 }
+
 h4 {
 	margin-top: 0px;
 }
@@ -58,7 +58,6 @@ h4 {
 .hidden {
 	display: none;
 	transition: width 2s;
-
 }
 
 .myConvo {
@@ -71,7 +70,17 @@ h4 {
 .chatList {
 	font-family: 'Julius Sans One', sans-serif; 
 	color:#FFF;
+	
 }
+.userList:hover {
+	color: #333842;
+}
+
+.userList:active {
+	color: #333842;
+}
+
+
 .messageButton {
 	background-color: #01A69A;
     outline: none;
@@ -79,9 +88,13 @@ h4 {
     margin-left: 7px;
     margin-top: 20px;
     font-size: 35px;
-
 }
-#videoIcon {
+
+.videoIcon{
 	margin-left: 10px;
 	text-decoration: none;
+	color:#FFF;	
+}
+.videoIcon:hover, .videoIcon:active {
+	color: #333842;
 }

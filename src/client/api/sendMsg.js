@@ -8,7 +8,8 @@ api.new('/')
 
 export function sendMsg(msg, id){
   console.log(msg)
-  return api.post('/api/message', msg).then(resp =>{
-    browswerHistory.push(`/messages/,msg, ${id}`)
+  return api.post('/api/message', msg).then(resp => {
+    console.log('resp', resp)
+    browswerHistory.push(`/messages/, msg, ${id}`)
   })
 }

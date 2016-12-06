@@ -12,18 +12,18 @@ const MessagingView = React.createClass({
   getInitialState: function() {
     return {
       username:'',
-      message:'',
-      id: ''
+      message:''
     }
   },
-  handleSubmit: function (e) {
+
+  handleSubmit: function(e) {
     e.preventDefault()
     var msg = {
       username:this.state.username,
       message:this.state.message,
-      id: this.state.id
+      id: this.props.id
     }
-    sendMsg(msg)   
+    sendMsg(msg)
   },
   update: function(e) {
     var val = e.target.value
@@ -36,12 +36,18 @@ const MessagingView = React.createClass({
     return(
       <div id="messagingContainer">
         <div id="messages">
-          <h4>My conversation </h4>
+          <h4>My conversation with 
+             <a href={this.props.roomLink} target="" className="videoIcon">
+               <i className="fa fa-video-camera" aria-hidden="true" >
+                {this.props.roomLink}
+               </i>                  
+             </a>
+          </h4>
           <ul>
-            {this.props.myconvo.map((chat,i) => {
+            {this.props.myconvo.messages.map((chat,i) => {
               return (
                 <li id={'chat' + i} key={'chat' + i}>
-                  {chat.username}:  {chat.message} 
+                  {chat.username}:   {chat.message} 
                 </li>
               )
              })}
@@ -49,7 +55,7 @@ const MessagingView = React.createClass({
         </div>
         <div id="textboxContainer">
           <form onSubmit={this.handleSubmit}id="textBox">
-            <input onChange={this.update} type="text" name="textBox" id="inputBox"></input>
+            <input onChange={this.update} type="text" name="textBox" id="message"/>
             <button type="submit">Submit</button>
           </form>
         </div>
