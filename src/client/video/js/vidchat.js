@@ -6,6 +6,7 @@ var previewMedia;
 var identity;
 var roomName = location.href.substr(location.href.lastIndexOf('/') + 1);
 var user = "test"
+var socket = io()
 // Check for WebRTC
 if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
   alert('WebRTC is not available in your browser.');
@@ -14,6 +15,13 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
 // When we are about to transition away from this page, disconnect
 // from the room, if joined.
 window.addEventListener('beforeunload', leaveRoomIfJoined);
+
+$(document).ready(function() {
+  socket.emit('join', roomName)
+  socket.on('vid message', function(msg) {
+    updateMessaging(msg.user, msg.message)
+  })
+})
 
 
 $.getJSON('/token', function (data) {
@@ -37,8 +45,10 @@ $.getJSON('/token', function (data) {
   $("form").submit(function(e) {
     e.preventDefault()
     var user = 'test'
-    var value = $("#message").val();
-    updateMessaging(user, value)
+    var value = $("#message").val()
+    socket.emit('vid message', {
+      message: $("#message").val()
+    })
     $("#message").val("");
   })
 
@@ -62,7 +72,9 @@ $.getJSON('/token', function (data) {
       default:
         value=""
     }
-    updateMessaging(user, value)
+    socket.emit('vid message', {
+      message: value
+    })
   })
 
   // $("#interaction-agree").click(function(e) {
