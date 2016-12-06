@@ -17,9 +17,9 @@ const DashboardContainer = React.createClass({
     getTopics()
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
-        this.setState({
-          topics: appState.topics,
-          profiles: appState.profiles
+      this.setState({
+        topics: appState.topics,
+        profiles: appState.profiles
       }) 
     })
   },
@@ -27,8 +27,10 @@ const DashboardContainer = React.createClass({
     this.unsubscribe()
   },
   render: function(){
-    return (<CommonDashboard topics={this.state.topics} profiles={this.state.profiles}/>)
-    } 
+    return (
+      <CommonDashboard topics={this.state.topics} profiles={this.state.profiles}/>
+    )
+  } 
 })
 const CommonDashboard = React.createClass({
   getInitialState: function() {
@@ -56,8 +58,8 @@ const CommonDashboard = React.createClass({
               <option>Select A Topic</option>
                 {this.props.topics.map((item,i) => {
                   return(
-                      <option id={"item" + item.id} key={'item' + i} value={item.id}>{item.name}</option>
-                    )
+                    <option id={"item" + item.id} key={'item' + i} value={item.id}>{item.name}</option>
+                  )
                 })}
             </select>
             <button type="submit" className="searchbutton">Search</button>
@@ -65,12 +67,12 @@ const CommonDashboard = React.createClass({
         </form>
         <div className="usersSearch">
           <ul>
-            {this.props.profiles.map((user,i) =>{
+            {this.props.profiles.map((user,i) => {
               return(
-                <Link to={"/profile/" + user.id}>
-                  <li key={'user' + i} id={'user' + user.id} value={user.id}><img src={user.avatar}/> {user.first_name} {user.last_name}</li>
+                <Link to={`/profile/${user.id}`}>
+                  <li key={'user' + i} id={'user' + user.id} value={user.id}><img src={user.avatar}/> <p className="userinfo">{user.first_name}&nbsp;{user.last_name}&nbsp;Political Affiliation:&nbsp;{user.political_affiliation}</p></li>
                 </Link>
-                )
+              )
             })}
           </ul>
         </div>
