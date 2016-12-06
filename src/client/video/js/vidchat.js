@@ -5,7 +5,7 @@ var activeRoom;
 var previewMedia;
 var identity;
 var roomName = location.href.substr(location.href.lastIndexOf('/') + 1);
-
+var user = "test"
 // Check for WebRTC
 if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
   alert('WebRTC is not available in your browser.');
@@ -41,6 +41,46 @@ $.getJSON('/token', function (data) {
     updateMessaging(user, value)
     $("#message").val("");
   })
+
+
+  $("#interactions-div > i").click(function(e) {
+    console.log('e.toElement.id:', e.toElement.id)
+    var value = ""
+    switch(e.toElement.id) {
+      case "interaction-agree":
+        value="<i class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>"
+        break;
+      case "interaction-disagree":
+        value="<i class='fa fa-thumbs-down interaction-icons' aria-hidden='true'></i>"
+        break;
+      case "interaction-question":
+        value="<i class='fa fa-question-circle interaction-icons' aria-hidden='true'></i>"
+        break;
+      case "interaction-strike":
+        value="<i id='interaction-strike' class='fa fa-times-circle interaction-icons' aria-hidden='true'></i>"
+        break;
+      default:
+        value=""
+    }
+    updateMessaging(user, value)
+  })
+
+  // $("#interaction-agree").click(function(e) {
+  //   e.preventDefault()
+  //   var user = 'test'
+  //   var value = "<i class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>"
+  //   updateMessaging(user, value)
+  //   console.log('event', e)
+  // })
+
+  // $("#interaction-disagree").click(function(e) {
+  //   e.preventDefault()
+  //   var user = 'test'
+  //   var value = "<i class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>"
+  //   updateMessaging(user, value)
+  //   console.log('event', e)
+  // })
+
 });
 
 // Successfully connected!
