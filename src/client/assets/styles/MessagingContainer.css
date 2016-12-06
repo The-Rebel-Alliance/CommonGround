@@ -21,7 +21,7 @@ img{
 input#inputBox{
   width: 88%;
   border: 2px solid #7AE0D9;
-  margin-top: 380px;
+  margin-top: 440px;
   border-radius: 5px 0px 0px 5px;
   height: 29px;
 }
@@ -42,15 +42,11 @@ h6{
   border-bottom: 1px solid white;
 }
 
-#messages{
-  height: 100%;
-}
-
 #messagingContainer{
   color:#0097A7;
   height:542px;
   width:800px;
-  margin-top: -346px;
+  margin-top: -47px;
   background-color: #333842;
   margin-left: 370px;
   border:1px solid white;
