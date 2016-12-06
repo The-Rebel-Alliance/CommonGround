@@ -1,11 +1,13 @@
 .profile_container {
-	display: inline-block;
+	
     width: 1000px;
     background: linear-gradient(#CECFD2, #eaedef);
-    margin-left: 140px;
     border-radius: 15px;
     margin-top: 35px;
     padding: 10px;
+    margin: auto;
+    height: auto;
+    overflow: auto;
 }
 
 .profile_pic {
@@ -14,11 +16,6 @@
 	width: 200px;
 	height: auto;
 	transition: 0.5s;
-}
-
-.profile_pic_container {
-	width: 500px;
-	background-color: #ED283C;
 }
 
 .info_container {
@@ -72,13 +69,12 @@
 }
 
 .topics_container {
-	margin-top: 30px;
+    margin-top: 30px;
     border-left: 3px solid #ccc;
     border-right: 3px solid #ccc;
     border-top: 3px solid #ccc;
     width: 955px;
-    margin-left: 160px;
-    display: inline-block;
+    margin: auto;
 
 }
 
@@ -87,7 +83,9 @@
     font-size: 40px;
     font-family: 'Muli', sans-serif;
     text-align: center;
-    margin-top: 21px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
 }
 
 .topic_header {

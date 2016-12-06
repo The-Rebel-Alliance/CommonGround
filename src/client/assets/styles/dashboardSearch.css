@@ -96,7 +96,7 @@ html {box-sizing: border-box;}
 	transition: .5s;
 }
 .usersSearch{
-	margin-left: 120px;
+	margin: auto;
     width: 1000px;
     margin-top: 50px;
 }
