@@ -4,6 +4,8 @@ export default function(io, req) {
   let users = []
 
   io.on('connection', function(socket){
+
+    console.log('socket connected')
     var room = ''
     var username = ''
     socket.on('join', function(roomName){
@@ -14,6 +16,7 @@ export default function(io, req) {
     socket.on('vid message', function(msg){
       if (username === '') {
         let token = req.cookies.token
+        console.log(token)
 
         const sql = `
           SELECT u.username 
