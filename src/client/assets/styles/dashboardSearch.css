@@ -60,7 +60,9 @@ html {box-sizing: border-box;}
 
 .userinfo {
 	font-size: 20px;
-	line-height: 44px;
+    line-height: 44px;
+    float: right;
+    margin-right: 50px;
 }
 
 .user_list {
@@ -100,4 +102,3 @@ html {box-sizing: border-box;}
     width: 1000px;
     margin-top: 50px;
 }
-

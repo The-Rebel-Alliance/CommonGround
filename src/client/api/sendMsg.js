@@ -6,10 +6,10 @@ import * as actions from 'actions'
 
 api.new('/')
 
-export function sendMsg(msg, id){
+export function sendMsg(msg){
   console.log(msg)
   return api.post('/api/message', msg).then(resp => {
     console.log('resp', resp)
-    browswerHistory.push(`/messages/, msg, ${id}`)
+    browswerHistory.push(`/messages/${id}`)
   })
 }

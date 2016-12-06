@@ -17,9 +17,9 @@ const DashboardContainer = React.createClass({
     getTopics()
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
-        this.setState({
-          topics: appState.topics,
-          profiles: appState.profiles
+      this.setState({
+        topics: appState.topics,
+        profiles: appState.profiles
       }) 
     })
   },
@@ -27,9 +27,12 @@ const DashboardContainer = React.createClass({
     this.unsubscribe()
   },
   render: function(){
-    return (<CommonDashboard topics={this.state.topics} profiles={this.state.profiles}/>)
-    } 
+    return (
+      <CommonDashboard topics={this.state.topics} profiles={this.state.profiles}/>
+    )
+  } 
 })
+
 const CommonDashboard = React.createClass({
   getInitialState: function() {
     return {
@@ -56,15 +59,14 @@ const CommonDashboard = React.createClass({
               <option>Select A Topic</option>
                 {this.props.topics.map((item,i) => {
                   return(
-                      <option id={"item" + item.id} key={'item' + i} value={item.id}>{item.name}</option>
-                    )
+                    <option id={"item" + item.id} key={'item' + i} value={item.id}>{item.name}</option>
+                  )
                 })}
             </select>
             <button type="submit" className="searchbutton">Search</button>
           </div>
         </form>
         <div className="usersSearch">
-          
             {this.props.profiles.map((user,i) =>{
               return(
                 <ul className="user_li">
