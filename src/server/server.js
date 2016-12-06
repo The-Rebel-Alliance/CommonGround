@@ -12,6 +12,8 @@ import fs from 'fs'
 import config from 'config'
 import { AccessToken } from 'twilio'
 import conn from './api/lib/db'
+import socketio from 'socket.io'
+import videoChat from './video/chat'
 const VideoGrant = AccessToken.VideoGrant
 
 export default function (conf) {
@@ -22,6 +24,12 @@ export default function (conf) {
     cert: fs.readFileSync('file.crt')
   }
 
+  const httpServer = http.createServer(app)
+  const httpsServer = https.cerateServer(httpsConfig, app)
+
+  const io = socketio(https)
+
+
   app.all('*', function(req, res, next){
     if(req.secure){
       return next()
@@ -30,6 +38,7 @@ export default function (conf) {
   })
 
   app.get('/v/:roomname', function(req, res, next){
+    videoChat(io, req)
     res.sendFile(path.resolve(conf.root + '/v/index.html'))
   })
 
@@ -79,6 +88,6 @@ export default function (conf) {
     res.sendFile(path.resolve(conf.root + '/index.html'))
   })
 
-  http.createServer(app).listen(config.get('server.http.port'), conf.hostname)
-  https.createServer(httpsConfig, app).listen(config.get('server.https.port'), conf.hostname)
+  httpServer.listen(config.get('server.http.port'), conf.hostname)
+  httpsServer.listen(config.get('server.https.port'), conf.hostname)
 }
