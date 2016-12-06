@@ -35,8 +35,11 @@ $.getJSON('/token', function (data) {
   // };
 
   $("form").submit(function(e) {
-    e.preventDefault()  
-    updateMessaging()
+    e.preventDefault()
+    var user = 'test'
+    var value = $("#message").val();
+    updateMessaging(user, value)
+    $("#message").val("");
   })
 });
 
@@ -103,15 +106,9 @@ function adjustBackVideo() {
 //   console.log(message) 
 // }
 
-function updateMessaging() {
-  $("input").keyup(function() {
-    value = $(this).val()
-    $("#chat-window").append("<li>" + value + "</li>")  
-  })  
+function updateMessaging(user, value) {
+    $("#chat-window").append(user + ": <li>" + value + "</li>");
 }
-
-
-
 
 $(document).ready(function() {
   // $("#test").click(function() {
