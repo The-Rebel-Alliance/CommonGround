@@ -1,6 +1,6 @@
 import React from 'react'
 import {Link, browserHistory} from 'react-router'
-import {getProfile} from 'api/profile'
+import {getProfiles} from 'api/profile'
 import store from 'store'
 
 import 'assets/styles/profileview.css'
@@ -19,7 +19,7 @@ const ProfileContainer = React.createClass({
     }
   },
   componentWillMount: function(){
-    getProfile(this.props.params.id)
+    getProfiles(this.props.params.id)
         
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
@@ -52,7 +52,7 @@ const CommonProfile = React.createClass({
         <span>{this.props.profile.city}</span>
         <span>{this.props.profile.state}</span>
         
-        <button>Edit my Profile</button>
+        <Link to={`/editprofile/${id}`}><button>Edit my Profile</button></Link>
      </div>
       )
   }
