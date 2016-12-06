@@ -6,9 +6,11 @@ import * as actions from 'actions'
 
 api.new('/')
 
-export function sendMsg(msg, id){
-  console.log(msg)
-  return api.post('/api/message', msg).then(resp =>{
-    browswerHistory.push(`/messages/,msg, ${id}`)
+export function getRoom() {
+  return api.get('/api/generateRoomLink').then(resp => {
+    store.dispatch({
+      type:actions.GET_ROOM,
+      roomLink: resp.data
+    })  
   })
 }

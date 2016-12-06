@@ -4,7 +4,7 @@ import store from 'store'
 import users from 'api/users'
 import 'assets/styles/MessagingContainer.css'
 import Drawer from './Drawer'
-import { getConvo } from 'api/convo'
+import { getConvo } from 'api/getConvo'
 import { sendMsg } from 'api/sendMsg'
 
 
@@ -25,6 +25,13 @@ const MessagingView = React.createClass({
     }
     sendMsg(msg)   
   },
+  update: function(e) {
+    var val = e.target.value
+    var id = e.target.id
+    var msgObj = {}
+    msgObj[id] = val
+    this.setState(msgObj)
+  },
   render: function(){
     return(
       <div id="messagingContainer">
@@ -34,7 +41,7 @@ const MessagingView = React.createClass({
             {this.props.myconvo.map((chat,i) => {
               return (
                 <li id={'chat' + i} key={'chat' + i}>
-                  {chat.username}:  {chat.message}
+                  {chat.username}:  {chat.message} 
                 </li>
               )
              })}
@@ -42,7 +49,7 @@ const MessagingView = React.createClass({
         </div>
         <div id="textboxContainer">
           <form onSubmit={this.handleSubmit}id="textBox">
-            <input type="text" name="textBox" id="inputBox"></input>
+            <input onChange={this.update} type="text" name="textBox" id="inputBox"></input>
             <button type="submit">Submit</button>
           </form>
         </div>

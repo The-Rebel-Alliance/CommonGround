@@ -2,8 +2,8 @@ import React from 'react'
 import { browserHistory, Link } from 'react-router'
 import styles from 'assets/styles/drawer.css'
 import 'font-awesome/css/font-awesome.css'
-import { getMessageUsers } from 'api/messages'
-import { getConvo } from 'api/convo'
+import { getMessageUsers } from 'api/getMessages'
+import { getConvo } from 'api/getConvo'
 import store from 'store'
 import MessagingView from './MessagingView'
 import Logo from 'assets/images/cg-logo.png'
@@ -14,7 +14,8 @@ const DrawerContainer = React.createClass ({
   getInitialState: function() {
     return {
       messageUsers:[],
-      myconvo:[]
+      myconvo:[],
+      roomLink: ''
     }
   }, 
   componentWillMount: function(){
@@ -24,7 +25,8 @@ const DrawerContainer = React.createClass ({
       console.log(appState.messageUsers)
       this.setState({
         messageUsers: appState.messageUsers,
-        myconvo: appState.myconvo
+        myconvo: appState.myconvo,
+        roomLink: appState
       })
     })
   },
@@ -33,7 +35,7 @@ const DrawerContainer = React.createClass ({
   },
   render: function() {
     return (
-      <DrawerView messageUsers={this.state.messageUsers} myconvo={this.state.myconvo}/>
+      <DrawerView messageUsers={this.state.messageUsers} myconvo={this.state.myconvo} roomLink={this.state.roomLink}/>
     )
   }
 })
@@ -70,7 +72,10 @@ const DrawerView = React.createClass({
             </button></Link>
             <button className="messageButton">
               <i className="fa fa-search" aria-hidden="true"></i>
-            </button>            
+            </button>  
+            <button className="messageButton">
+              <i className="fa fa-sign-out" aria-hidden="true"></i>
+            </button>  
           </div>
           <div className="movingParts">
             <div className={this.state.hidden ? "hidden messageColumn" : "messageColumn"}>
@@ -80,7 +85,10 @@ const DrawerView = React.createClass({
                       return (
                         <li id={'msguser' + user.id} onClick={this.selectUser} key={'messagesUser' + user.id}>
                           <img src={user.avatar}/> 
-                          {user.first_name} {user.last_name}                    
+                          {user.first_name} {user.last_name}
+                          <a href="{this.props.roomLink}" target="" id="videoIcon">
+                           <i className="fa fa-video-camera" aria-hidden="true" ></i>                  
+                          </a>
                         </li>
                       )
                     })}
@@ -88,7 +96,6 @@ const DrawerView = React.createClass({
             <MessagingView  myconvo={this.props.myconvo}/>
             </div> 
           </div>
-       
         </div>
     )            
   }

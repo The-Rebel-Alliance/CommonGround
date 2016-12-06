@@ -6,7 +6,8 @@ const defaultState = {
   topics: [],
   profile: {},
   messageUsers:[],
-  myconvo: []
+  myconvo: [],
+  roomLink:''
 }
 
 
@@ -24,7 +25,10 @@ export default function (state = defaultState, action) {
       return {...state, messageUsers: action.messageUsers}
     case actions.GET_MYCONVO:
       return {...state, myconvo: action.myconvo}
+    case actions.GET_ROOM:
+      return {...state, roomLink: action.roomLink}
     default:
+
       return state
   }
 }
