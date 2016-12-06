@@ -200,7 +200,92 @@ router.get('/profile/:id', function(req, res, next){
   })
 })
 
-router.put('/profile')
+router.put('/profile', function(req, res, next){
+  const token = req.token
+  const fname = req.body.first_name || ''
+  const lname = req.body.last_name || ''
+  const city = req.body.city || ''
+  const state = req.body.state || ''
+  const avatar = req.body.avatar || ''
+  const political_affiliation = req.body.political_affiliation || ''
+  const topics = req.body.topics || []
+  const sql = `
+    UPDATE profiles p
+    JOIN users u ON p.user_id = u.id
+    JOIN tokens t ON t.user_id = u.id
+    SET
+      p.first_name = ?,
+      p.last_name = ?,
+      p.city = ?,
+      p.state = ?,
+      p.avatar = ?,
+      p.political_affiliation = ?
+    WHERE t.token = ?
+  `
+  conn.query(sql, [fname, lname, city, state, avatar, political_affiliation, token], function(err, results){
+    var promiseArr = topics.map(topic => {
+      return new Promise((resolve, reject) => {
+        const checkSql = `
+          SELECT p.id
+          FROM users u
+          JOIN profiles p ON p.user_id = u.id
+          JOIN user_topics_link utl ON utl.profile_id = p.id
+          JOIN tokens t ON t.user_id = u.id
+          WHERE t.token = ? AND utl.topic_id = ?
+        `
+        conn.query(checkSql, [token, topic.id], function(err, cresults){
+          if (cresults.length > 0) {
+            // update
+            const profileId = cresults[0].id
+            const updateSql = `
+              UPDATE user_topics_link utl
+              JOIN profiles p ON utl.profile_id = p.id
+              JOIN users u ON p.user_id = u.id
+              JOIN tokens t ON t.user_id = u.id
+              SET utl.stance = ?
+              WHERE utl.topic_id = ? AND utl.profile_id = ?
+            `
+            conn.query(updateSql, [topic.stance, topic.id, profileId], function(err, results){
+              if (err) {
+                reject('There was an issue updating. Show this to Mike.')
+                console.log(err)
+              } else {
+                resolve()
+              }
+            })
+          } else {
+            const insertSql = `
+              INSERT INTO user_topics_link (topic_id, profile_id, stance)
+                SELECT ?, p.id, ?
+                FROM users u
+                JOIN profiles p ON p.user_id = u.id
+                JOIN tokens t ON t.user_id = u.id
+                WHERE t.token = ?
+            `
+
+            conn.query(insertSql, [topic.id, topic.stance, token], function(err, results){
+              if (err) {
+                reject('There was in issue inserting. Show this to Mike.')
+                console.log(err)
+              } else {
+                resolve()
+              }
+            })
+          }
+        })
+      })
+    })
+    
+    Promise.all(promiseArr).then((theresults)=> {
+      res.errr = false
+      res.data = {message:'success'}
+      res.message = ''
+      next()    
+    }).catch((err) => {
+      res.status(400).send(err)
+    })
+  })
+})
 
 router.get('/generateRoomLink', function(req, res, next){
   const roomId = generateRoomId()
