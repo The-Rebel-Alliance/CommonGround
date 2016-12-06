@@ -147,7 +147,11 @@ function adjustBackVideo() {
 // }
 
 function updateMessaging(user, value) {
-    $("#chat-window").append(`<div class=chat-window-row>${user}: <li class=chat-window-item>${value}</li>`);
+    $("#chat-window").append(`<div class=chat-window-row>${user}: <li class=chat-window-item>${value}</li>`).scrollTop($("#chat-window")[0].scrollHeight);
+}
+
+function scroll() {
+  $("")
 }
 
 $(document).ready(function() {
