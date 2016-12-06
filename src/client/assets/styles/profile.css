@@ -17,12 +17,9 @@ html {box-sizing: border-box;}
     width: 200px;
     height: auto;
     transition: 0.5s;
+    float: left;
 }
 
-.profile_pic_container {
-    width: 500px;
-    background-color: #ED283C;
-}
 
 .info_container {
     width: 500px;
