@@ -25,7 +25,7 @@ export default function (conf) {
   }
 
   const httpServer = http.createServer(app)
-  const httpsServer = https.cerateServer(httpsConfig, app)
+  const httpsServer = https.createServer(httpsConfig, app)
 
   const io = socketio(https)
 
