@@ -2,7 +2,7 @@ html {box-sizing: border-box;}
 *, *:after, *:before {box-sizing: inherit;}
 
 .dashboard_container {
-	position: absolute;
+	position: fixed;
 	z-index: -1;
 }
 
@@ -100,4 +100,3 @@ html {box-sizing: border-box;}
     width: 1000px;
     margin-top: 50px;
 }
-

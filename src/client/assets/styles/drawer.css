@@ -60,6 +60,15 @@ h4 {
 	transition: width 2s;
 
 }
+button{
+  height: 29px;
+  border-radius: 0px 5px 5px 0px;
+  margin: -5px;
+  border-style: none;
+  color:white;
+  background-color: #01A69A;
+  z-index: 200;
+}
 
 .titleBar {
 	width:100%;
