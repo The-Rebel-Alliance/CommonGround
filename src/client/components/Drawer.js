@@ -26,7 +26,7 @@ const DrawerContainer = React.createClass ({
       this.setState({
         messageUsers: appState.messageUsers,
         myconvo: appState.myconvo,
-        roomLink: appState
+        roomLink: appState.roomLink
       })
     })
   },

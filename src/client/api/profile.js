@@ -20,3 +20,10 @@ export function getOtherProfiles(id) {
     })
   })
 }
+
+
+export function editProfile(id, topicId) {
+  return api.put('/api/profile/' + id).then(resp => {
+    browserHistory.push('/api/profile')
+  })
+}
