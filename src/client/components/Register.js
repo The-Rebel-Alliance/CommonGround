@@ -5,6 +5,7 @@ import 'assets/lib/cloudinary'
 import {createUser} from 'api/users'
 import {getTopics} from 'api/topics'
 import store from 'store'
+import Logo from 'assets/images/cg-logo.png'
 
 export default React.createClass({
   getInitialState: function() {
@@ -85,7 +86,7 @@ export default React.createClass({
     return (
       <div id="container">
         <div className="header">
-          <h1>Common Ground</h1>
+          <h1 className="logo_h1"><img className="logo_cg" src={Logo}/></h1>
         </div>
           <div className="register_form">
             <form onSubmit={this.handleSubmit}>
