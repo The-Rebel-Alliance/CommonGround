@@ -36,16 +36,20 @@ h1{
 	clear: right;
 	background-color: #01A69A;
 	font-size: 16px;
+	position: fixed;
+	top: 0;
 	
 }
 
 .messageColumn {
 	
 	background-color: #01A69A;
-	height:1000px;
-	width:330px;
-	margin-left: 50px;
-	transition: 2s;
+    height: 1000px;
+    width: 330px;
+    margin-left: 50px;
+    transition: 2s;
+    position: fixed;
+    top: 0;
 }
 h4 {
 	margin-top: 0px;
