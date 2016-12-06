@@ -112,6 +112,18 @@ h2 span {
   height: 55%;
   background: #fff;
   overflow: auto;
+  padding-left: 3%;
+}
+
+.chat-window-item {
+  list-style: none;
+  display: inline-block;
+}
+
+.chat-window-row {
+  display: inline-block;
+  width: 100%;
+  text-align: left;
 }
 
 .interaction-icons {
