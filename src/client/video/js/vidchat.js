@@ -19,6 +19,7 @@ window.addEventListener('beforeunload', leaveRoomIfJoined);
 $(document).ready(function() {
   socket.emit('join', roomName)
   socket.on('vid message', function(msg) {
+    console.log('msg', msg)
     updateMessaging(msg.user, msg.message)
   })
 })
