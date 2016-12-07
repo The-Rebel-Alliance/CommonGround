@@ -79,7 +79,10 @@ router.get('/messages/:fromId', function(req, res, next){
 
   conn.query(sql, [token, token, fromId, token, fromId], function(err, results){
     res.err = false
-    res.data = results
+    res.data = {
+      id: fromId,
+      messages: results
+    }
     res.message = ''
     next()  
   })

@@ -50,7 +50,6 @@ router.get('/topics', function(req, res){
   const sql = 'SELECT * FROM topics'
 
   conn.query(sql, function(err, results){
-    console.log(results)
     const topics = results.map(topic => ({id:topic.id, name:topic.name}))
     res.json(topics)
   })
