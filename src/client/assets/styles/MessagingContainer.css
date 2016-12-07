@@ -21,9 +21,9 @@ input#inputBox{
   width: 90%;
   border: 2px solid #7AE0D9;
   position: relative;
-  margin-top: 450px;
   border-radius: 5px 0px 0px 5px;
   height: 29px;
+  color:black;
 }
 
 h6{
@@ -41,13 +41,16 @@ h6 > #time{
 }
 
 #messagingContainer{
-  color:#0097A7;
-  height:550px;
+  font-family: 'Muli', sans-serif;
+  color: #fff;
+  height:100%;
   width:800px;
   background-color: #333842;
-  margin-left: 350px;
+  margin-left: 330px;
   border:1px solid white;
   padding:10px;
+  margin-top: -335px;
+  position: fixed;
 }
 
 ul{
@@ -79,6 +82,6 @@ li{
 }
 
 #textboxContainer {
-  margin-top: -500px;
+  margin-top: -10%;
 }
 

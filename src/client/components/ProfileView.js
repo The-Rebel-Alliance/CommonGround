@@ -3,6 +3,7 @@ import {Link, browserHistory} from 'react-router'
 import {getUserProfile} from 'api/profile'
 import store from 'store'
 
+
 import 'assets/styles/profile.css'
 
 const OtherProfileContainer = React.createClass({
@@ -44,12 +45,18 @@ const CommonOtherProfile = React.createClass({
       <div>
         <div className="profile_container">
           <div className="profile_pic_container"><img className="profile_pic" src={this.props.avatar}/></div>
-          <div><button className="edit_button"><i className="fa fa-comments" aria-hidden="true"></i> Message Me</button></div>
+          <div>
+            <Link to="/Drawer" >
+              <button className="edit_button">
+                <i className="fa fa-comments" aria-hidden="true"></i> 
+                Message Me
+              </button>
+            </Link>
+           </div>
           <div className="info_container"><h1 className="profile_names">{this.props.first_name}</h1>&nbsp;<h1 className="profile_names">{this.props.last_name}</h1>
             <h3 className="profile_username">({this.props.username})</h3>
             <p className="city_state">{this.props.city}&nbsp;{this.props.state}</p>
             <p className="city_state">Political Affiliation:&nbsp;{this.props.political_affiliation}</p>
-
           </div>
         </div>
         <div className="topic_table">Topics of Interest and Stances:</div>
