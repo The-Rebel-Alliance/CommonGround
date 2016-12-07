@@ -12,6 +12,8 @@ import fs from 'fs'
 import config from 'config'
 import { AccessToken } from 'twilio'
 import conn from './api/lib/db'
+import socketio from 'socket.io'
+import videoChat from './video/chat'
 const VideoGrant = AccessToken.VideoGrant
 
 export default function (conf) {
@@ -44,8 +46,6 @@ export default function (conf) {
 
     conn.query(sql, [token], function(err, response){
       const identity = response[0].username
-      console.log('response', response)
-      console.log('identity', identity)
       // Create an access token which we will sign and return to the client,
       // containing the grant we just created
       const token = new AccessToken(
@@ -79,6 +79,13 @@ export default function (conf) {
     res.sendFile(path.resolve(conf.root + '/index.html'))
   })
 
-  http.createServer(app).listen(config.get('server.http.port'), conf.hostname)
-  https.createServer(httpsConfig, app).listen(config.get('server.https.port'), conf.hostname)
+  const httpServer = http.createServer(app)
+  const httpsServer = https.createServer(httpsConfig, app)
+
+  const io = socketio(httpsServer)
+
+  videoChat(io)
+
+  httpServer.listen(config.get('server.http.port'), conf.hostname)
+  httpsServer.listen(config.get('server.https.port'), conf.hostname)
 }
