@@ -5,7 +5,7 @@ import 'font-awesome/css/font-awesome.css'
 import { getMessageUsers } from 'api/getMessages'
 import { getConvo } from 'api/getConvo'
 import store from 'store'
-// import MessagingView from 'MessagingView'
+import MessagingView from './MessagingView'
 import Logo from 'assets/images/cg-logo.png'
 
 
@@ -15,18 +15,17 @@ const DrawerContainer = React.createClass ({
     return {
       messageUsers:[],
       myconvo:[],
-      roomLink: ''
+      fromId:null
     }
   }, 
   componentWillMount: function(){
     getMessageUsers()
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
-      console.log(appState.messageUsers)
       this.setState({
         messageUsers: appState.messageUsers,
         myconvo: appState.myconvo,
-        roomLink: appState.roomLink
+        fromId: appState.fromId
       })
     })
   },
@@ -35,7 +34,7 @@ const DrawerContainer = React.createClass ({
   },
   render: function() {
     return (
-      <DrawerView messageUsers={this.state.messageUsers} myconvo={this.state.myconvo} roomLink={this.state.roomLink}/>
+      <DrawerView messageUsers={this.state.messageUsers} fromId={this.state.fromId} myconvo={this.state.myconvo}/>
     )
   }
 })
@@ -65,11 +64,16 @@ const DrawerView = React.createClass({
               <h1><img className="logo_cg" src={Logo}/></h1>
           </div>
           <div className='iconColumn'> 
+            <Link to="/dashboard">
+              <button className="messageButton">
+               <i className="fa fa-home" aria-hidden="true"></i>
+              </button>
+            </Link>
             <button onClick={this.toggleMenu} className="messageButton">
               <i className="fa fa-comments" aria-hidden="true"></i>   
             </button> 
             <Link to="/profile">
-              <button className="messageButton">
+              <button  className="messageButton">
                 <i className="fa fa-user-circle-o" aria-hidden="true"></i>
               </button>
             </Link>
@@ -91,16 +95,12 @@ const DrawerView = React.createClass({
                      {this.props.messageUsers.map((user, i) =>{
                       return (
                         <li className="userList" id={'msguser' + user.id} onClick={this.selectUser} key={'messagesUser' + user.id}>
-                          <img src={user.avatar}/> 
-                          {user.first_name} {user.last_name}
+                            <img src={user.avatar}/> {user.first_name} {user.last_name}
                         </li>
                       )
                     })}
                 </ul>
-<<<<<<< HEAD
-            <MessagingView myconvo={this.props.myconvo}/>
-=======
->>>>>>> f6aec4f69697f363f0e2bb9c8cb23cbdcfa3e555
+           <MessagingView fromId={this.props.fromId} myconvo={this.props.myconvo}/>
             </div> 
           </div>
         </div>
@@ -109,7 +109,7 @@ const DrawerView = React.createClass({
 })
 
 export default DrawerContainer
-// <MessagingView  myconvo={this.props.myconvo}/>
 
 
 
+// <MessagingView myconvo={this.props.myconvo}/>

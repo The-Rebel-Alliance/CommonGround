@@ -41,11 +41,10 @@ h1{
 }
 
 .messageColumn {
-	
 	background-color: #01A69A;
     height: 1000px;
     width: 330px;
-    margin-left: 50px;
+    margin-left: 60px;
     transition: 2s;
     position: fixed;
     top: 0;
@@ -77,9 +76,18 @@ button{
 }
 
 .chatList {
-	font-family: 'Julius Sans One', sans-serif; 
-	color:#FFF;
-	
+	font-family: 'Muli', sans-serif;
+    color: #333842;
+   
+
+}
+
+.userList {
+	margin-top: 5px;
+	border:.5px solid #fff; 
+	border-radius: 5px;
+	width:95%;
+	background:linear-gradient(#CECFD2, #eaedef);
 }
 .userList:hover {
 	color: #333842;
