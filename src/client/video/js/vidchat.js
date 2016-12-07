@@ -5,8 +5,12 @@ var activeRoom;
 var previewMedia;
 var identity;
 var roomName = location.href.substr(location.href.lastIndexOf('/') + 1);
+var url = location.href.substr(0, location.href.indexOf(location.pathname))
 var user = "test"
-var socket = io()
+
+var socket = io.connect(url, {
+  secure:true
+})
 // Check for WebRTC
 if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
   alert('WebRTC is not available in your browser.');
@@ -16,18 +20,14 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
 // from the room, if joined.
 window.addEventListener('beforeunload', leaveRoomIfJoined);
 
-$(document).ready(function() {
-  socket.emit('join', roomName)
-  socket.on('vid message', function(msg) {
-    console.log('msg', msg)
-    updateMessaging(msg.user, msg.message)
-  })
-})
-
 
 $.getJSON('/token', function (data) {
-  console.log('data', data)
   identity = data.identity;
+
+  socket.emit('join', roomName)
+  socket.on('vid message', function(msg) {
+    updateMessaging(msg.user, msg.message)
+  })
 
   // Create a Video Client and connect to Twilio
   videoClient = new Twilio.Video.Client(data.token);
@@ -48,6 +48,7 @@ $.getJSON('/token', function (data) {
     var user = 'test'
     var value = $("#message").val()
     socket.emit('vid message', {
+      user: identity,
       message: $("#message").val()
     })
     $("#message").val("");
@@ -55,7 +56,6 @@ $.getJSON('/token', function (data) {
 
 
   $("#interactions-div > i").click(function(e) {
-    console.log('e.toElement.id:', e.toElement.id)
     var value = ""
     switch(e.toElement.id) {
       case "interaction-agree":
@@ -74,32 +74,15 @@ $.getJSON('/token', function (data) {
         value=""
     }
     socket.emit('vid message', {
+      user: identity,
       message: value
     })
   })
-
-  // $("#interaction-agree").click(function(e) {
-  //   e.preventDefault()
-  //   var user = 'test'
-  //   var value = "<i class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>"
-  //   updateMessaging(user, value)
-  //   console.log('event', e)
-  // })
-
-  // $("#interaction-disagree").click(function(e) {
-  //   e.preventDefault()
-  //   var user = 'test'
-  //   var value = "<i class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>"
-  //   updateMessaging(user, value)
-  //   console.log('event', e)
-  // })
-
 });
 
 // Successfully connected!
 function roomJoined(room) {
   activeRoom = room;
-  console.log('room.participants', room.participants)
 
   // log("Joined as '" + identity + "'");
   // document.getElementById('button-leave').style.display = 'inline';
@@ -112,14 +95,12 @@ function roomJoined(room) {
   room.participants.forEach(function(participant) {
     participant.media.attach('#remote-media');
     adjustVideo()
-    console.log('adjustVideo() not "room.on(participantConnected)")')
   });
 
   // When a participant joins, draw their video on screen
   room.on('participantConnected', function (participant) {
     participant.media.attach('#remote-media');
     adjustVideo()
-    console.log('adjustVideo() room.on("participantConnected"')
   });
 
   // When a participant disconnects, note in log
@@ -162,14 +143,3 @@ function adjustBackVideo() {
 function updateMessaging(user, value) {
     $("#chat-window").append(`<div class=chat-window-row>${user}: <li class=chat-window-item>${value}</li>`).scrollTop($("#chat-window")[0].scrollHeight);
 }
-
-function scroll() {
-  $("")
-}
-
-$(document).ready(function() {
-  // $("#test").click(function() {
-  //   $("#user1-response-square").fadeTo(1000, 1).delay(1000).fadeTo(1000, 0)
-  // })
-})
-

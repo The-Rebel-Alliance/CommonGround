@@ -1,11 +1,5 @@
-import conn from '../api/lib/db'
-
-export default function(io, req) {
-  let users = []
-
+export default function(io) {
   io.on('connection', function(socket){
-
-    console.log('socket connected')
     var room = ''
 
     socket.on('join', function(roomName){
@@ -14,16 +8,7 @@ export default function(io, req) {
     })
 
     socket.on('vid message', function(msg){
-      socket.to(room).emit('vid message', {
-        user: username,
-        message: msg
-      })
-    })
-
-    socket.on('disconnect', function(){
-      socket.to(room).emit('disconnect', {
-        user: username
-      })
+      io.to(room).emit('vid message', msg)
     })
   })
 }
