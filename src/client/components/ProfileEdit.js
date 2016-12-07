@@ -1,52 +1,42 @@
 import React from 'react'
 import {getProfile, editProfile} from 'api/profile'
 import store from 'store'
-import {getTopics} from 'api/topics'
+import 'assets/lib/cloudinary'
+import EditTopics from 'components/editAddStances'
 
 import 'assets/styles/editProfile.css'
 
 export default React.createClass({
   getInitialState: function() {
     return {
-        id: '',
-        first_name: '',
-        last_name: '',
-        city: '',
-        state: '',
-        avatar: '',
-        politicalAffiliation: '',
-        displayTopics: [],
-        submitTopics: []
+      id: '',
+      firstName: '',
+      lastName: '',
+      city: '',
+      state: '',
+      avatar: '',
+      politicalAffiliation: '',
+      displayTopics: [],
+      submitTopics: []
     }
   },
   componentWillMount: function() {
-    getTopics()
     getProfile(this.props.params.id)
-        this.unsubscribe = store.subscribe(() => {
-          const appState = store.getState()
-          this.setState({
-            id: appState.profile.id,
-            first_name: appState.profile.firstName,
-            last_name: appState.profile.lastName,
-            city: appState.profile.city,
-            state: appState.profile.state,
-            avatar: appState.profile.avatar,
-            political_affiliation: appState.profile.politicalAffiliation,
-            displayTopics: appState.topics
-          })
-        })
-  },
-  updateTopics: function (e) {
-    var id = Number(e.target.id.substr(5))
-    var topics = this.state.submitTopics
-    if (topics.indexOf(id) === -1) {
-      topics.push(id)
-    } else {
-      topics.splice(topics.indexOf(id), 1)
-    }
-    this.setState({
-      submitTopics: topics
+    this.unsubscribe = store.subscribe(() => {
+      const appState = store.getState()
+      this.setState({
+        id: appState.profile.id || '',
+        firstName: appState.profile.first_name || '',
+        lastName: appState.profile.last_name || '',
+        city: appState.profile.city || '',
+        state: appState.profile.state || '',
+        avatar: appState.profile.avatar || '',
+        politicalAffiliation: appState.profile.political_affiliation || '',
+      })
     })
+  },
+  componentWillUnmount: function() {
+    this.unsubscribe()
   },
   update: function (e) {
     var val = e.target.id
@@ -68,14 +58,14 @@ export default React.createClass({
   render: function () {
     return (
      <div id="container">
-          <div className="register_form">
+          <div className="register_form_edit">
             <form onSubmit={this.handleSubmit}>
               <div className="registerform_container">
                 <p className="register_header">Edit Profile</p>
-                <input onChange={this.update} value={this.state.first_name} type="text" id="firstName" placeholder="First Name" /><br />
-                <input onChange={this.update} value={this.state.last_name} type="text" id="lastName" placeholder="Last Name" />
-                <input id="city" onChange={this.update} type="text" id="city" placeholder="City" />
-                <select id="state" onChange={this.update} className="register_state_select">
+                <input onChange={this.update} value={this.state.firstName} type="text" id="firstName" placeholder="First Name" /><br />
+                <input onChange={this.update} value={this.state.lastName} type="text" id="lastName" placeholder="Last Name" />
+                <input id="city" onChange={this.update} value={this.state.city} type="text" id="city" placeholder="City" />
+                <select id="state" onChange={this.update} value={this.state.state} className="register_state_select">
                   <option defaultValue="selected">Select State</option>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -129,26 +119,17 @@ export default React.createClass({
                   <option value="WI">Wisconsin</option>
                   <option value="WY">Wyoming</option>
                 </select>
-                <select id ="politicalAffiliation" onChange={this.update} className="register_affilation_select">
+                <select value={this.state.politicalAffiliation} id="politicalAffiliation" onChange={this.update} className="register_affilation_select">
                   <option defaultValue="selected">Select Political Affilation</option>
                   <option value="Democrat">Democrat</option>
                   <option value="Republican">Republican</option>
                   <option value="Independent">Independent</option>
                   <option value="Other">Other</option>
                 </select> 
-                <button onChange={this.update} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
+                <button className="button_avatar" onChange={this.update} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
             </div>
-            <div className="topics_container">
-          {this.props.displayTopics.map(item => {
-            return (
-              <div key={item.id} className="indiv_topic_container">
-                <h3 className="topic_header">{item.name}</h3>
-                <textarea className="topic_stance">{item.stance}</textarea>
-              </div>
-            )
-          })}
-        </div>          
-            <button type="submit" className="button button--state-register--register">Submit</button>
+             <EditTopics />         
+            <button type="submit" className="button_avatar">Submit</button>
       </form>
   </div>
 </div>
