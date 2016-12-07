@@ -8,7 +8,7 @@ var roomName = location.href.substr(location.href.lastIndexOf('/') + 1);
 var url = location.href.substr(0, location.href.indexOf(location.pathname))
 var user = "test"
 
-var socket = io.connect(url, {
+var socket = io('/video').connect(url, {
   secure:true
 })
 // Check for WebRTC

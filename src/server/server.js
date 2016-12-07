@@ -83,8 +83,9 @@ export default function (conf) {
   const httpsServer = https.createServer(httpsConfig, app)
 
   const io = socketio(httpsServer)
+  const video = io.of('/video')
 
-  videoChat(io)
+  videoChat(video)
 
   httpServer.listen(config.get('server.http.port'), conf.hostname)
   httpsServer.listen(config.get('server.https.port'), conf.hostname)
