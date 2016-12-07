@@ -1,5 +1,6 @@
-export default function(io) {
-  io.on('connection', function(socket){
+export default function(vid) {
+  vid.on('connection', function(socket){
+    console.log('socket connected')
     var room = ''
 
     socket.on('join', function(roomName){
@@ -8,7 +9,7 @@ export default function(io) {
     })
 
     socket.on('vid message', function(msg){
-      io.to(room).emit('vid message', msg)
+      vid.to(room).emit('vid message', msg)
     })
   })
 }
