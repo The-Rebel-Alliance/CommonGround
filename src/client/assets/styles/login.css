@@ -55,26 +55,27 @@ input{
     border: 1px solid white;
     font-family: 'Cabin', sans-serif;
     outline: white;
+    color:black;
 }
 .button{
 	width: 80px;
-    height: 40px;
-    border-radius: 5px;
-    outline: none;
-    background-color: #07A9A2;
-    color: white;
-    margin-left: 15px;
-    font-family: 'Cabin', sans-serif;
-    font-size: 15px;
-    border: none;
+  height: 40px;
+  border-radius: 5px;
+  outline: none;
+  background-color: #07A9A2;
+  color: white;
+  margin-left: 15px;
+  font-family: 'Cabin', sans-serif;
+  font-size: 15px;
+  border: none;
 }
 .button--state-register{
-	 margin-right: 15px;
-    float: right;
-    color: white;
-    background-color: #ED283C;
-    width: 90px;
-    font-family: 'Cabin', sans-serif;
-    font-size: 15px;
-    border: none;
+	margin-right: 15px;
+  float: right;
+  color: white;
+  background-color: #ED283C;
+  width: 90px;
+  font-family: 'Cabin', sans-serif;
+  font-size: 15px;
+  border: none;
 }

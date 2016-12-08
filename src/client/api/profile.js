@@ -12,7 +12,7 @@ export function getProfile() {
   })
 }
 
-export function getOtherProfiles(id) {
+export function getUserProfile(id) {
   return api.get('/api/profile/' + id).then(resp => {
     store.dispatch({
       type: 'GET_PROFILE',
