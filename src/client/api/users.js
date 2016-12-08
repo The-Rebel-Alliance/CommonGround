@@ -18,5 +18,8 @@ export function login(username, password) {
   })
 }
 
-
-
+export function logout(username, password) {
+  return api.logout(username, password, function success() {
+    browserHistory.push("/")
+  })
+}

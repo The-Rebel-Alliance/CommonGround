@@ -52,11 +52,10 @@ const CommonDashboard = React.createClass({
   render: function () {
     return(
       <div id="dashboard_container">
-        <div className="dashboard_header"></div>
         <form onSubmit={this.submitHandle}>
           <div className="search--topic--container">
             <select onChange={this.handleChange} className="searchbar">
-              <option>Select A Topic</option>
+              <option>Find User's by Topic</option>
                 {this.props.topics.map((item,i) => {
                   return(
                     <option id={"item" + item.id} key={'item' + i} value={item.id}>{item.name}</option>
@@ -69,9 +68,9 @@ const CommonDashboard = React.createClass({
         <div className="usersSearch">
             {this.props.profiles.map((user,i) =>{
               return(
-                <ul className="user_li">
+                <ul className="user_li" key={'user' + i}>
                 <Link className="profile_link" to={`/profile/${user.id}`}>
-                  <li className="user_list" key={'user' + i} id={'user' + user.id} value={user.id}><img className="user_avatar" src={user.avatar}/> <p className="userinfo">{user.first_name}&nbsp;{user.last_name}&nbsp;Political Affiliation:&nbsp;{user.political_affiliation}</p></li>
+                  <li className="user_list" id={'user' + user.id} value={user.id}><img className="user_avatar" src={user.avatar}/> <p className="userinfo">{user.first_name}&nbsp;{user.last_name}&nbsp;Political Affiliation:&nbsp;{user.political_affiliation}</p></li>
                 </Link> </ul>
                 )
             })}
