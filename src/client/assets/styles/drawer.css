@@ -107,11 +107,4 @@ button{
     font-size: 35px;
 }
 
-.videoIcon{
-	margin-left: 10px;
-	text-decoration: none;
-	color:#FFF;	
-}
-.videoIcon:hover, .videoIcon:active {
-	color: #333842;
-}
+
