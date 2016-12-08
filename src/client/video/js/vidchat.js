@@ -1,4 +1,5 @@
 
+// $('body').addClass('') use some version of this to add different class to site.css
 
 var videoClient;
 var activeRoom;
