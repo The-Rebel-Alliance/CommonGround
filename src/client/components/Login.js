@@ -2,6 +2,8 @@ import React from 'react'
 import { browserHistory, Link } from 'react-router'
 import { login } from 'api/users'
 
+import AboutCG from './AboutCG'
+
 import 'assets/styles/login.css'
 import Logo from 'assets/images/cg-logo.png'
 
@@ -34,6 +36,7 @@ export default React.createClass({
         <div className="header">
           <h1 className="logo_h1"><img className="logo_cg" src={Logo}/></h1>
         </div>
+        <h1 id="introMessageHeader">Welcome to Common Ground</h1>
         <div className="loginForm">
           <form onSubmit={this.handleSubmit}>
             <div className="login_form">
@@ -41,11 +44,13 @@ export default React.createClass({
                 <input onChange={this.handleChange} type="password" id="password" placeholder="Password" /><br />
                 <br />
                 <p className="error">{this.state.errorMsg}</p>
-                <button className="button" type="submit">Login</button>
+                <button className="buttonLogin" type="submit">Login</button>
                 <Link to="/register"><button className="button button--state-register">Register</button></Link>
             </div>
           </form> 
+        
         </div>
+        <AboutCG />
       </div>
     )
   }

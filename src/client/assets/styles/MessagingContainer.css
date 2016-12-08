@@ -18,14 +18,13 @@ img{
   padding:3px;
 }
 
-input#message{
-  width: 78%;
+input#message {
+  margin-top: -4px;
   border: 2px solid #7AE0D9;
-  margin-top: 520px;
   border-radius: 5px 0px 0px 5px;
-  height: 29px;
-  position:fixed;
-  color:black;
+  position: absolute;
+  color: black;
+  width: 430px;
 }
 
 h5{
@@ -40,20 +39,17 @@ h6{
   float:right;
 }
 
-.message{
-  border-bottom: 1px solid white;
-}
 
 #messagingContainer{
   font-family: 'Muli', sans-serif;
   color: #fff;
-  height:90%;
-  width:800px;
+  height: 100%;
+  width: 800px;
   background-color: #333842;
   margin-left: 330px;
-  border:1px solid white;
-  padding:10px;
-  margin-top: -220px;
+  border: 1px solid white;
+  padding: 10px;
+  top: 0px;
   position: fixed;
 }
 
@@ -67,25 +63,32 @@ ul{
 }
 
 button#submitButton{
-  height: 29px;
+  height: 28px;
   border-radius: 0px 5px 5px 0px;
   margin: -5px;
   border-style: none;
-  color:white;
+  color: white;
   background-color: #01A69A;
   z-index: 200;
-  position:fixed;
+  margin-left: 430px;
+  position: absolute;
 }
 
 li{
-    padding-top: 7px;
-    font-size: 16px;
-    font-style: italic;
-    display: flex;  
+  padding-top: 7px;
+  font-size: 16px;
+  font-style: italic;
+  display: flex;  
 }
 
-#textboxContainer {
+div.textboxContainer {
   margin-top: -10%;
   position:fixed;
+}
+
+form.textbox {
+  position:fixed;
+  width: 90%;
+  height: 29px;
 }
 

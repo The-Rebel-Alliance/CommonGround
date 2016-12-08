@@ -73,7 +73,7 @@ router.get('/messages/:fromId', function(req, res, next){
     JOIN users tu ON tu.id = tp.user_id
     LEFT JOIN tokens ft ON ft.user_id = fu.id
     LEFT JOIN tokens tt ON tt.user_id = tu.id
-    WHERE (tt.token = ? AND fu.id = ?) OR (ft.token = ? AND tu.id = ?)
+    WHERE (tt.token = ? AND fp.id = ?) OR (ft.token = ? AND tp.id = ?)
     ORDER BY m.created_at
   `
 

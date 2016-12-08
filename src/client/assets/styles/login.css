@@ -1,63 +1,76 @@
 html {box-sizing: border-box;}
 *, *:after, *:before {box-sizing: inherit;}
 
-body{
+body {
 	background-color: #333842;
 }
 
-.logo_cg {
-    width: 175px;
-    height: 175px;
-    float: none;
+h1#introMessageHeader{
+  color:white;
+  margin-bottom: 15px;
+  font-family: 'Work Sans', sans-serif;
 }
 
-#container{
+.logo_cg {
+  width: 175px;
+  height: 175px;
+  float: none;
+}
+
+#container {
 	width: 100%
 }
-.header{
+
+.header {
 	width: 100%;
-    background-color: #333842;
-    display: inline-table;
-    text-align: center;
+  background-color: #333842;
+  display: inline-table;
+  text-align: center;
 }
+
 .logo_h1{
-    margin: 0px;
-    background-color: #333842;
-    text-align: center;
+  margin: 0px;
+  background-color: #333842;
+  text-align: center;
 }
+
 p{
 	color: #FFF;
 	font-family: 'Muli', sans-serif;
 	float: left;
 	margin-left: 10px;
 }
+
 .loginForm {
   width: 280px;
   margin: 0% auto;
 }
+
 .login_form {
-    padding-top: 10px;
-    height: 168px;
-    border-radius: 5px;
-    color: black;
-    font-size: 20px;
-    font-family: Helvetica;
-    background: linear-gradient(#CECFD2, #eaedef);
+  padding-top: 10px;
+  height: 168px;
+  border-radius: 5px;
+  color: black;
+  font-size: 20px;
+  font-family: Helvetica;
+  background: linear-gradient(#CECFD2, #eaedef);
 
 }
+
 input{
 	width: 250px;
-    height: 30px;
-    border-radius: 5px;
-    margin-top: 10px;
-    margin-left: 12px;
-    font-size: 14px;
-    border: 1px solid white;
-    font-family: 'Cabin', sans-serif;
-    outline: white;
-    color:black;
+  height: 30px;
+  border-radius: 5px;
+  margin-top: 10px;
+  margin-left: 12px;
+  font-size: 14px;
+  border: 1px solid white;
+  font-family: 'Cabin', sans-serif;
+  outline: white;
+  color:black;
 }
-.button{
+
+.buttonLogin{
 	width: 80px;
   height: 40px;
   border-radius: 5px;
@@ -69,6 +82,7 @@ input{
   font-size: 15px;
   border: none;
 }
+
 .button--state-register{
 	margin-right: 15px;
   float: right;

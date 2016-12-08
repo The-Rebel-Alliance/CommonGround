@@ -13,6 +13,7 @@ import Dashboard from 'components/dashboardSearch'
 import ProfileView from 'components/ProfileView'
 import ProfileEdit from 'components/ProfileEdit'
 import Profile from 'components/Profile'
+import AboutCG from 'components/AboutCG'
 
 
 // Layout

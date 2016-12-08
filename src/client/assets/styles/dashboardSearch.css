@@ -41,11 +41,12 @@ html {box-sizing: border-box;}
 
 .user_li {
 	margin-top: 20px;
-	margin-left: 20px;
-	border: 3px solid white;
-	border-radius: 5px;
-	transition: .5s;
-	color: white;
+    border: 3px solid white;
+    border-radius: 5px;
+    transition: .5s;
+    color: white;
+    height: 160px;
+    width: 840px;
 }
 
 .user_li:hover {
@@ -59,27 +60,28 @@ html {box-sizing: border-box;}
 
 .userinfo {
 	font-size: 20px;
-    line-height: 44px;
+    line-height: 95px;
     float: right;
     margin-right: 50px;
 }
 
 .user_list {
 	font-size: 20px;
+  padding-top: 19px;
+  line-height: 72px;
   list-style: none;
   color: white;
-  padding-top: 19px;
   padding: 0px;
-  line-height: 72px;
   transition: .5s;
   margin-left: 20px;
   margin-top: -9px;
 }
 
 .user_avatar {
-	border-radius: 100%;
-    width: 75px;
-    height: 75px;
+    border-radius: 19%;
+    width: 100px;
+    height: 100px;
+    margin-top: 15px;
 }
 
 .profile_link {
@@ -106,7 +108,7 @@ html {box-sizing: border-box;}
 }
 
 .usersSearch{
-	margin-left: 120px;
-    width: 1000px;
+	margin: auto;
+   	width: 860px;
     margin-top: 50px;
 }

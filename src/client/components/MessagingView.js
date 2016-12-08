@@ -66,15 +66,17 @@ const MessagingView = React.createClass({
                 )
               }
              })}
+
           </ul>
         </div>
-        <div id="textboxContainer">
+                <div id="textboxContainer">
           <form onSubmit={this.handleSubmit}id="textBox">
             <input value={this.state.message} onChange={this.update} type="text" name="textBox" id="message"/>
             <button type="submit" id="submitButton">Submit</button>
           </form>
         </div>
       </div>
+      
     )
   }
 })
