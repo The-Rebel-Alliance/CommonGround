@@ -20,3 +20,10 @@ export function getUserProfile(id) {
     })
   })
 }
+
+
+export function editProfile(obj) {
+  return api.put('/api/profile/' + id).then(resp => {
+    browserHistory.push('/api/profile')
+  })
+}

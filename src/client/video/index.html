@@ -1,29 +1,95 @@
+
+
 <!DOCTYPE html>
 <html>
 <head>
   <title>Twilio Video - Video Quickstart</title>
-  <link href="https://fonts.googleapis.com/css?family=Cabin|Julius+Sans+One" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
   <link rel="stylesheet" href="css/site.css"/>
+  <link rel="stylesheet" href="css/css/font-awesome.css">
 </head>
+
+
 <body>
-  <div id="header">Common Ground</div>
-  <div id="remote-media"></div>
+  <div id="sidebar">	
+  	<i class="fa fa-comments" aria-hidden="true"></i>
+    <i class="fa fa-user" aria-hidden="true"></i>
+    <i class="fa fa-desktop" aria-hidden="true"></i>
+  </div>
+ 
   <div id="controls">
-    <div id="preview">
-      <div id="local-media"></div>
-      <!-- <p id="user1"></p> -->
-      <!-- <button id="button-preview">Preview My Camera</button> -->
+    <div id="remote-media">
+      <div id="local-media">
+        <div id="waiting-overlay">
+         <h2><span>Waiting for discussion partner...</span></h2>
+        </div>
+      </div>
     </div>
-    <div id="log"></div>
-    <div id="room-controls">
-      <button id="button-join">Join Room</button>
-      <button id="button-leave">Leave Room</button>
+  </div>
+
+  <div id="interactions-sidebar">
+    <img src="css/cg-logo.png"/>
+    <ul id="chat-window"></ul>
+    <div id="interactions-div">
+      <i id="interaction-agree" class="fa fa-thumbs-up interaction-icons" aria-hidden="true"></i>
+      <i id="interaction-disagree" class="fa fa-thumbs-down interaction-icons" aria-hidden="true"></i>
+      <i id="interaction-question" class="fa fa-question-circle interaction-icons" aria-hidden="true"></i>
+      <i id="interaction-strike" class="fa fa-times-circle interaction-icons" aria-hidden="true"></i>
+    </div>
+    <div>
+      <form>
+        <input id="message" autocomplete="off" type="text" name="message"/>
+        <input type="submit" value="submit"/>
+      </form>
     </div>
   </div>
 
   <script src="//media.twiliocdn.com/sdk/js/common/v0.1/twilio-common.min.js"></script>
   <script src="//media.twiliocdn.com/sdk/js/video/releases/1.0.0-beta2/twilio-video.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+  <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
   <script src="js/vidchat.js"></script>
 </body>
 </html>
+
+
+
+
+
+<!--  <div id="interactions-sidebar">
+    <img src="css/cg-logo.png"/>
+    
+    <div id="interactions-div">
+      <div id="interactions-row1">
+        <i id="test" class="fa fa-thumbs-up interaction-icons" aria-hidden="true"></i>
+        <i class="fa fa-thumbs-down interaction-icons" aria-hidden="true"></i>
+      </div>
+      <div id="interactions-row2">
+        <i class="fa fa-question-circle interaction-icons" aria-hidden="true"></i>
+        <i class="fa fa-times-circle interaction-icons" aria-hidden="true"></i>
+      </div>
+    </div>
+
+    <div id="interaction-response">
+      <div id="user1-response-row">
+        <div id="user1-response-square">
+          <i class="fa fa-thumbs-up interaction-icons" aria-hidden="true"></i>
+        </div>
+        <div id="user-strikes-row">
+          <i class="fa fa-times-circle interaction-icons" aria-hidden="true"></i>
+          <i class="fa fa-times-circle interaction-icons" aria-hidden="true"></i>
+          <i class="fa fa-times-circle interaction-icons" aria-hidden="true"></i>
+        </div>
+      </div>
+      <div id="user2-response-row">
+        <div id="user2-response-square">
+          <i class="fa fa-thumbs-up interaction-icons" aria-hidden="true"></i>
+        </div>
+        <div id="user-strikes-row">
+          <i class="fa fa-times-circle interaction-icons" aria-hidden="true"></i>
+          <i class="fa fa-times-circle interaction-icons" aria-hidden="true"></i>
+          <i class="fa fa-times-circle interaction-icons" aria-hidden="true"></i>
+        </div>
+      </div>
+    </div>    
+  </div> -->

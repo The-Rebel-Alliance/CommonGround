@@ -71,7 +71,7 @@ const CommonDashboard = React.createClass({
               return(
                 <ul className="user_li">
                 <Link className="profile_link" to={`/profile/${user.id}`}>
-                  <li className="user_list" key={'user' + i} id={'user' + user.id} value={user.id}><img className="user_avatar" src={user.avatar}/> <p className="userinfo">{user.first_name}&nbsp;{user.last_name}&nbsp;Political Affiliation:&nbsp;{user.political_affiliation}</p></li>
+                  <li className="user_list" key={'user' + i} id={'user' + user.id} value={user.id}><img className="user_avatar" src={user.avatar}/><p className="userinfo">{user.first_name}&nbsp;{user.last_name}</p><p className="userinfo">Political Affiliation:&nbsp;{user.political_affiliation}</p></li>
                 </Link> </ul>
                 )
             })}

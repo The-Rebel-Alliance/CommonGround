@@ -73,18 +73,34 @@ router.get('/messages/:fromId', function(req, res, next){
     JOIN users tu ON tu.id = tp.user_id
     LEFT JOIN tokens ft ON ft.user_id = fu.id
     LEFT JOIN tokens tt ON tt.user_id = tu.id
-    WHERE (tt.token = ? AND fu.id = ?) OR (ft.token = ? AND tu.id = ?)
+    WHERE (tt.token = ? AND fp.id = ?) OR (ft.token = ? AND tp.id = ?)
     ORDER BY m.created_at
   `
 
   conn.query(sql, [token, token, fromId, token, fromId], function(err, results){
-    res.err = false
-    res.data = {
-      id: fromId,
-      messages: results
-    }
-    res.message = ''
-    next()  
+    const fromSql = `
+      SELECT u.username, p.first_name, p.last_name, p.city, p.state, p.avatar, p.political_affiliation
+      FROM users u
+      JOIN profiles p ON p.user_id = u.id
+      WHERE u.id = ?
+    `
+    conn.query(fromSql, [fromId], function(err, fromResults){
+      const profile = fromResults[0]
+      res.err = false
+      res.data = {
+        id: fromId,
+        username: profile.username,
+        first_name: profile.first_name,
+        last_name: profile.last_name,
+        city: profile.city,
+        state: profile.state,
+        avatar: profile.avatar,
+        political_affiliation: profile.political_affiliation,
+        messages: results
+      }
+      res.message = ''
+      next()
+    })
   })
 })
 
