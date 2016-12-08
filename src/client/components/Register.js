@@ -3,7 +3,6 @@ import { browserHistory, Link } from 'react-router'
 import 'assets/styles/register.css'
 import 'assets/lib/cloudinary'
 import {createUser} from 'api/users'
-import {getTopics} from 'api/topics'
 import store from 'store'
 import Logo from 'assets/images/cg-logo.png'
 
@@ -18,21 +17,7 @@ export default React.createClass({
       city: "", 
       state: "", 
       politicalAffiliation: "",
-      displayTopics: [],
-      submitTopics: []
     }
-  },
-  componentWillMount: function() {
-        getTopics()
-        this.unsubscribe = store.subscribe(() => {
-          const appState = store.getState()
-          this.setState({
-              displayTopics: appState.topics
-          })
-        })
-  },
-  componentWillUnmount: function() {
-      this.unsubscribe()
   },
   update: function(e){
 
@@ -55,21 +40,7 @@ export default React.createClass({
       city:this.state.city,
       state:this.state.state,
       politicalAffiliation:this.state.politicalAffiliation,
-      topics:this.state.submitTopics
     })
-  },
-  updateTopics: function (e) {
-    var id = Number(e.target.id.substr(5))
-    var topics = this.state.submitTopics
-    if (topics.indexOf(id) === -1) {
-      topics.push(id)
-    } else {
-      topics.splice(topics.indexOf(id), 1)
-    }
-    this.setState({
-      submitTopics: topics
-    })
-    console.log(topics)
   },
   upload: function(e) {
     e.preventDefault()
@@ -92,11 +63,11 @@ export default React.createClass({
             <form onSubmit={this.handleSubmit}>
               <div className="registerform_container">
                 <p className="register_header">Register</p>
-                <input onChange={this.update} type="text" id="username" placeholder="Username" /><br />
-                <input onChange={this.update} type="password" id="password" placeholder="Create Password" /><br />
-                <input onChange={this.update} type="text" id="firstName" placeholder="First Name" /><br />
-                <input onChange={this.update} type="text" id="lastName" placeholder="Last Name" />
-                <input id="city" onChange={this.update} type="text" id="city" placeholder="City" />
+                <input className="input_field_register" onChange={this.update} type="text" id="username" placeholder="Username" /><br />
+                <input className="input_field_register" onChange={this.update} type="password" id="password" placeholder="Create Password" /><br />
+                <input className="input_field_register" onChange={this.update} type="text" id="firstName" placeholder="First Name" /><br />
+                <input className="input_field_register" onChange={this.update} type="text" id="lastName" placeholder="Last Name" />
+                <input className="input_field_register" id="city" onChange={this.update} type="text" id="city" placeholder="City" />
                 <select id="state" onChange={this.update} className="register_state_select">
                   <option defaultValue="selected">Select State</option>
                   <option value="AL">Alabama</option>
@@ -159,23 +130,9 @@ export default React.createClass({
                   <option value="Other">Other</option>
                 </select> 
                 <button onChange={this.update} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
+                <button type="submit" className="button button--state-register--register">Next</button>
             </div>          
-            <div className="select--topic--container">
-              <div className="register_topic_select">Select Topics of Interests:</div>
-              {this.state.displayTopics.map((topic,i) => {
-                return ( 
-                  <label key={'topic' + i} className="labels">
-                    <input onChange={this.updateTopics} 
-                           id={"topic" + topic.id}
-                           className="topic_checkbox" 
-                           type="checkbox" 
-                           value={topic.id} />
-                    {topic.name}
-                  </label>
-                )
-              })}
-            </div>
-            <button type="submit" className="button button--state-register--register">Register</button>
+            
       </form>
   </div>
 </div>

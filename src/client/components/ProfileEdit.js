@@ -2,7 +2,6 @@ import React from 'react'
 import {getProfile, editProfile} from 'api/profile'
 import store from 'store'
 import 'assets/lib/cloudinary'
-import EditTopics from 'components/editAddStances'
 
 import 'assets/styles/editProfile.css'
 
@@ -15,9 +14,7 @@ export default React.createClass({
       city: '',
       state: '',
       avatar: '',
-      politicalAffiliation: '',
-      displayTopics: [],
-      submitTopics: []
+      politicalAffiliation: ''
     }
   },
   componentWillMount: function() {
@@ -39,7 +36,8 @@ export default React.createClass({
     this.unsubscribe()
   },
   update: function (e) {
-    var val = e.target.id
+    console.log(e.target)
+    var val = e.target.value
     var id = e.target.id
     var stateObj = {}
     stateObj[id] = val 
@@ -55,6 +53,17 @@ export default React.createClass({
       }) 
     });
   },
+  handleSubmit: function(e) {
+    e.preventDefault()
+    editProfile({
+      first_name:this.state.firstName,
+      last_name:this.state.lastName,
+      avatar:this.state.avatar,
+      city:this.state.city,
+      state:this.state.state,
+      political_affiliation:this.state.politicalAffiliation,
+    })
+  },
   render: function () {
     return (
      <div id="container">
@@ -62,9 +71,9 @@ export default React.createClass({
             <form onSubmit={this.handleSubmit}>
               <div className="registerform_container">
                 <p className="register_header">Edit Profile</p>
-                <input onChange={this.update} value={this.state.firstName} type="text" id="firstName" placeholder="First Name" /><br />
-                <input onChange={this.update} value={this.state.lastName} type="text" id="lastName" placeholder="Last Name" />
-                <input id="city" onChange={this.update} value={this.state.city} type="text" id="city" placeholder="City" />
+                <input className="input_profile_edit" onChange={this.update} value={this.state.firstName} type="text" id="firstName" placeholder="First Name" /><br />
+                <input className="input_profile_edit" onChange={this.update} value={this.state.lastName} type="text" id="lastName" placeholder="Last Name" />
+                <input className="input_profile_edit" id="city" onChange={this.update} value={this.state.city} type="text" id="city" placeholder="City" />
                 <select id="state" onChange={this.update} value={this.state.state} className="register_state_select">
                   <option defaultValue="selected">Select State</option>
                   <option value="AL">Alabama</option>
@@ -127,9 +136,9 @@ export default React.createClass({
                   <option value="Other">Other</option>
                 </select> 
                 <button className="button_avatar" onChange={this.update} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
-            </div>
-             <EditTopics />         
-            <button type="submit" className="button_avatar">Submit</button>
+                <button type="submit" className="button_avatar">Next</button>
+            </div>       
+            
       </form>
   </div>
 </div>

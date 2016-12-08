@@ -38,11 +38,15 @@ html {
 
 .register_form {
     height: 400px;
-    background-color: #004A45;
+    background-color: #07A9A2;
     color: black;
     font-size: 20px;
     font-family: Helvetica;
 
+ }
+
+ .input_field_register {
+    border-radius: 5px;
  }
 
  .registerform_container {
@@ -101,17 +105,14 @@ html {
  }
 
  .button--state-register--register{
- 	margin-top: 40px;
+    margin-top: 15px;
+    margin-left: 64px;
     margin-right: 15px;
     color: white;
-    background-color: #ED283C;;
+    background-color: #ED283C;
     width: 90px;
     font-family: 'Cabin', sans-serif;
     font-size: 15px;
-    position: relative;
-    top: 560px;
-    left: 710px;
-    margin-bottom: 60px;
 }
 
 .select--topic--container {

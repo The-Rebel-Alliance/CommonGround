@@ -3,6 +3,9 @@
     display: table;
 }
 
+.input_profile_edit {
+    border-radius: 5px
+}
 
 .indiv_topic_container_edit {
 	width: 270px;
@@ -34,22 +37,18 @@
 }
 
 .button_avatar {
-    margin-right: 15px;
+    margin-left: 27px;
     color: white;
     background-color: #ED283C;
-    width: 140px;
+    width: 99px;
     font-family: 'Cabin', sans-serif;
-    font-size: 20px;
-    position: relative;
-    top: 44px;
-    left: 850px;
-    margin-bottom: 60px;
+    font-size: 16px;
     border-radius: 5px;
 }
 
 .register_form_edit {
 	height: 310px;
-    background-color: #004A45;
+    background-color: #07A9A2;
     color: black;
     font-size: 20px;
     font-family: Helvetica;

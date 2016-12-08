@@ -13,6 +13,8 @@ import Dashboard from 'components/dashboardSearch'
 import ProfileView from 'components/ProfileView'
 import ProfileEdit from 'components/ProfileEdit'
 import Profile from 'components/Profile'
+import EditTopics from 'components/ChooseTopicsRegister'
+import EditStances from 'components/editAddStances'
 
 
 // Layout
@@ -26,11 +28,13 @@ ReactDOM.render((
     <Route path="/" component={Login} />
     <Route path="/register" component={Register} />
     <Route component={Layout}>
-      <Route pathe="/drawer" component= {Drawer} />
+      <Route path="/drawer" component= {Drawer} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/profile" component={Profile} />
       <Route path="/profile/:id" component={ProfileView} />
       <Route path="/editprofile" component={ProfileEdit} />
+      <Route path="/edittopics" component={EditTopics} />
+      <Route path="/editstances" component={EditStances} />
     </Route>
   </Router>
 
