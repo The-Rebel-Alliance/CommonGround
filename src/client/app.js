@@ -26,7 +26,7 @@ ReactDOM.render((
     <Route path="/" component={Login} />
     <Route path="/register" component={Register} />
     <Route component={Layout}>
-      <Route pathe="/drawer" component= {Drawer} />
+      <Route path="/drawer" component= { Drawer} />
       <Route path="/dashboard" component={Dashboard} />
       <Route path="/profile" component={Profile} />
       <Route path="/profile/:id" component={ProfileView} />

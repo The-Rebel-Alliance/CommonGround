@@ -1,12 +1,13 @@
 import React from 'react'
+import store from 'store'
 import { browserHistory, Link } from 'react-router'
 import styles from 'assets/styles/drawer.css'
 import 'font-awesome/css/font-awesome.css'
+import Logo from 'assets/images/cg-logo.png'
 import { getMessageUsers } from 'api/getMessages'
 import { getConvo } from 'api/getConvo'
-import store from 'store'
 import MessagingView from './MessagingView'
-import Logo from 'assets/images/cg-logo.png'
+
 
 
 
@@ -76,15 +77,10 @@ const DrawerView = React.createClass({
               <button  className="messageButton">
                 <i className="fa fa-user-circle-o" aria-hidden="true"></i>
               </button>
-            </Link>
-            <Link to="/dashboard">
-              <button className="messageButton">
-                <i className="fa fa-search" aria-hidden="true"></i>
-              </button>
-            </Link>            
-              <button className="messageButton">
-                <i className="fa fa-sign-out" aria-hidden="true"></i>
-              </button>  
+            </Link>         
+            <button className="messageButton">
+              <i className="fa fa-sign-out" aria-hidden="true"></i>
+            </button>  
           </div>
           <div className="movingParts">
             <div className={this.state.hidden ? "hidden messageColumn" : "messageColumn"}>
@@ -100,7 +96,7 @@ const DrawerView = React.createClass({
                       )
                     })}
                 </ul>
-           <MessagingView fromId={this.props.fromId} myconvo={this.props.myconvo}/>
+           <MessagingView fromId={this.props.fromId} myconvo={this.props.myconvo} />
             </div> 
           </div>
         </div>
@@ -110,6 +106,10 @@ const DrawerView = React.createClass({
 
 export default DrawerContainer
 
-
+ // <Link to="/dashboard">
+ //              <button className="messageButton">
+ //                <i className="fa fa-search" aria-hidden="true"></i>
+ //              </button>
+ //            </Link> 
 
 // <MessagingView myconvo={this.props.myconvo}/>
