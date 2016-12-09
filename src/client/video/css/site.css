@@ -39,7 +39,7 @@ body {
 #interactions-sidebar {
   position: absolute;
   height: 100%;
-  width: 26%;
+  width: 20%;
   right: 12px;
   padding-left: 2%;
   text-align: center;
@@ -115,11 +115,18 @@ h2 span {
   width: 82%;
   border-radius: 5px;
   height: 20px;
+  font-size: 14px;
+  font-family: 'Cabin', sans-serif;
+  border: 2px solid #7AE0D9;
+}
+
+#message-submit {
+
 }
 
 .user-style {
   background: linear-gradient(#CECFD2, #eaedef);
-  max-width: 350px;
+  max-width: 234px;
   border-radius: 8px;
   padding: 10px;
   word-wrap: break-word;
@@ -140,7 +147,7 @@ h2 span {
 
 .other-style {
   background: linear-gradient(#01A69A, #7AE0D9);
-  max-width: 350px;
+  max-width: 234px;
   border-radius: 8px;
   padding: 10px;
   word-wrap: break-word;
