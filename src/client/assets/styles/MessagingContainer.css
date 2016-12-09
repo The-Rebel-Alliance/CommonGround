@@ -2,10 +2,6 @@ html{
   text-decoration-color: white;
 }
 
-aside{
-  max-width:100px;
-}
-
 p{
   font-size: 11px;
 }
@@ -17,13 +13,13 @@ img{
   margin:5px;
 }
 
-input#inputBox{
+input {
   width: 90%;
   border: 2px solid #7AE0D9;
   position: relative;
-  margin-top: 450px;
   border-radius: 5px 0px 0px 5px;
   height: 29px;
+  color:black;
 }
 
 h6{
@@ -36,27 +32,51 @@ h6 > #time{
   float:right;
 }
 
-#messages{
-  height: 100%;
+.messages{
+  height: 400px;
+  
+  overflow: scroll;
 }
 
 #messagingContainer{
-  color:#0097A7;
-  height:550px;
+  font-family: 'Muli', sans-serif;
+  color: #333842;
+  height:100%;
   width:800px;
   background-color: #333842;
-  margin-left: 350px;
+  margin-left: 330px;
   border:1px solid white;
   padding:10px;
+  margin-top: -230px;
+ 
+  
+}
+.them {
+  margin-right: 300px;
+  background: linear-gradient(#01A69A, #7AE0D9);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 5px;
+  text-align: right;
+  word-wrap: normal;
+  width:70%;
+
+}
+.you {
+  background: linear-gradient(#CECFD2, #eaedef);
+  border-radius: 5px;
+  padding: 10px;
+  margin-left:300px;
+  margin-bottom: 5px;
+  word-wrap: normal;
+  width:70%;
 }
 
 ul{
   list-style: none;
-  padding-left: 5px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
+  padding-left: 5px; 
   margin-top: 0px;
+  
 }
 
 button{
@@ -75,10 +95,32 @@ li{
     font-size: 16px;
     font-style: italic;
     display: flex;
-    
+    text-decoration: none;
+
+}
+/*I couldn't get the className="videoLink" on Drawer.css to pick up styling, so I had to use "a" */
+
+a {
+  margin-left: 10px;
+  text-decoration: none;
+  color:#fff; 
+}
+a:hover {
+  text-decoration: underline;
 }
 
 #textboxContainer {
-  margin-top: -500px;
+ 
 }
-
+.messagesHeader{
+  position: relative;
+}
+.profileLink {
+  height: 100px;
+  width: 100px;
+  border: 1px solid #fff;
+  margin-left: 10px;
+}
+.videoLlink {
+  color:#333842;
+}

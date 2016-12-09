@@ -2,13 +2,14 @@ html {box-sizing: border-box;}
 *, *:after, *:before {box-sizing: inherit;}
 
 .profile_container {
-    display: inline-block;
     width: 1000px;
     background: linear-gradient(#CECFD2, #eaedef);
-    margin-left: 140px;
     border-radius: 15px;
     margin-top: 35px;
     padding: 10px;
+    margin: auto;
+    height: auto;
+    overflow: auto;
 }
 
 .profile_pic {
@@ -19,7 +20,6 @@ html {box-sizing: border-box;}
     transition: 0.5s;
     float: left;
 }
-
 
 .info_container {
     width: 500px;
@@ -55,6 +55,14 @@ html {box-sizing: border-box;}
 }
 
 .fa.fa-pencil-square-o {
+	color: white;
+	font-size: 23px;
+	float: right;
+	margin-left: 5px;
+}
+
+.edit_button {
+	color: white;
     color: #333842;
     font-size: 23px;
     float: right;
@@ -62,13 +70,14 @@ html {box-sizing: border-box;}
 }
 
 .edit_button {
-    color: #333842;
+    color: white;
     font-size: 20px;
     margin-top: 5px;
     margin-right: 10px;
     float: right;
-    background: none;
+    background-color: #333842;
     border-radius: 5px;
+    padding-left: 6px;
 }
 
 .topics_container {
@@ -77,8 +86,7 @@ html {box-sizing: border-box;}
     border-right: 3px solid #ccc;
     border-top: 3px solid #ccc;
     width: 955px;
-    margin-left: 160px;
-    display: inline-block;
+    margin: auto;
 
 }
 
@@ -87,7 +95,9 @@ html {box-sizing: border-box;}
     font-size: 40px;
     font-family: 'Muli', sans-serif;
     text-align: center;
-    margin-top: 21px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
 }
 
 .topic_header {

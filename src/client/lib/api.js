@@ -31,8 +31,6 @@ instance.login = function(user, pass, cb) {
     .then(resp => {
       var token = resp.data.token;
       Cookie.set('token', token);
-      console.log('login cookie', Cookie.get('token'))
-      console.log('login', token)
       this.interceptors.request.use(config => {
         config.headers['Authorization'] = 'Token ' + token;
         return config;

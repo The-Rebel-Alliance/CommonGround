@@ -12,7 +12,8 @@ export function getConvo(id){
     console.log ("chats", resp)
     store.dispatch({
       type: actions.GET_MYCONVO,
-      myconvo: resp.data
+      fromId: resp.data.id,
+      myconvo: resp.data.messages
     })
   })
 }
