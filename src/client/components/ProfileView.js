@@ -2,7 +2,8 @@ import React from 'react'
 import store from 'store'
 import {Link, browserHistory} from 'react-router'
 import {getUserProfile} from 'api/profile'
-import { sendMsg } from 'api/sendMsg'
+import { sendMsg, sendMsgFromProfile } from 'api/sendMsg'
+import { getMessageUsers } from 'api/getMessages'
 
 
 
@@ -19,8 +20,7 @@ const OtherProfileContainer = React.createClass({
       "state": "", 
       "avatar": "",
       "political_affiliation": "",
-      "topics": []
-      
+      "topics": [] 
     }
   },
   componentWillMount: function(){
@@ -37,7 +37,7 @@ const OtherProfileContainer = React.createClass({
   
   render: function(){
     return (
-      <CommonOtherProfile {...this.state} />
+      <CommonOtherProfile {...this.state} id={this.props.params.id} />
     )
   } 
 })
@@ -46,9 +46,10 @@ const CommonOtherProfile = React.createClass({
     e.preventDefault()
     var msg = {
       message: "I'd like to chat!",
-      id:this.props.id
+      toId:this.props.id
     }
-    sendMsg(msg)
+    sendMsgFromProfile(msg)
+   
   },
   render: function (){
     return(

@@ -5,15 +5,18 @@ import 'assets/styles/MessagingContainer.css'
 import { getConvo } from 'api/getConvo'
 import { getMessageUsers } from 'api/getMessages'
 import { sendMsg } from 'api/sendMsg'
+import { toggleDrawer, closeDrawer } from 'api/toggleDrawer'
 
 
 const MessagingView = React.createClass({
   getInitialState: function() {
     return {
       message:'',
-      toId: ''     
+      toId: '',
+      avatar:'' 
     }
   },
+ 
   handleSubmit: function(e) {
     e.preventDefault()
     var msg = {
@@ -43,19 +46,28 @@ const MessagingView = React.createClass({
   generateRoomId: function() {
     return ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4)
   },
+  goToProfile: function(e){
+    e.preventDefault()
+    closeDrawer()
+    browserHistory.push('/profile/' + this.props.fromId)
+  },
   render: function(){
     return(
+     
       <div id="messagingContainer">
-        
           <h4 className="messagesHeader">
            <div className="profileLink">
-
+              <a onClick={this.goToProfile}>
+                  <img className="avatarLink"src={this.props.avatar}/>                        
+              </a>
            </div>
-           <a onClick={this.generateRoom} className="videoLink">
+           <div className="videoLinkContainer">
+           <a onClick={this.generateRoom} >
               Video Chat&nbsp;
-             <i className="fa fa-video-camera" aria-hidden="true" >
+             <i id="videoLink" className="fa fa-video-camera" aria-hidden="true" >
              </i>                  
            </a>
+           </div>
           </h4>
          <div className="messages"> 
           <ul>
@@ -63,7 +75,10 @@ const MessagingView = React.createClass({
               if (/^\/v\//.test(chat.message)) {
                 return (
                   <li className="you" id={'chat' + i} key={'chat' + i}>
-                   {chat.username}: Here's a link so we can video chat <a className="videoLink" href={chat.message} target="_blank">{chat.message} <i className="fa fa-video-camera" aria-hidden="true"></i></a>
+                   {chat.username}: Here's a link so we can video chat 
+                   <a className="videoLink" href={chat.message} target="_blank">{chat.message}
+                    <i className="fa fa-video-camera" aria-hidden="true"></i>
+                   </a>
                   </li>
                 )
               } else {
@@ -83,6 +98,7 @@ const MessagingView = React.createClass({
           </form>
         </div>
       </div>
+    
     )
   }
 })

@@ -8,25 +8,29 @@ import { getMessageUsers } from 'api/getMessages'
 import { getConvo } from 'api/getConvo'
 import MessagingView from './MessagingView'
 import {logout} from 'api/users'
-
-
+import {toggleDrawer, closeDrawer} from 'api/toggleDrawer'
 
 const DrawerContainer = React.createClass ({
   getInitialState: function() {
     return {
       messageUsers:[],
       myconvo:[],
-      fromId:null
+      fromId:null,
+      avatar:'',
+      hidden:true
     }
   }, 
   componentWillMount: function(){
     getMessageUsers()
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
+      console.log(appState)
       this.setState({
         messageUsers: appState.messageUsers,
         myconvo: appState.myconvo,
-        fromId: appState.fromId
+        fromId: appState.fromId,
+        avatar: appState.avatar,
+        hidden: appState.hidden
       })
     })
   },
@@ -35,23 +39,18 @@ const DrawerContainer = React.createClass ({
   },
   render: function() {
     return (
-      <DrawerView messageUsers={this.state.messageUsers} fromId={this.state.fromId} myconvo={this.state.myconvo}/>
+      <DrawerView 
+        messageUsers={this.state.messageUsers} 
+        fromId={this.state.fromId} 
+        myconvo={this.state.myconvo}
+        avatar={this.state.avatar}
+        hidden={this.state.hidden}
+      />
     )
   }
 })
 
 const DrawerView = React.createClass({
-  getInitialState: function() {
-    return {
-      hidden:true
-    }
-  },
-  toggleMenu: function() {
-    var that = this;
-    this.setState({
-      hidden:!that.state.hidden
-    })
-  },
   selectUser: function(e) {
     e.preventDefault()
     var id = e.currentTarget.id
@@ -70,17 +69,17 @@ const DrawerView = React.createClass({
           </div>
           <div className='iconColumn'> 
             <Link to="/dashboard">
-              <button className="messageButton">
+              <button onClick={closeDrawer}  className="messageButton">
                <i className="fa fa-home" aria-hidden="true"></i>
               </button>
               <label className="labelHome">Home</label>
             </Link>
-            <button onClick={this.toggleMenu} className="messageButton">
+            <button onClick={toggleDrawer} className="messageButton">
               <i className="fa fa-comments" aria-hidden="true"></i>   
             </button>
             <label className="labelMessages">Messages</label> 
             <Link to="/profile">
-              <button  className="messageButton">
+              <button onClick={closeDrawer} className="messageButton">
                 <i className="fa fa-user-circle-o" aria-hidden="true"></i>
               </button>
               <label className="labelProfile">Profile</label>
@@ -91,7 +90,7 @@ const DrawerView = React.createClass({
               <label className="labelLogout">Logout</label>
           </div>
           <div className="movingParts">
-            <div className={this.state.hidden ? "hidden messageColumn" : "messageColumn"}>
+            <div className={this.props.hidden ? "hidden messageColumn" : "messageColumn"}>
                 <h4 className="myConvo">My Conversations
                  
                 </h4>
@@ -100,12 +99,19 @@ const DrawerView = React.createClass({
                       return (
                         <li className="userList" id={'msguser' + user.id} onClick={this.selectUser} key={'messagesUser' + user.id}>
                             <img src={user.avatar}/> {user.first_name} {user.last_name}
-                        </li>
+                        </li> 
                       )
                     })}
-                </ul>
-           <MessagingView fromId={this.props.fromId} myconvo={this.props.myconvo} />
-            </div> 
+                 </ul>
+            
+
+             <MessagingView 
+              fromId={this.props.fromId} 
+              myconvo={this.props.myconvo} 
+              avatar={this.props.avatar}
+              toggleMenu={this.toggleMenu}
+             />
+              </div> 
           </div>
         </div>
     )            

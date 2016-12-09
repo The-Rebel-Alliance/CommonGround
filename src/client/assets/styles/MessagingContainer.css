@@ -103,16 +103,19 @@ li{
 /*I couldn't get the className="videoLink" on Drawer.css to pick up styling, so I had to use "a" */
 
 a {
-  margin-left: 10px;
   text-decoration: none;
   color:#fff; 
 }
-a:hover {
+#videoLink:hover {
   text-decoration: underline;
 }
-
-#textboxContainer {
- 
+.videoLlink {
+  color:#333842;
+  
+}
+.videoLinkContainer{
+  margin-top: 10px;
+  margin-left: 20px;
 }
 .messagesHeader{
   position: relative;
@@ -120,9 +123,11 @@ a:hover {
 .profileLink {
   height: 100px;
   width: 100px;
-  border: 1px solid #fff;
   margin-left: 10px;
 }
-.videoLlink {
-  color:#333842;
+.avatarLink {
+  height: 100px;
+  width: 100px;
+  margin-left: 10px;
 }
+
