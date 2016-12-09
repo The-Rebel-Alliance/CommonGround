@@ -2,70 +2,82 @@ html{
   text-decoration-color: white;
 }
 
-aside{
-  max-width:100px;
-}
-
 p{
   font-size: 11px;
 }
 
 img{
   float:left;
-  height:35px;
-  width:35px;
+  height:30px;
+  width:30px;
   margin:5px;
-  padding:3px;
 }
 
-input#inputBox{
-  width: 88%;
+input {
+  width: 90%;
   border: 2px solid #7AE0D9;
-  margin-top: 380px;
+  position: relative;
   border-radius: 5px 0px 0px 5px;
   height: 29px;
-}
-
-h5{
-  margin: 0px 3px -18px;
-  color:#07A9A2;
+  color:black;
 }
 
 h6{
-  margin: 2px 590px -5px;
-  color:#B8B8B8;
-  font-weight: bold;
+  margin: 2px 0px -5px 96px;
+  color:white;
+}
+
+h6 > #time{
+  color:grey;
   float:right;
 }
 
-.message{
-  border-bottom: 1px solid white;
-}
-
-#messages{
-  height: 100%;
+.messages{
+  height: 400px;
+  overflow: scroll;
 }
 
 #messagingContainer{
-  color:#0097A7;
-  height:542px;
+  font-family: 'Muli', sans-serif;
+  color: #333842;
+  height:100%;
   width:800px;
-  margin-top: -346px;
   background-color: #333842;
-  margin-left: 370px;
+  margin-left: 330px;
   border:1px solid white;
   padding:10px;
+  margin-top: -230px;
+ 
+  
+}
+.them {
+  margin-right: 300px;
+  background: linear-gradient(#01A69A, #7AE0D9);
   border-radius: 5px;
-  position:absolute;
+  padding: 10px;
+  margin-bottom: 5px;
+  text-align: right;
+  word-wrap: normal;
+  width:70%;
+
+}
+.you {
+  background: linear-gradient(#CECFD2, #eaedef);
+  border-radius: 5px;
+  padding: 10px;
+  margin-left:300px;
+  margin-bottom: 5px;
+  word-wrap: normal;
+  width:70%;
+  margin-top: -225px;
+  position: fixed;
 }
 
 ul{
   list-style: none;
-  padding-left: 5px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  margin:0px;
+  padding-left: 5px; 
+  margin-top: 0px;
+  
 }
 
 button{
@@ -78,10 +90,38 @@ button{
   z-index: 200;
 }
 
+
 li{
-    padding-top: 7px;
-    font-size: 16px;
-    font-style: italic;
-    display: flex;  
+  padding-top: 7px;
+  font-size: 16px;
+  font-style: italic;
+  display: flex;
+  text-decoration: none;
+
+}
+/*I couldn't get the className="videoLink" on Drawer.css to pick up styling, so I had to use "a" */
+
+a {
+  margin-left: 10px;
+  text-decoration: none;
+  color:#fff; 
+}
+a:hover {
+  text-decoration: underline;
 }
 
+#textboxContainer {
+ 
+}
+.messagesHeader{
+  position: relative;
+}
+.profileLink {
+  height: 100px;
+  width: 100px;
+  border: 1px solid #fff;
+  margin-left: 10px;
+}
+.videoLlink {
+  color:#333842;
+}

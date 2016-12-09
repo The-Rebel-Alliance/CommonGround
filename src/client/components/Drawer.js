@@ -1,12 +1,13 @@
 import React from 'react'
+import store from 'store'
 import { browserHistory, Link } from 'react-router'
 import styles from 'assets/styles/drawer.css'
 import 'font-awesome/css/font-awesome.css'
-import { getMessageUsers } from 'api/messages'
-import { getConvo } from 'api/convo'
-import store from 'store'
-import MessagingView from './MessagingView'
 import Logo from 'assets/images/cg-logo.png'
+import { getMessageUsers } from 'api/getMessages'
+import { getConvo } from 'api/getConvo'
+import MessagingView from './MessagingView'
+import {logout} from 'api/users'
 
 
 
@@ -14,17 +15,18 @@ const DrawerContainer = React.createClass ({
   getInitialState: function() {
     return {
       messageUsers:[],
-      myconvo:[]
+      myconvo:[],
+      fromId:null
     }
   }, 
   componentWillMount: function(){
     getMessageUsers()
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
-      console.log(appState.messageUsers)
       this.setState({
         messageUsers: appState.messageUsers,
-        myconvo: appState.myconvo
+        myconvo: appState.myconvo,
+        fromId: appState.fromId
       })
     })
   },
@@ -33,10 +35,11 @@ const DrawerContainer = React.createClass ({
   },
   render: function() {
     return (
-      <DrawerView messageUsers={this.state.messageUsers} myconvo={this.state.myconvo}/>
+      <DrawerView messageUsers={this.state.messageUsers} fromId={this.state.fromId} myconvo={this.state.myconvo}/>
     )
   }
 })
+
 const DrawerView = React.createClass({
   getInitialState: function() {
     return {
@@ -55,6 +58,10 @@ const DrawerView = React.createClass({
     id = Number(id.substr(7))
     getConvo(id)
   },
+  logout: function(e) {
+    e.preventDefault()
+    logout(browserHistory.push('/'))
+  },
   render: function () {
     return ( 
         <div className="layout">
@@ -62,40 +69,49 @@ const DrawerView = React.createClass({
               <h1><img className="logo_cg" src={Logo}/></h1>
           </div>
           <div className='iconColumn'> 
+            <Link to="/dashboard">
+              <button className="messageButton">
+               <i className="fa fa-home" aria-hidden="true"></i>
+              </button>
+              <label className="labelHome">Home</label>
+            </Link>
             <button onClick={this.toggleMenu} className="messageButton">
               <i className="fa fa-comments" aria-hidden="true"></i>   
-            </button> 
-            <button className="messageButton">
-              <i className="fa fa-user-circle-o" aria-hidden="true"></i>
             </button>
-            <button className="messageButton">
-              <i className="fa fa-search" aria-hidden="true"></i>
-            </button>            
+            <label className="labelMessages">Messages</label> 
+            <Link to="/profile">
+              <button  className="messageButton">
+                <i className="fa fa-user-circle-o" aria-hidden="true"></i>
+              </button>
+              <label className="labelProfile">Profile</label>
+            </Link>         
+              <button className="messageButton" onClick={this.logout}>
+                <i className="fa fa-sign-out" aria-hidden="true"></i>
+              </button>
+              <label className="labelLogout">Logout</label>
           </div>
           <div className="movingParts">
             <div className={this.state.hidden ? "hidden messageColumn" : "messageColumn"}>
-                <h4 className="myConvo">My Conversations</h4>
+                <h4 className="myConvo">My Conversations
+                 
+                </h4>
                  <ul className="chatList">                            
                      {this.props.messageUsers.map((user, i) =>{
                       return (
-                        <li id={'msguser' + user.id} onClick={this.selectUser} key={'messagesUser' + user.id}>
-                          <img src={user.avatar}/> 
-                          {user.first_name} {user.last_name}                    
+                        <li className="userList" id={'msguser' + user.id} onClick={this.selectUser} key={'messagesUser' + user.id}>
+                            <img src={user.avatar}/> {user.first_name} {user.last_name}
                         </li>
                       )
                     })}
                 </ul>
-            <MessagingView  myconvo={this.props.myconvo}/>
+           <MessagingView fromId={this.props.fromId} myconvo={this.props.myconvo} />
             </div> 
           </div>
-       
         </div>
     )            
   }
 })
 
 export default DrawerContainer
-
-  
 
 

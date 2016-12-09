@@ -1,60 +1,50 @@
 import React from 'react'
-import { browserHistory, Link } from 'react-router'
-import 'assets/styles/register.css'
-import 'assets/lib/cloudinary'
-import {createUser} from 'api/users'
+import {getProfile, editProfile} from 'api/profile'
 import store from 'store'
-import Logo from 'assets/images/cg-logo.png'
-import {getTopics} from 'api/topics'
+import 'assets/lib/cloudinary'
+
+import 'assets/styles/editProfile.css'
 
 export default React.createClass({
   getInitialState: function() {
     return {
-      username: "", 
-      password: "",
-      firstName: "", 
-      lastName: "", 
-      avatar: "", 
-      city: "", 
-      state: "", 
-      politicalAffiliation: "",
+      id: '',
+      firstName: '',
+      lastName: '',
+      city: '',
+      state: '',
+      avatar: '',
+      politicalAffiliation: '',
       displayTopics: [],
       submitTopics: []
-
     }
   },
   componentWillMount: function() {
-    getTopics()
+    getProfile(this.props.params.id)
     this.unsubscribe = store.subscribe(() => {
       const appState = store.getState()
       this.setState({
+        id: appState.profile.id || '',
+        firstName: appState.profile.first_name || '',
+        lastName: appState.profile.last_name || '',
+        city: appState.profile.city || '',
+        state: appState.profile.state || '',
+        avatar: appState.profile.avatar || '',
+        politicalAffiliation: appState.profile.political_affiliation || '',
         displayTopics: appState.topics
       })
     })
   },
-  update: function(e){
-
-        var val = e.target.value
-        console.log(val)
-        var id = e.target.id
-        var stateObj = {}
-        stateObj[id] = val
-        this.setState(stateObj)
-    },
-
-  handleSubmit: function(e) {
-    e.preventDefault()
-    createUser({
-      username:this.state.username,
-      password:this.state.password,
-      firstName:this.state.firstName,
-      lastName:this.state.lastName,
-      avatar:this.state.avatar,
-      city:this.state.city,
-      state:this.state.state,
-      politicalAffiliation:this.state.politicalAffiliation,
-      topics: this.state.submitTopics
-    })
+  componentWillUnmount: function() {
+    this.unsubscribe()
+  },
+  update: function (e) {
+    console.log(e.target)
+    var val = e.target.value
+    var id = e.target.id
+    var stateObj = {}
+    stateObj[id] = val 
+    this.setState(stateObj)
   },
   upload: function(e) {
     e.preventDefault()
@@ -66,35 +56,29 @@ export default React.createClass({
       }) 
     });
   },
-   updateTopics: function (e) {
-    var id = Number(e.target.id.substr(5))
-    var topics = this.state.submitTopics
-    if (topics.indexOf(id) === -1) {
-      topics.push(id)
-    } else {
-      topics.splice(topics.indexOf(id), 1)
-    }
-    this.setState({
-      submitTopics: topics
+  handleSubmit: function(e) {
+    e.preventDefault()
+    editProfile({
+      first_name:this.state.firstName,
+      last_name:this.state.lastName,
+      avatar:this.state.avatar,
+      city:this.state.city,
+      state:this.state.state,
+      political_affiliation:this.state.politicalAffiliation,
+      submitTopics: this.state.submitTopics
     })
-    console.log(topics)
   },
   render: function () {
     return (
-      <div id="container">
-        <div className="header">
-          <h1 className="logo_h1"><img className="logo_cg" src={Logo}/></h1>
-        </div>
-          <div className="register_form">
+     <div id="container">
+          <div className="register_form_edit">
             <form onSubmit={this.handleSubmit}>
               <div className="registerform_container">
-                <p className="register_header">Register</p>
-                <input className="input_field_register" onChange={this.update} type="text" id="username" placeholder="Username" /><br />
-                <input className="input_field_register" onChange={this.update} type="password" id="password" placeholder="Create Password" /><br />
-                <input className="input_field_register" onChange={this.update} type="text" id="firstName" placeholder="First Name" /><br />
-                <input className="input_field_register" onChange={this.update} type="text" id="lastName" placeholder="Last Name" />
-                <input className="input_field_register" id="city" onChange={this.update} type="text" id="city" placeholder="City" />
-                <select id="state" onChange={this.update} className="register_state_select">
+                <p className="register_header">Edit Profile</p>
+                <input className="input_profile_edit" onChange={this.update} value={this.state.firstName} type="text" id="firstName" placeholder="First Name" /><br />
+                <input className="input_profile_edit" onChange={this.update} value={this.state.lastName} type="text" id="lastName" placeholder="Last Name" />
+                <input className="input_profile_edit" id="city" onChange={this.update} value={this.state.city} type="text" id="city" placeholder="City" />
+                <select id="state" onChange={this.update} value={this.state.state} className="register_state_select">
                   <option defaultValue="selected">Select State</option>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -148,21 +132,20 @@ export default React.createClass({
                   <option value="WI">Wisconsin</option>
                   <option value="WY">Wyoming</option>
                 </select>
-                <select id ="politicalAffiliation" onChange={this.update} className="register_affilation_select">
+                <select value={this.state.politicalAffiliation} id="politicalAffiliation" onChange={this.update} className="register_affilation_select">
                   <option defaultValue="selected">Select Political Affilation</option>
                   <option value="Democrat">Democrat</option>
                   <option value="Republican">Republican</option>
-                  <option value="Interests">Independent</option>
+                  <option value="Independent">Independent</option>
                   <option value="Other">Other</option>
                 </select> 
-                <button onChange={this.update} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
-                <button type="submit" className="button button--state-register--register">Register</button> 
-            </div>          
-            <div className="select--topic--container">
+                <button className="button_avatar" onChange={this.update} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
+                <button type="submit" className="button_avatar">Next</button>
+            </div> 
+          <div className="select--topic--container">
               <div className="register_topic_select">Edit Topics of Interests:</div>
               {this.state.displayTopics.map((topic,i) => {
                 return ( 
-                <div key={'topic'+ i} className="topic_checkbox_container">
                   <label key={'topic' + i} className="labels">
                     <input onChange={this.updateTopics} 
                            id={"topic" + topic.id}
@@ -171,13 +154,13 @@ export default React.createClass({
                            value={topic.id} />
                     {topic.name}
                   </label>
-                </div>
                 )
               })}
-          </div> 
+          </div>      
+            
       </form>
   </div>
 </div>
     )
   }
-})  
+})

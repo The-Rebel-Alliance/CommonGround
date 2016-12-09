@@ -1,31 +1,85 @@
 import React from 'react'
-import { browserHistory, Link } from 'react-router'
 import store from 'store'
-import users from 'api/users'
+import { browserHistory, Link } from 'react-router'
 import 'assets/styles/MessagingContainer.css'
-import Drawer from './Drawer'
-import { getConvo } from 'api/convo'
+import { getConvo } from 'api/getConvo'
+import { getMessageUsers } from 'api/getMessages'
+import { sendMsg } from 'api/sendMsg'
 
 
-const MessagingView = React.createClass({ 
+const MessagingView = React.createClass({
+  getInitialState: function() {
+    return {
+      message:'',
+      toId: ''     
+    }
+  },
+  handleSubmit: function(e) {
+    e.preventDefault()
+    var msg = {
+      message:this.state.message,
+      toId:this.props.fromId
+    }
+    sendMsg(msg)
+    this.setState({
+      message: ''
+    })
+  },
+  update: function(e) {
+    var val = e.target.value
+    var id = e.target.id
+    var msgObj = {}
+    msgObj[id] = val
+    this.setState(msgObj)
+  },
+  generateRoom: function(e){
+    e.preventDefault()
+    var roomId = this.generateRoomId()
+    sendMsg({
+      message: `/v/${roomId}`,
+      toId:this.props.fromId
+    })
+  },
+  generateRoomId: function() {
+    return ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4)
+  },
   render: function(){
     return(
       <div id="messagingContainer">
-        <div id="messages">
-          <h4>My conversation with (user)</h4>
+        
+          <h4 className="messagesHeader">
+           <div className="profileLink">
+
+           </div>
+           <a onClick={this.generateRoom} className="videoLink">
+              Video Chat&nbsp;
+             <i className="fa fa-video-camera" aria-hidden="true" >
+             </i>                  
+           </a>
+          </h4>
+         <div className="messages"> 
           <ul>
             {this.props.myconvo.map((chat,i) => {
-              return (
-                <li id={'chat' + i} key={'chat' + i}>
-                  {chat.first_name}{chat.message}
-                </li>
-              )
+              if (/^\/v\//.test(chat.message)) {
+                return (
+                  <li className="you" id={'chat' + i} key={'chat' + i}>
+                   {chat.username}: Here's a link so we can video chat <a className="videoLink" href={chat.message} target="_blank">{chat.message} <i className="fa fa-video-camera" aria-hidden="true"></i></a>
+                  </li>
+                )
+              } else {
+                return (
+                  <li className={chat.from} id={'chat' + i} key={'chat' + i}>
+                    {chat.username}:   {chat.message} 
+                  </li>
+                )
+              }
              })}
           </ul>
         </div>
         <div id="textboxContainer">
-          <form id="textBox">
-            <input type="text" name="textBox" id="inputBox"></input><button>Submit</button>
+          <form onSubmit={this.handleSubmit}id="textBox">
+            <input className="chat_submit" value={this.state.message} onChange={this.update} type="text" name="textBox" id="message"/>
+            <button type="submit">Submit</button>
           </form>
         </div>
       </div>

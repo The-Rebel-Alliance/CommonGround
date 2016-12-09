@@ -1,0 +1,139 @@
+html {box-sizing: border-box;}
+*, *:after, *:before {box-sizing: inherit;}
+
+img{
+  width:100px;
+  height:100px;
+  margin-left: 365px;
+}
+
+p{
+  margin:5px;
+}
+
+ul{
+  list-style: none;
+  padding-left:0px;
+  margin-top:5px;
+}
+
+#mainContainer{
+}
+
+#windowsContainer{
+  height:65%;
+  width:100%;
+  border:3px solid black;
+}
+
+#window1Container{
+  width:500px;
+  border:3px solid black;
+}
+
+#window1{
+  border:3px solid blue;
+  width:50%;
+  height:300px;
+}
+
+div#votingContainer{
+  height:95px;
+
+}
+
+#upvote1{
+  display: inline-block;
+  float:left;
+}
+
+#upCounter1{
+  height:30px;
+  width:30px;
+  border:1px solid green;
+  display:inline-block;
+  margin-bottom:120px;
+  float:left;
+}
+
+#votingContainer .fa-thumbs-up{
+ font-size: 65px;
+}
+
+#votingContainer .fa-thumbs-down{
+ font-size: 65px;
+ border:1px solid green;
+ padding:0;
+}
+
+#downvote1{
+  display:inline-block;
+  float:left;
+}
+
+#downCounter1{
+  height:30px;
+  width:30px;
+  border:1px solid green;
+  display:inline-block;
+  margin-bottom:120px;
+  float:left;
+}
+
+#window2Container{
+  width:500px;
+  border:3px solid black;
+}
+
+#window2{
+  border:3px solid blue;
+  height:300px;
+  width:50%;
+  float:right;
+  margin-top:-300px;
+}
+
+#upvote2{
+  display: inline-block;
+  float:right;
+}
+
+#upCounter2{
+  height:30px;
+  width:30px;
+  border:1px solid green;
+  display:inline-block;
+  float:right;
+}
+
+#downvote2{
+  float: right;
+  display: inline-block;
+}
+
+#downCounter2{
+  height:30px;
+  width:30px;
+  border:1px solid green;
+  display:inline-block;
+  float:right;
+}
+
+#chatNusers{
+  width:100%;
+}
+
+#spectators{
+  float:right;
+  border:1px solid green;
+  width:50%;
+  margin-top: -300px;
+  height:100%;
+  text-align: center;
+}
+
+#chatWindow{
+  width:50%;
+  height:300px;
+  border:1px solid blue;
+}

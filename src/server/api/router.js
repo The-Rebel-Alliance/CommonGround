@@ -73,15 +73,34 @@ router.get('/messages/:fromId', function(req, res, next){
     JOIN users tu ON tu.id = tp.user_id
     LEFT JOIN tokens ft ON ft.user_id = fu.id
     LEFT JOIN tokens tt ON tt.user_id = tu.id
-    WHERE (tt.token = ? AND fu.id = ?) OR (ft.token = ? AND tu.id = ?)
+    WHERE (tt.token = ? AND fp.id = ?) OR (ft.token = ? AND tp.id = ?)
     ORDER BY m.created_at
   `
 
   conn.query(sql, [token, token, fromId, token, fromId], function(err, results){
-    res.err = false
-    res.data = results
-    res.message = ''
-    next()  
+    const fromSql = `
+      SELECT u.username, p.first_name, p.last_name, p.city, p.state, p.avatar, p.political_affiliation
+      FROM users u
+      JOIN profiles p ON p.user_id = u.id
+      WHERE u.id = ?
+    `
+    conn.query(fromSql, [fromId], function(err, fromResults){
+      const profile = fromResults[0]
+      res.err = false
+      res.data = {
+        id: fromId,
+        username: profile.username,
+        first_name: profile.first_name,
+        last_name: profile.last_name,
+        city: profile.city,
+        state: profile.state,
+        avatar: profile.avatar,
+        political_affiliation: profile.political_affiliation,
+        messages: results
+      }
+      res.message = ''
+      next()
+    })
   })
 })
 
@@ -200,7 +219,92 @@ router.get('/profile/:id', function(req, res, next){
   })
 })
 
-router.put('/profile')
+router.put('/profile', function(req, res, next){
+  const token = req.token
+  const fname = req.body.first_name || ''
+  const lname = req.body.last_name || ''
+  const city = req.body.city || ''
+  const state = req.body.state || ''
+  const avatar = req.body.avatar || ''
+  const political_affiliation = req.body.political_affiliation || ''
+  const topics = req.body.topics || []
+  const sql = `
+    UPDATE profiles p
+    JOIN users u ON p.user_id = u.id
+    JOIN tokens t ON t.user_id = u.id
+    SET
+      p.first_name = ?,
+      p.last_name = ?,
+      p.city = ?,
+      p.state = ?,
+      p.avatar = ?,
+      p.political_affiliation = ?
+    WHERE t.token = ?
+  `
+  conn.query(sql, [fname, lname, city, state, avatar, political_affiliation, token], function(err, results){
+    var promiseArr = topics.map(topic => {
+      return new Promise((resolve, reject) => {
+        const checkSql = `
+          SELECT p.id
+          FROM users u
+          JOIN profiles p ON p.user_id = u.id
+          JOIN user_topics_link utl ON utl.profile_id = p.id
+          JOIN tokens t ON t.user_id = u.id
+          WHERE t.token = ? AND utl.topic_id = ?
+        `
+        conn.query(checkSql, [token, topic.id], function(err, cresults){
+          if (cresults.length > 0) {
+            // update
+            const profileId = cresults[0].id
+            const updateSql = `
+              UPDATE user_topics_link utl
+              JOIN profiles p ON utl.profile_id = p.id
+              JOIN users u ON p.user_id = u.id
+              JOIN tokens t ON t.user_id = u.id
+              SET utl.stance = ?
+              WHERE utl.topic_id = ? AND utl.profile_id = ?
+            `
+            conn.query(updateSql, [topic.stance, topic.id, profileId], function(err, results){
+              if (err) {
+                reject('There was an issue updating. Show this to Mike.')
+                console.log(err)
+              } else {
+                resolve()
+              }
+            })
+          } else {
+            const insertSql = `
+              INSERT INTO user_topics_link (topic_id, profile_id, stance)
+                SELECT ?, p.id, ?
+                FROM users u
+                JOIN profiles p ON p.user_id = u.id
+                JOIN tokens t ON t.user_id = u.id
+                WHERE t.token = ?
+            `
+
+            conn.query(insertSql, [topic.id, topic.stance, token], function(err, results){
+              if (err) {
+                reject('There was in issue inserting. Show this to Mike.')
+                console.log(err)
+              } else {
+                resolve()
+              }
+            })
+          }
+        })
+      })
+    })
+    
+    Promise.all(promiseArr).then((theresults)=> {
+      res.errr = false
+      res.data = {message:'success'}
+      res.message = ''
+      next()    
+    }).catch((err) => {
+      res.status(400).send(err)
+    })
+  })
+})
 
 router.get('/generateRoomLink', function(req, res, next){
   const roomId = generateRoomId()
