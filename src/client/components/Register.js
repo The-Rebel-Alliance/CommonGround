@@ -5,6 +5,7 @@ import 'assets/lib/cloudinary'
 import {createUser} from 'api/users'
 import store from 'store'
 import Logo from 'assets/images/cg-logo.png'
+import {getTopics} from 'api/topics'
 
 export default React.createClass({
   getInitialState: function() {
@@ -17,7 +18,19 @@ export default React.createClass({
       city: "", 
       state: "", 
       politicalAffiliation: "",
+      displayTopics: [],
+      submitTopics: []
+
     }
+  },
+  componentWillMount: function() {
+    getTopics()
+    this.unsubscribe = store.subscribe(() => {
+      const appState = store.getState()
+      this.setState({
+        displayTopics: appState.topics
+      })
+    })
   },
   update: function(e){
 
@@ -40,6 +53,7 @@ export default React.createClass({
       city:this.state.city,
       state:this.state.state,
       politicalAffiliation:this.state.politicalAffiliation,
+      topics: this.state.submitTopics
     })
   },
   upload: function(e) {
@@ -52,7 +66,19 @@ export default React.createClass({
       }) 
     });
   },
-
+   updateTopics: function (e) {
+    var id = Number(e.target.id.substr(5))
+    var topics = this.state.submitTopics
+    if (topics.indexOf(id) === -1) {
+      topics.push(id)
+    } else {
+      topics.splice(topics.indexOf(id), 1)
+    }
+    this.setState({
+      submitTopics: topics
+    })
+    console.log(topics)
+  },
   render: function () {
     return (
       <div id="container">
@@ -130,9 +156,25 @@ export default React.createClass({
                   <option value="Other">Other</option>
                 </select> 
                 <button onChange={this.update} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
-                <button type="submit" className="button button--state-register--register">Next</button>
+                <button type="submit" className="button button--state-register--register">Register</button> 
             </div>          
-            
+            <div className="select--topic--container">
+              <div className="register_topic_select">Edit Topics of Interests:</div>
+              {this.state.displayTopics.map((topic,i) => {
+                return ( 
+                <div key={'topic'+ i} className="topic_checkbox_container">
+                  <label key={'topic' + i} className="labels">
+                    <input onChange={this.updateTopics} 
+                           id={"topic" + topic.id}
+                           className="topic_checkbox" 
+                           type="checkbox" 
+                           value={topic.id} />
+                    {topic.name}
+                  </label>
+                </div>
+                )
+              })}
+          </div> 
       </form>
   </div>
 </div>

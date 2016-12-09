@@ -14,7 +14,9 @@ export default React.createClass({
       city: '',
       state: '',
       avatar: '',
-      politicalAffiliation: ''
+      politicalAffiliation: '',
+      displayTopics: [],
+      submitTopics: []
     }
   },
   componentWillMount: function() {
@@ -29,6 +31,7 @@ export default React.createClass({
         state: appState.profile.state || '',
         avatar: appState.profile.avatar || '',
         politicalAffiliation: appState.profile.political_affiliation || '',
+        displayTopics: appState.topics
       })
     })
   },
@@ -62,6 +65,7 @@ export default React.createClass({
       city:this.state.city,
       state:this.state.state,
       political_affiliation:this.state.politicalAffiliation,
+      submitTopics: this.state.submitTopics
     })
   },
   render: function () {
@@ -137,7 +141,22 @@ export default React.createClass({
                 </select> 
                 <button className="button_avatar" onChange={this.update} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
                 <button type="submit" className="button_avatar">Next</button>
-            </div>       
+            </div> 
+          <div className="select--topic--container">
+              <div className="register_topic_select">Edit Topics of Interests:</div>
+              {this.state.displayTopics.map((topic,i) => {
+                return ( 
+                  <label key={'topic' + i} className="labels">
+                    <input onChange={this.updateTopics} 
+                           id={"topic" + topic.id}
+                           className="topic_checkbox" 
+                           type="checkbox" 
+                           value={topic.id} />
+                    {topic.name}
+                  </label>
+                )
+              })}
+          </div>      
             
       </form>
   </div>
