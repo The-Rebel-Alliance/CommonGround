@@ -149,9 +149,11 @@ function adjustBackVideo() {
 // }
 
 function updateMessaging(user, value) {
-    $("#chat-window").append(`<div class=${identity===user ? 'user-style':'other-style'} chat-window-row>${user}: <li class=chat-window-item>${value}</li>`).scrollTop($("#chat-window")[0].scrollHeight);
+    $("#chat-window").append(`<div class=chat-window-row><li class= ${identity===user ? 'user-style' : 'other-style'}>${user}: ${value}</li></div>`).scrollTop($("#chat-window")[0].scrollHeight);
 }
 
+
+// $("#chat-window").append(`<div class=${identity===user ? 'user-style':'other-style'} chat-window-row>${user}: <li class=chat-window-item>${value}</li>`).scrollTop($("#chat-window")[0].scrollHeight);
 
 //jason twillio account config profile SID: VS9025d31d6b05358898fa6617bcc7cfc5
 //jason twillio primary account SID: AC9835cee05e5e5f37ee066ccd9554cf83
