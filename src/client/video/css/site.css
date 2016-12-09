@@ -39,8 +39,8 @@ body {
 #interactions-sidebar {
   position: absolute;
   height: 100%;
-  width: 28%;
-  right: 0;
+  width: 26%;
+  right: 12px;
   padding-left: 2%;
   text-align: center;
 }
@@ -96,7 +96,7 @@ h2 span {
 .chat-window-row-left {
   max-width: 351px;
   text-align: left;
-  margin-bottom: 14px;
+  margin-bottom: 20px;
 }
 
 .chat-window-row-right {
@@ -112,7 +112,8 @@ h2 span {
 }
 
 #message {
-  width: 100%;
+  width: 82%;
+  border-radius: 5px;
   height: 20px;
 }
 
@@ -130,7 +131,7 @@ h2 span {
 .user-style::after {
   content: "";
   position: absolute;
-  top: 37px;
+  top: 100%;
   left: 13px;
   border-left: 12px solid transparent;
   border-right: 12px solid transparent;
@@ -140,10 +141,21 @@ h2 span {
 .other-style {
   background: linear-gradient(#01A69A, #7AE0D9);
   max-width: 350px;
-  border-radius: 16px;
+  border-radius: 8px;
   padding: 10px;
   word-wrap: break-word;
   text-align: right;
   display: inline-block;
+  position: relative
+}
+
+.other-style::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 13px;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #7AE0D9;
 }
 
