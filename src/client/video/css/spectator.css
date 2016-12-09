@@ -2,10 +2,11 @@ html {box-sizing: border-box;}
 *, *:after, *:before {box-sizing: inherit;}
 
 img{
-  width:150px;
-  height:150px;
-  margin-left: 185px;
+  width:100px;
+  height:100px;
+  margin-left: 365px;
 }
+
 p{
   margin:5px;
 }
@@ -37,15 +38,13 @@ ul{
 }
 
 div#votingContainer{
-  height:150px;
+  height:95px;
 
 }
 
 #upvote1{
-  height:150px;
-  width:150px;
-  border:3px solid black;
   display: inline-block;
+  float:left;
 }
 
 #upCounter1{
@@ -54,13 +53,22 @@ div#votingContainer{
   border:1px solid green;
   display:inline-block;
   margin-bottom:120px;
+  float:left;
+}
+
+#votingContainer .fa-thumbs-up{
+ font-size: 65px;
+}
+
+#votingContainer .fa-thumbs-down{
+ font-size: 65px;
+ border:1px solid green;
+ padding:0;
 }
 
 #downvote1{
-  border:3px solid red;
-  height:150px;
-  width:150px;
   display:inline-block;
+  float:left;
 }
 
 #downCounter1{
@@ -69,6 +77,7 @@ div#votingContainer{
   border:1px solid green;
   display:inline-block;
   margin-bottom:120px;
+  float:left;
 }
 
 #window2Container{
@@ -85,9 +94,6 @@ div#votingContainer{
 }
 
 #upvote2{
-  height:150px;
-  width:150px;
-  border:3px solid black;
   display: inline-block;
   float:right;
 }
@@ -101,9 +107,6 @@ div#votingContainer{
 }
 
 #downvote2{
-  border: 3px solid red;
-  height: 150px;
-  width: 150px;
   float: right;
   display: inline-block;
 }

@@ -3,29 +3,60 @@
 <head>
   <meta charset="UTF-8">
    <link rel="stylesheet" href="css/spectator.css"/>
+   <link rel="stylesheet" href="css/css/font-awesome.css">
   <title>Spectator's View</title>
 </head>
 <body>
     <div id="mainContainer">
       <div id="windowsContainer">
         <div id="window1">
-          <div style="color:green"></div>
+          <div style="background-color:green"></div>
         </div>
         <div id="window2">
-          <div style="color:blue"></div>
+          <div style="background-color:blue"></div>
         </div>
       </div>
         <div id="votingContainer">
-          <div id="upvote1"></div>
-            <div id="upCounter1"></div>
-          <div id="downvote1"></div> 
-            <div id="downCounter1"></div>
+
+          <div id="upvote1">
+          <button type="button" onclick='counter()'>
+             <i id="interaction-agree2" class="fa fa-thumbs-up interaction-icons" aria-hidden="true"></i>
+          </button>
+          </div>
+            <div id="upCounter1">
+              <p id="counter"></p>
+            </div>
+            
+          <div id="downvote1">
+          <button type="button" onclick='counter2()'>
+            <i id="interaction-disagree2" class="fa fa-thumbs-down interaction-icons" aria-hidden="true"></i>
+            </button>
+          </div> 
+            <div id="downCounter1">
+              <p id="counter2"></p>
+            </div>
+
               <img src="css/cg-logo.png"/>
-          <div id="upvote2"></div>
-            <div id="upCounter2"></div>
-          <div id="downvote2"></div>
-            <div id="downCounter2"></div>
+
+          <div id="upvote2">
+          <button type="button" onclick='counter3()'>
+            <i id="interaction-agree2" class="fa fa-thumbs-up interaction-icons" aria-hidden="true"></i>
+          </button>
+          </div>
+            <div id="upCounter2">
+              <p id="counter3"></p>
+            </div>
+
+        <div id="downvote2">
+          <button type="button" onclick='counter4()'>
+            <i id="interaction-disagree2" class="fa fa-thumbs-down interaction-icons" aria-hidden="true"></i>
+            </button>
+          </div>
+            <div id="downCounter2">
+              <p id="counter4"></p>
+            </div>
         </div>
+        
         <div id="chatNusers">
           <div id="chatWindow">
             <h3>Chat Window!</h3>
@@ -43,5 +74,36 @@
         </div>
       </div>
     </div>
-</body>
+<script>
+    var clicks = 0;
+      function counter(){
+
+        clicks += 1;
+        document.getElementById('counter').innerHTML = clicks;
+  }
+     var clicks2 = 0;
+      function counter2(){
+
+        clicks2 += 1;
+        document.getElementById('counter2').innerHTML = clicks2;
+  }
+
+      var clicks3 = 0;
+      function counter3(){
+
+        clicks3 += 1;
+        document.getElementById('counter3').innerHTML = clicks3;
+  }
+
+      var clicks4 = 0;
+      function counter4(){
+
+        clicks4 += 1;
+        document.getElementById('counter4').innerHTML = clicks4;
+  }
+</script>
+
+
+
+  </body>
 </html>

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Test</title>
+</head>
+<body>
+  <p>Click the button to trigger a function.</p>
+
+<button onclick="myFunction()">Click me</button>
+
+<p id="demo"></p>
+
+
+
+<script>
+     var clicks = 0;
+     
+    function myFunction() {
+
+        clicks += 1;
+        document.getElementById("demo").innerHTML = clicks;
+
+
+    }
+</script>  
+</body>
+</html>
