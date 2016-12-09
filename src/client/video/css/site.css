@@ -85,6 +85,7 @@ h2 span {
   overflow: auto;
   padding: 3% 3%;
   border-radius: 5px;
+  border: 1px solid rgba(204, 204, 204, 0.47);
 }
 
 .chat-window-item {
@@ -92,9 +93,16 @@ h2 span {
   display: inline-block;
 }
 
-.chat-window-row {
+.chat-window-row-left {
   max-width: 351px;
   text-align: left;
+  margin-bottom: 14px;
+}
+
+.chat-window-row-right {
+  max-width: 351px;
+  text-align: right;
+  margin-bottom: 10px; 
 }
 
 .interaction-icons {
@@ -111,10 +119,31 @@ h2 span {
 .user-style {
   background: linear-gradient(#CECFD2, #eaedef);
   max-width: 350px;
-  border-radius: 5px;
+  border-radius: 8px;
   padding: 10px;
   word-wrap: break-word;
   text-align: left;
+  display: inline-block;
+  position: relative;
+}
+
+.user-style::after {
+  content: "";
+  position: absolute;
+  top: 37px;
+  left: 13px;
+  border-left: 12px solid transparent;
+  border-right: 12px solid transparent;
+  border-top: 12px solid #eaedef;
+}
+
+.other-style {
+  background: linear-gradient(#01A69A, #7AE0D9);
+  max-width: 350px;
+  border-radius: 16px;
+  padding: 10px;
+  word-wrap: break-word;
+  text-align: right;
   display: inline-block;
 }
 

@@ -149,7 +149,7 @@ function adjustBackVideo() {
 // }
 
 function updateMessaging(user, value) {
-    $("#chat-window").append(`<div class=chat-window-row><li class= ${identity===user ? 'user-style' : 'other-style'}>${user}: ${value}</li></div>`).scrollTop($("#chat-window")[0].scrollHeight);
+    $("#chat-window").append(`<div class=${identity===user ? 'chat-window-row-left' : 'chat-window-row-right'}><li class= ${identity===user ? 'user-style' : 'other-style'}>${user}: ${value}</li></div>`).scrollTop($("#chat-window")[0].scrollHeight);
 }
 
 
