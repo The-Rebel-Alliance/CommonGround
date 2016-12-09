@@ -70,6 +70,8 @@ h6 > #time{
   margin-bottom: 5px;
   word-wrap: normal;
   width:70%;
+  margin-top: -225px;
+  position: fixed;
 }
 
 ul{
