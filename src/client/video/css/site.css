@@ -22,30 +22,11 @@ body {
 }
 
 #local-media {
-  /*transition: all 3s ease;*/
   position: absolute;
   left: 0;
   height: 550px;
   bottom: 35%;
 }
-
-/*.local-media-starting {
-  position: absolute;
-  left: 0;
-  height: 550px;
-  bottom: 35%;
-}*/
-
-.bottom {
-  bottom: 0;
-}
-
-/*.local-media-transform {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  height: 350px;
-}*/
 
 #controls {
   position: absolute;
@@ -53,7 +34,6 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  /*margin-left: 7.3%;*/
 }
 
 #interactions-sidebar {
@@ -69,33 +49,7 @@ body {
   height: 25%
 }
 
-#sidebar {
-  background: #002522;
-  position: absolute;
-  height: 100%;
-  z-index: -1;
-  padding: 0 2%;
-}
-
-#sidebar i:first-child {
-  margin-top: 100%;
-}
-
-#sidebar .fa {
-  font-size: 50px !important;
-  display: block !important;
-  margin-bottom: 100px;
-  color: #7AE0D9;
-  z-index: 999;  
-}
-
-.fa:hover {
-  transition: color .5s;
-  color: #FFCCC9;
-}
-
 #waiting-overlay {
-  /*background: #002522;*/
   opacity: 0.5;
   width: 100%;
   text-align: center;
@@ -122,10 +76,7 @@ h2 span {
   display: flex;
   width: 62%;
   color: #7AE0D9;
-  /*flex-wrap: wrap;*/
-  /*padding: 10%;*/
 }
-
 
 #chat-window {
   height: 55%;
@@ -151,22 +102,9 @@ h2 span {
   font-size: 40px !important;
 }
 
-#interactions-row1, #interactions-row2 {
+#message {
   width: 100%;
-  display: flex;
-  padding: 0 18%;
+  height: 20px;
 }
 
-#user1-response-row, #user2-response-row, #user-strikes-row {
-  display: flex;
-}
-
-#user1-response-square {
-  opacity: 0;
-  min-width: 25%;
-}
-
-#user-strikes-row {
-  width: 75%;
-}
 
