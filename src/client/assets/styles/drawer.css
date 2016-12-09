@@ -28,7 +28,33 @@ h1{
     height: 175px;
     float: none;
 }
-
+.labelHome{
+	color: white;
+	font-size: 10px;
+	text-decoration: none;
+	margin-left: 16px;
+}
+.labelMessages{
+	color: white;
+	font-size: 10px;
+	text-decoration: none;
+	margin-left: 9px;
+}
+.labelProfile{
+	color: white;
+	font-size: 10px;
+	text-decoration: none;
+	margin-left: 16px;
+}
+.labelLogout{
+	color: white;
+	font-size: 10px;
+	text-decoration: none;
+	margin-left: 12px;
+}
+a{
+	text-decoration: none;
+}
 .iconColumn {
 	width:65px;
 	height: 1000px;
@@ -107,11 +133,4 @@ button{
     font-size: 35px;
 }
 
-.videoIcon{
-	margin-left: 10px;
-	text-decoration: none;
-	color:#FFF;	
-}
-.videoIcon:hover, .videoIcon:active {
-	color: #333842;
-}
+

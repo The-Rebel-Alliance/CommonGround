@@ -1,7 +1,9 @@
 import React from 'react'
+import store from 'store'
 import {Link, browserHistory} from 'react-router'
 import {getUserProfile} from 'api/profile'
-import store from 'store'
+import { sendMsg } from 'api/sendMsg'
+
 
 
 import 'assets/styles/profile.css'
@@ -40,6 +42,14 @@ const OtherProfileContainer = React.createClass({
   } 
 })
 const CommonOtherProfile = React.createClass({
+  handleSubmit: function(e){
+    e.preventDefault()
+    var msg = {
+      message: "I'd like to chat!",
+      id:this.props.id
+    }
+    sendMsg(msg)
+  },
   render: function (){
     return(
       <div>
@@ -47,7 +57,7 @@ const CommonOtherProfile = React.createClass({
           <div className="profile_pic_container"><img className="profile_pic" src={this.props.avatar}/></div>
           <div>
             <Link to="/Drawer" >
-              <button className="edit_button">
+              <button onClick={this.handleSubmit} className="edit_button">
                 <i className="fa fa-comments" aria-hidden="true"></i> 
                 Message Me
               </button>
