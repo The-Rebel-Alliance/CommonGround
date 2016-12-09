@@ -35,6 +35,10 @@ export default function (conf) {
     res.sendFile(path.resolve(conf.root + '/v/index.html'))
   })
 
+  app.get('/s/:roomname', function(req, res, next){
+    res.sendFile(path.resolve(conf.root + '/v/index.html'))
+  })
+
   app.use(bodyParser.json())
   app.use(bodyParser.urlencoded({extended: true}))
   app.use(cookieParser())

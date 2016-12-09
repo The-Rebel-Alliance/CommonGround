@@ -25,6 +25,3 @@ export function logout(username, password) {
     browserHistory.push("/")
   })
 }
-
-
-
