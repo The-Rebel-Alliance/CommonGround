@@ -2,6 +2,7 @@ import * as actions from 'actions'
 
 const defaultState = {
   logged: false,
+  logout: false,
   profiles: [],
   topics: [],
   profile: {},
@@ -18,7 +19,7 @@ export default function (state = defaultState, action) {
     case action.LOGIN:
       return {...state, logged: true}
     case action.LOGOUT:
-      return {...state, logged: false}
+      return {...state, logout: true}
     case 'GET_PROFILES':
       return {...state, profiles: action.profiles}
     case 'GET_PROFILE': 

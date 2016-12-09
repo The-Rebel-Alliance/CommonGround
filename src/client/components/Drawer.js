@@ -59,7 +59,7 @@ const DrawerView = React.createClass({
   },
   logout: function(e) {
     e.preventDefault()
-    browserHistory.push('/')
+    logout(browserHistory.push('/'))
   },
   render: function () {
     return ( 
@@ -113,6 +113,3 @@ const DrawerView = React.createClass({
 
 export default DrawerContainer
 
-
-
-// <MessagingView myconvo={this.props.myconvo}/>

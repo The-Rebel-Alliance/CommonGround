@@ -4,35 +4,36 @@ html {box-sizing: border-box;}
 .dashboard_container {
 	position: fixed;
 	z-index: -1;
+	float: left;
 }
 
 .search--topic--container{
-	width: 500px;
-	margin: auto;
-	border: none;	
+	width: 610px;
+    border: none;
+    margin-left: 140px;
 }
 
 
 .searchbar{
-	width: 400px;
-    height: 40px;
+	width: 470px;
+    height: 50px;
     margin-top: 20px;
     outline: none;
     background-color: #32062A;
     border: none;
     color: white;
+    font-size: 25px;
 }
 
 .searchbutton{
-	width: 75px;
-    height: 40px;
+	width: 140px;
+    height: 50px;
     background-color: #2A4976;
     color: white;
     border-radius: 0px 5px 5px 0px;
     margin-left: -1px;
     outline: none;
-    margin-top: 20px;
-
+    font-size: 25px;
 }
 .profiledummybutton{
 	width: 100px;
@@ -41,23 +42,26 @@ html {box-sizing: border-box;}
 }
 
 .user_li {
-	margin-top: 20px;
-	margin-left: 20px;
-	border: 3px solid white;
-	border-radius: 5px;
-	transition: .5s;
-	color: white;
+	margin-top: -17px;
+    margin-left: 20px;
+    border: 1px solid #31353e;
+    transition: .5s;
+    color: white;
+    background-color: #270621;
+    color: white;
 }
 
 .user_li:hover {
-	margin-top: 20px;
-	margin-left: 20px;
-	border-radius: 5px;
 	background: linear-gradient(#CECFD2, #eaedef);
 	color: #333842;
 	transition: .5s;
 }
-
+.user_li:firstchild{
+	border-radius: 5px 5px 0 0; 
+}
+.user_li:lastchild{
+	border-radius: 0 0 5px 5px;
+}
 .userinfo {
 	font-size: 20px;
     line-height: 44px;
@@ -99,6 +103,46 @@ html {box-sizing: border-box;}
 }
 .usersSearch{
 	margin-left: 120px;
-    width: 1000px;
+    width: 630px;
     margin-top: 50px;
+    float: left;
+}
+.link_li{
+	margin-top: 20px;
+	margin-left: 20px;
+	border-radius: 5px;
+	transition: .5s;
+	color: white;
+
+}
+.link_list{
+	font-size: 30px;
+    list-style: none;
+    border: 1px solid #31353e;
+    color: white;
+    padding: 0px;
+    transition: .5s;
+    margin-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    font-style: normal;
+    background-color: #270621;
+}
+#videolink_container{
+    width: 460px;
+    margin-top: 15px;
+    float: right;
+    margin-right: 235px;
+}
+.livefeed_header{
+	width: 290px;
+    float: right;
+    margin-top: -37px;
+    margin-bottom: 0;
+    margin-right: 300px;
+}
+.link_image{
+	width: 40px;
+	height: 40px;
+	margin-left: 10px;
 }

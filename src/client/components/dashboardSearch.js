@@ -51,30 +51,39 @@ const CommonDashboard = React.createClass({
   },
   render: function () {
     return(
-      <div id="dashboard_container">
-        <form onSubmit={this.submitHandle}>
-          <div className="search--topic--container">
-            <select onChange={this.handleChange} className="searchbar">
-              <option>Find User's by Topic</option>
-                {this.props.topics.map((item,i) => {
-                  return(
-                    <option id={"item" + item.id} key={'item' + i} value={item.id}>{item.name}</option>
+      <div>
+        <div id="dashboard_container">
+          <form onSubmit={this.submitHandle}>
+            <div className="search--topic--container">
+              <select onChange={this.handleChange} className="searchbar">
+                <option>Search User's by Topic</option>
+                  {this.props.topics.map((item,i) => {
+                    return(
+                      <option id={"item" + item.id} key={'item' + i} value={item.id}>{item.name}</option>
+                    )
+                  })}
+              </select>
+              <button type="submit" className="searchbutton">Search</button>
+            </div>
+          </form>
+          <div className="usersSearch">
+              {this.props.profiles.map((user,i) =>{
+                return(
+                  <ul className="user_li" key={'user' + i}>
+                  <Link className="profile_link" to={`/profile/${user.id}`}>
+                    <li className="user_list" id={'user' + user.id} value={user.id}><img className="user_avatar" src={user.avatar}/> <p className="userinfo">{user.first_name}&nbsp;{user.last_name}&nbsp;Political Affiliation:&nbsp;{user.political_affiliation}</p></li>
+                  </Link> </ul>
                   )
-                })}
-            </select>
-            <button type="submit" className="searchbutton">Search</button>
+              })}
+           
           </div>
-        </form>
-        <div className="usersSearch">
-            {this.props.profiles.map((user,i) =>{
-              return(
-                <ul className="user_li" key={'user' + i}>
-                <Link className="profile_link" to={`/profile/${user.id}`}>
-                  <li className="user_list" id={'user' + user.id} value={user.id}><img className="user_avatar" src={user.avatar}/> <p className="userinfo">{user.first_name}&nbsp;{user.last_name}&nbsp;Political Affiliation:&nbsp;{user.political_affiliation}</p></li>
-                </Link> </ul>
-                )
-            })}
-         
+        </div>
+        <h2 className="livefeed_header">Current Live Video Feeds</h2>
+        <div id="videolink_container">
+          <ul className="link_li">
+            <li className="link_list"><img className="link_image" src="http://specials-images.forbesimg.com/imageserve/563a3600e4b0ffa7afe6b181/640x434.jpg?fit=scale&background=000000"/>Ryan Lee Dustin Rudy<img className="link_image" src="http://specials-images.forbesimg.com/imageserve/563a3600e4b0ffa7afe6b181/640x434.jpg?fit=scale&background=000000"/><p>Link goes here</p></li>
+            <li className="link_list"><img className="link_image" src="http://specials-images.forbesimg.com/imageserve/563a3600e4b0ffa7afe6b181/640x434.jpg?fit=scale&background=000000"/>Ryan Lee Dustin Rudy<img className="link_image" src="http://specials-images.forbesimg.com/imageserve/563a3600e4b0ffa7afe6b181/640x434.jpg?fit=scale&background=000000"/><p>Link goes here</p></li>
+          </ul>
         </div>
       </div>
     )
