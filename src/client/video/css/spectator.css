@@ -2,10 +2,10 @@ html {box-sizing: border-box;}
 *, *:after, *:before {box-sizing: inherit;}
 
 img{
-  height:100%;
-  width:100%;
+  width:150px;
+  height:150px;
+  margin-left: 185px;
 }
-
 p{
   margin:5px;
 }
@@ -36,6 +36,11 @@ ul{
   height:300px;
 }
 
+div#votingContainer{
+  height:150px;
+
+}
+
 #upvote1{
   height:150px;
   width:150px;
@@ -43,11 +48,27 @@ ul{
   display: inline-block;
 }
 
+#upCounter1{
+  height:30px;
+  width:30px;
+  border:1px solid green;
+  display:inline-block;
+  margin-bottom:120px;
+}
+
 #downvote1{
   border:3px solid red;
   height:150px;
   width:150px;
-  display: inline-block;
+  display:inline-block;
+}
+
+#downCounter1{
+  height:30px;
+  width:30px;
+  border:1px solid green;
+  display:inline-block;
+  margin-bottom:120px;
 }
 
 #window2Container{
@@ -71,12 +92,28 @@ ul{
   float:right;
 }
 
+#upCounter2{
+  height:30px;
+  width:30px;
+  border:1px solid green;
+  display:inline-block;
+  float:right;
+}
+
 #downvote2{
   border: 3px solid red;
   height: 150px;
   width: 150px;
   float: right;
   display: inline-block;
+}
+
+#downCounter2{
+  height:30px;
+  width:30px;
+  border:1px solid green;
+  display:inline-block;
+  float:right;
 }
 
 #chatNusers{
