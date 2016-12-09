@@ -13,7 +13,9 @@ export function getConvo(id){
     store.dispatch({
       type: actions.GET_MYCONVO,
       fromId: resp.data.id,
-      myconvo: resp.data.messages
+      myconvo: resp.data.messages,
+      avatar: resp.data.avatar
+
     })
   })
 }

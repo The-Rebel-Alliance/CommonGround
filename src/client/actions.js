@@ -6,4 +6,5 @@ export const GET_MESSAGE_USERS ='GET_MESSAGE_USERS'
 export const GET_MYCONVO = 'GET_MYCONVO'
 export const SEND_MSG ='SEND_MSG'
 export const GET_ROOM = 'GET_ROOM'
+export const CHANGE_DRAWER = 'CHANGE_DRAWER'
 
