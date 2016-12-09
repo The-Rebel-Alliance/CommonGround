@@ -119,22 +119,29 @@ function leaveRoomIfJoined() {
 
 function adjustVideo() {
   $("#local-media").animate({
-      left:'+=68%',
-      marginTop: '+=51%',
-      height: '-=40%'
+      bottom: '-=35%',
+      height: "-=350px",
     }, 3000)
   $("#waiting-overlay").css({display:"none"})
 }
 
 function adjustBackVideo() {
   $("#local-media").animate({
-      left:'-=68%',
-      marginTop: '-=51%',
-      height: '+=40%'
+      bottom: '+=35%',
+      height: "+=350px"
+      // marginTop: '+=38%',
+      // height: '-=338px'
+      // top: 0
     }, 3000)
   $("#waiting-overlay").css({display:"block"})
 
 }
+
+// function adjustVideo() {
+//   $("#local-media").addClass("bottom")
+//   $("#waiting-overlay").css({display:"none"})
+// }
+
 
 // function addToChat(userName, message) {
 //   message = $("input").val()
@@ -144,3 +151,9 @@ function adjustBackVideo() {
 function updateMessaging(user, value) {
     $("#chat-window").append(`<div class=chat-window-row>${user}: <li class=chat-window-item>${value}</li>`).scrollTop($("#chat-window")[0].scrollHeight);
 }
+
+
+//jason twillio account config profile SID: VS9025d31d6b05358898fa6617bcc7cfc5
+//jason twillio primary account SID: AC9835cee05e5e5f37ee066ccd9554cf83
+//jason twillio account api key: SK538602cffe692e73127b5fc1626b4a2a
+//jason twillio account api secret: N4VFpdTYtfl5QiYbDxQH0Wzecyh8WEXA
