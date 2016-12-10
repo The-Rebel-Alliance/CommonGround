@@ -8,6 +8,7 @@ var identity;
 var roomName = location.href.substr(location.href.lastIndexOf('/') + 1);
 var url = location.href.substr(0, location.href.indexOf(location.pathname))
 var user = "test"
+var path = location.pathname[1]
 
 var socket = io('/video').connect(url, {
   secure:true
@@ -24,6 +25,7 @@ window.addEventListener('beforeunload', leaveRoomIfJoined);
 
 $.getJSON('/token', function (data) {
   identity = data.identity;
+  console.log('path:', path)
 
   socket.emit('join', roomName)
   socket.on('vid message', function(msg) {

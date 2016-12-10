@@ -17,6 +17,7 @@ import videoChat from './video/chat'
 const VideoGrant = AccessToken.VideoGrant
 
 export default function (conf) {
+
   const app = express()
 
   const httpsConfig = {
@@ -37,6 +38,7 @@ export default function (conf) {
 
   app.get('/s/:roomname', function(req, res, next){
     res.sendFile(path.resolve(conf.root + '/v/index.html'))
+    console.log('test')
   })
 
   app.use(bodyParser.json())
