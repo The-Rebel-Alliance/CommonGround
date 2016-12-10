@@ -2,8 +2,7 @@ import React from 'react'
 import store from 'store'
 import {Link, browserHistory} from 'react-router'
 import {getUserProfile} from 'api/profile'
-import { sendMsg, sendMsgFromProfile } from 'api/sendMsg'
-import { getMessageUsers } from 'api/getMessages'
+import { sendMsg, sendMsgFromProfile, getMessageUsers } from 'api/messages'
 
 
 
