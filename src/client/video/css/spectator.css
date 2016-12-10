@@ -4,11 +4,12 @@ html {box-sizing: border-box;}
 img{
   width:100px;
   height:100px;
-  margin-left: 365px;
+  margin-left: 145px;
 }
 
 p{
   margin:5px;
+  text-align:left;
 }
 
 ul{
@@ -22,7 +23,7 @@ ul{
 
 #windowsContainer{
   height:65%;
-  width:100%;
+  width:65%;
   border:3px solid black;
 }
 
@@ -39,7 +40,7 @@ ul{
 
 div#votingContainer{
   height:95px;
-
+  width:65%;
 }
 
 #upvote1{
@@ -54,6 +55,15 @@ div#votingContainer{
   display:inline-block;
   margin-bottom:120px;
   float:left;
+}
+
+ .fa.fa-users{
+  font-size: 32px;
+  border-bottom:1px solid black;
+}
+
+.fa.fa-commenting{
+  font-size: 36px;
 }
 
 #votingContainer .fa-thumbs-up{
@@ -119,21 +129,69 @@ div#votingContainer{
   float:right;
 }
 
-#chatNusers{
+.tab-panels{
   width:100%;
 }
 
 #spectators{
   float:right;
   border:1px solid green;
-  width:50%;
+  width:250px;
   margin-top: -300px;
   height:100%;
   text-align: center;
 }
 
-#chatWindow{
-  width:50%;
-  height:300px;
-  border:1px solid blue;
+#chatHeader{
+  font-size: 26px;
 }
+
+#chatWindow{
+  width:35%;
+  height:600px;
+  border:1px solid blue;
+  float:right;
+  margin-top: -400px;
+}
+
+/* JQuery Tabs Styling */
+
+
+.tab-panels ul {
+    margin: 0;
+    padding: 0;
+}
+.tab-panels ul li {
+    list-style-type: none;
+    display: inline-block;
+    background: #999;
+    margin: 0;
+    padding: 3px 10px;
+    border-radius: 10px 10px 0 0;
+    color: #fff;
+    font-weight: 200;
+    cursor: pointer;
+
+}
+.tab-panels ul li:hover {
+    color: #fff;
+    background: #666;
+}
+
+.tab-panels ul li.active {
+    color: #fff;
+    background: #666;
+}
+
+.tab-panels .panel {
+    display:none;
+    background: #c9c9c9;
+    padding: 30px;
+    border-radius: 0 0 10px 10px;
+}
+
+.tab-panels .panel.active {
+    display:block;
+}
+
+

@@ -2,27 +2,57 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/css/font-awesome.css">
+  <link rel="stylesheet" href="css/test.css"/>
   <title>Test</title>
 </head>
 <body>
-  <p>Click the button to trigger a function.</p>
+  <div class="tab-panels">
+    <ul class="tabs">
+      <li rel="panel1"><i class="fa fa-users" aria-hidden="true"></i></li>
+      <li rel="panel2"><i class="fa fa-commenting" aria-hidden="true"></i></li>
+    </ul>
 
-<button onclick="myFunction()">Click me</button>
+    <div id="panel1" class="panel active">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora ad, fugiat consequuntur aliquid error temporibus, quaerat quia, dolorum dolorem, odio incidunt. Porro quas adipisci corporis voluptates nobis harum sequi incidunt.
+    </div>
+    <div id="panel2" class="panel">
+        Hello!
 
-<p id="demo"></p>
+  </div>
 
-
+<script src="jquery-3.1.1.min.js"></script>
 
 <script>
-     var clicks = 0;
-     
-    function myFunction() {
+$(function() {
 
-        clicks += 1;
-        document.getElementById("demo").innerHTML = clicks;
+    $('.tab-panels .tabs li').on('click', function() {
+
+        var $panel = $(this).closest('.tab-panels');
+
+        $panel.find('.tabs li.active').removeClass('active');
+        $(this).addClass('active');
+
+        //figure out which panel to show
+        var panelToShow = $(this).attr('rel');
+
+        //hide current panel
+        $panel.find('.panel.active').hide(0, showNextPanel);
+
+        //show next panel
+        function showNextPanel() {
+            $(this).removeClass('active');
+
+            $('#'+panelToShow).show(0, function() {
+                $(this).addClass('active');
+            });
+        }
+    });
 
 
-    }
+});
+
+    
 </script>  
 </body>
 </html>

@@ -57,23 +57,30 @@
             </div>
         </div>
         
-        <div id="chatNusers">
+      <div class="tab-panels">
           <div id="chatWindow">
-            <h3>Chat Window!</h3>
-            <p>Jason: Hey!</p>
-            <p>Carrie: Nice Speech</p>
-            <p>Tim: Boo! Downvote for you!</p>
-        </div>
-          <div id="spectators">
-          <ul> Users :
-            <li>Jason</li>
-            <li>Tim</li>
-            <li>Carrie</li>
-            <li>Mike</li>
-          </ul>
-        </div>
-      </div>
+          <div class="tab-panels">
+    <ul class="tabs">
+      <li rel="panel1"><i class="fa fa-users" aria-hidden="true"></i></li>
+      <li rel="panel2"><i class="fa fa-commenting" aria-hidden="true"></i></li>
+    </ul>
+
+    <div id="panel1" class="panel active">
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora ad, fugiat consequuntur aliquid error temporibus, quaerat quia, dolorum dolorem, odio incidunt. Porro quas adipisci corporis voluptates nobis harum sequi incidunt.
     </div>
+    <div id="panel2" class="panel">
+        Hello!
+
+    </div>
+    </div>
+    </div>
+    </div>
+  
+  </div>
+</div>
+</div>
+</div>
+<script src="jquery-3.1.1.min.js"></script>
 <script>
     var clicks = 0;
       function counter(){
@@ -101,6 +108,37 @@
         clicks4 += 1;
         document.getElementById('counter4').innerHTML = clicks4;
   }
+
+//JQuery Tabs for Chat and Users
+$(function() {
+
+    $('.tab-panels .tabs li').on('click', function() {
+
+        var $panel = $(this).closest('.tab-panels');
+
+        $panel.find('.tabs li.active').removeClass('active');
+        $(this).addClass('active');
+
+        //figure out which panel to show
+        var panelToShow = $(this).attr('rel');
+
+        //hide current panel
+        $panel.find('.panel.active').hide(0, showNextPanel);
+
+        //show next panel
+        function showNextPanel() {
+            $(this).removeClass('active');
+
+            $('#'+panelToShow).show(0, function() {
+                $(this).addClass('active');
+            });
+        }
+    });
+
+
+});
+
+
 </script>
 
 
