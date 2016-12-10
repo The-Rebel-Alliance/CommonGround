@@ -16,6 +16,7 @@ export default React.createClass({
       avatar: '',
       politicalAffiliation: '',
       displayTopics: [],
+      positionTopics: [],
       submitTopics: []
     }
   },
@@ -31,7 +32,8 @@ export default React.createClass({
         state: appState.profile.state || '',
         avatar: appState.profile.avatar || '',
         politicalAffiliation: appState.profile.political_affiliation || '',
-        displayTopics: appState.topics
+        displayTopics: appState.topics,
+        positionTopics: appState.profile.topics
       })
     })
   },
@@ -65,20 +67,31 @@ export default React.createClass({
       city:this.state.city,
       state:this.state.state,
       political_affiliation:this.state.politicalAffiliation,
-      submitTopics: this.state.submitTopics
+      submitTopics: this.state.topics
     })
+  },
+  compareTopic: function(topicId) {
+    var positions = this.state.positionTopics.map(function(position){
+      return position.id
+    })
+    for (var i = 0; i < positions.length; i += 1) {
+      if (positions[i] === topicId) {
+        return true
+      }
+    }
+    return false
   },
   render: function () {
     return (
      <div id="container">
           <div className="register_form_edit">
             <form onSubmit={this.handleSubmit}>
-              <div className="registerform_container">
-                <p className="register_header">Edit Profile</p>
-                <input className="input_profile_edit" onChange={this.update} value={this.state.firstName} type="text" id="firstName" placeholder="First Name" /><br />
-                <input className="input_profile_edit" onChange={this.update} value={this.state.lastName} type="text" id="lastName" placeholder="Last Name" />
-                <input className="input_profile_edit" id="city" onChange={this.update} value={this.state.city} type="text" id="city" placeholder="City" />
-                <select id="state" onChange={this.update} value={this.state.state} className="register_state_select">
+              <div className="registerform_container_edit">
+                <p className="register_header_edit">Edit Profiile</p>
+                <input className="input_field_register_edit" onChange={this.update} value={this.state.firstName} type="text" id="firstName" placeholder="First Name" /><br />
+                <input className="input_field_register_edit" onChange={this.update} value={this.state.lastName} type="text" id="lastName" placeholder="Last Name" />
+                <input className="input_field_register_edit" id="city" onChange={this.update} value={this.state.city} type="text" id="city" placeholder="City" />
+                <select id="state" onChange={this.update} value={this.state.state} className="register_state_select_edit">
                   <option defaultValue="selected">Select State</option>
                   <option value="AL">Alabama</option>
                   <option value="AK">Alaska</option>
@@ -132,32 +145,48 @@ export default React.createClass({
                   <option value="WI">Wisconsin</option>
                   <option value="WY">Wyoming</option>
                 </select>
-                <select value={this.state.politicalAffiliation} id="politicalAffiliation" onChange={this.update} className="register_affilation_select">
+                <select id ="politicalAffiliation" onChange={this.update} value={this.state.politicalAffiliation} className="register_affilation_select_edit">
                   <option defaultValue="selected">Select Political Affilation</option>
                   <option value="Democrat">Democrat</option>
                   <option value="Republican">Republican</option>
-                  <option value="Independent">Independent</option>
+                  <option value="Interests">Independent</option>
                   <option value="Other">Other</option>
                 </select> 
-                <button className="button_avatar" onChange={this.update} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
-                <button type="submit" className="button_avatar">Next</button>
-            </div> 
-          <div className="select--topic--container">
-              <div className="register_topic_select">Edit Topics of Interests:</div>
+                <button onChange={this.update} value={this.state.avatar} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
+                <button type="submit" className="button button--state-register--register_edit">Submit</button> 
+            </div>          
+            <div className="select--topic--container_edit">
+              <div className="register_topic_select_edit">Edit Topics of Interests:</div>
               {this.state.displayTopics.map((topic,i) => {
                 return ( 
-                  <label key={'topic' + i} className="labels">
-                    <input onChange={this.updateTopics} 
-                           id={"topic" + topic.id}
-                           className="topic_checkbox" 
-                           type="checkbox" 
-                           value={topic.id} />
-                    {topic.name}
-                  </label>
+                  <div key={'topic'+ i} className="topic_checkbox_container_edit">
+                    <label key={'topic' + i} className="labels">
+                      <input onChange={this.updateTopics} 
+                             id={"topic" + topic.id}
+                             className="topic_checkbox_edit" 
+                             type="checkbox" 
+                             value={topic.id}
+                             defaultChecked={this.compareTopic(topic.id)}
+                              />
+                      {topic.name}
+                    </label>
+                  </div>
                 )
               })}
-          </div>      
+          </div>
+          <div className="topic_table">Topic Positions:</div>
+          <div className="topics_container">
+          {this.state.displayTopics.map((item,i) => {
+            return (
+              <div key={item.id} id={"topic" + i} className={"indiv_topic_container" + i}>
+                <h3 className="topic_header">{item.name}</h3>
+              <textarea defaultValue={item.stance} />
+          </div>
+          )
+        })}
+                
             
+        </div>
       </form>
   </div>
 </div>

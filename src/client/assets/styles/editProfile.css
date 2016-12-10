@@ -1,68 +1,167 @@
-.edit_container {
-	margin: auto;
-    display: table;
-}
-
-.input_profile_edit {
-    border-radius: 5px
-}
-
-.indiv_topic_container_edit {
-	width: 270px;
-	color: white;
-}
-
-.topic_container_edit {
-	margin-top: 60px;
-    border: 3px solid #ccc;
-    width: 500px;
-    margin: auto;
-    color: white;
-}
-
-.topic_stance_edit {
-	float: none;
-    width: 410px;
-    height: 110px;
-    background-color: #333842;
-    border: 2px solid #CCC;
-    color: white;
-    margin-left: 40px;
-    margin-bottom: 30px;
-    font-size: 16px;
-}
-
-.checkbox_topic {
-	float: none;
-}
-
-.button_avatar {
-    margin-right: 15px;
-    color: white;
-    background-color: #ED283C;
-    width: 140px;
-    font-family: 'Cabin', sans-serif;
-    font-size: 20px;
-    position: relative;
-    top: 44px;
-    left: 850px;
-    margin-bottom: 60px;
-    border-radius: 5px;
-}
-
 .register_form_edit {
-	height: 310px;
-    background-color: #07A9A2;
+    height: 630px;
+    width: 540px;
     color: black;
     font-size: 20px;
     font-family: Helvetica;
+    border-radius: 5px;
+    margin-left: 100px;
+    display: inline;
 }
 
-.edit_stances_header {
+
+ .input_field_register_edit {
+    border-radius: 5px;
+    font-size: 16px;
+    width: 440px;
+    height: 50px;
+    margin-top: 20px;
+ }
+
+ .registerform_container_edit {
+    width: 474px;
+    margin-left: 90px;
+    display: inline-block;
+    background-color: #07A9A2;
+    border: 4px solid white;
+    border-radius: 5px;
+}
+
+.hide {
+    display: none;
+}
+
+
+ .register_header_edit {
+    width: 250px;
+    height: 30px;
+    margin-top: 22px;
+    margin-left: 12px;
+    font-size: 27px;
     font-family: 'Muli', sans-serif;
-    font-size: 25px;
+    outline: none;
     color: white;
-    margin-left: 588px;
-    margin-right: 550px;
-    margin-bottom: 18px;
+ }
+
+ .register_state_select_edit {
+    width: 440px;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 12px;
+    font-size: 16px;
+    color: #A9A9A9;
+    border: 1px solid gray;
+    font-family: 'Cabin', sans-serif;
+    outline: none;
+ }
+
+ .register_affilation_select_edit {
+    width: 440px;
+    height: 50px;
+    border-radius: 5px;
+    margin-top: 20px;
+    margin-left: 12px;
+    font-size: 16px;
+    border: 1px solid gray;
+    font-family: 'Cabin', sans-serif;
+    outline: none;
+    color: #A9A9A9;
+ }
+
+ .register_topic_select_edit {
+    width: 532px;
+    height: 30px;
+    margin-top: 10px;
+    margin-left: 35px;
+    font-size: 28px;
+    font-family: 'Muli', sans-serif;
+    outline: none;
+    color: white;
+    text-decoration: underline;
+    
+ }
+
+ .button--state-register--register_edit{
+    margin-top: 15px;
+    margin-left: 122px;
+    margin-right: 0px;
+    margin-bottom: 10px;
+    color: white;
+    background-color: #ED283C;
+    width: 160px;
+    height: 30px;
+    font-family: 'Cabin', sans-serif;
+    font-size: 20px;
+}
+
+.select--topic--container_edit {
+    height: 482px;
+    display: flex;
+    margin-left: 26px;
+    flex-wrap: wrap;
+    width: 819px;
+    font-family: 'Cabin', sans-serif;
+    outline: none;
+    font-size: 14px;
+    border: 4px solid #fff;
+    border-radius: 5px;
+    float: right;
+    margin-top: 0px;
+    margin-right: 22px;
+    background-color: #07A9A2;
+}
+
+ .topic_checkbox_container_edit {
+    width: 240px;
+    height: 50px;
+    margin-left: 30px;
+
+
+}  
+
+.add_position {
+    color: black;
+    background: linear-gradient(#CECFD2, #eaedef);
+    border-radius: 5px;
+    float: right;
+    margin-top: -50px;
+    font-family: 'Muli', sans-serif;
+    margin-right: 20px;
+}
+
+.labels_edit {
+    color: white;
+    margin-bottom: 5px;
+    font-size: 20px;
+}
+
+.topic_checkbox_edit {
+    width: 30px;
+    position: relative;
+    top: 8px;
+}
+
+#avatar_edit {
+    color: white;
+    background-color: #333842;
+    outline: none;
+    font-family: 'Cabin', sans-serif;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 12px;
+    border-radius: 5px;
+    height: 30px;
+    width: 160px;
+    border: none;
+}
+
+textarea {
+    width: 610px;
+    height: 115px;
+    background-color: #333842;
+    border: 2px solid white;
+    color: white;
+    font-size: 16px;
+    margin-left: 40px;
 }
