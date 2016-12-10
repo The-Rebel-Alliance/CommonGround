@@ -3,6 +3,9 @@
     display: table;
 }
 
+.input_profile_edit {
+    border-radius: 5px
+}
 
 .indiv_topic_container_edit {
 	width: 270px;
@@ -49,7 +52,7 @@
 
 .register_form_edit {
 	height: 310px;
-    background-color: #004A45;
+    background-color: #07A9A2;
     color: black;
     font-size: 20px;
     font-family: Helvetica;

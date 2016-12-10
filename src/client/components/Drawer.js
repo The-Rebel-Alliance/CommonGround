@@ -8,6 +8,8 @@ import { getMessageUsers } from 'api/getMessages'
 import { getConvo } from 'api/getConvo'
 import MessagingView from './MessagingView'
 import {toggleDrawer, closeDrawer} from 'api/toggleDrawer'
+import {logout} from 'api/users'
+
 
 
 
@@ -58,6 +60,10 @@ const DrawerView = React.createClass({
     id = Number(id.substr(7))
     getConvo(id)
   },
+  logout: function(e) {
+    e.preventDefault()
+    logout(browserHistory.push('/'))
+  },
   render: function () {
     return ( 
         <div className="layout">
@@ -69,18 +75,22 @@ const DrawerView = React.createClass({
               <button onClick={closeDrawer}  className="messageButton">
                <i className="fa fa-home" aria-hidden="true"></i>
               </button>
+              <label className="labelHome">Home</label>
             </Link>
             <button onClick={toggleDrawer} className="messageButton">
               <i className="fa fa-comments" aria-hidden="true"></i>   
-            </button> 
+            </button>
+            <label className="labelMessages">Messages</label> 
             <Link to="/profile">
               <button onClick={closeDrawer} className="messageButton">
                 <i className="fa fa-user-circle-o" aria-hidden="true"></i>
               </button>
+              <label className="labelProfile">Profile</label>
             </Link>         
-            <button className="messageButton">
-              <i className="fa fa-sign-out" aria-hidden="true"></i>
-            </button>  
+              <button className="messageButton" onClick={this.logout}>
+                <i className="fa fa-sign-out" aria-hidden="true"></i>
+              </button>
+              <label className="labelLogout">Logout</label>
           </div>
           <div className="movingParts">
             <div className={this.props.hidden ? "hidden messageColumn" : "messageColumn"}>
@@ -113,10 +123,4 @@ const DrawerView = React.createClass({
 
 export default DrawerContainer
 
- // <Link to="/dashboard">
- //              <button className="messageButton">
- //                <i className="fa fa-search" aria-hidden="true"></i>
- //              </button>
- //            </Link> 
 
-// <MessagingView myconvo={this.props.myconvo}/>

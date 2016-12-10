@@ -11,5 +11,9 @@ export default function(vid) {
     socket.on('vid message', function(msg){
       vid.to(room).emit('vid message', msg)
     })
+
+    socket.on('spec vote', function(vote){
+      vid.to(room).emit('spec vote', vote)
+    })
   })
 }
