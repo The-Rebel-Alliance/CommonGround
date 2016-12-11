@@ -7,6 +7,7 @@ const defaultState = {
   topics: [],
   profile: {},
   messageUsers:[],
+  sentTo:[],
   myconvo: [],
   message:'',
   roomLink:'',
@@ -36,12 +37,13 @@ export default function (state = defaultState, action) {
       return {...state, myconvo: action.myconvo, fromId:action.fromId, avatar:action.avatar}
     case actions.SEND_MSG:
       return {...state, message:action.message}
+    // case actions.SENT_TO:
+    //   return {...state, sentTo:action.sentTo}
     case actions.GET_ROOM:
       return {...state, roomLink: action.roomLink}
     case actions.CHANGE_DRAWER:
       return {...state, hidden: action.hidden}
     default:
-
       return state
   }
 }

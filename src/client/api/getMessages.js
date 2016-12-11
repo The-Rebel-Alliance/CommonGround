@@ -16,3 +16,11 @@ export function getMessageUsers(){
 }
 
 
+export function sentMsgTo(){
+  return api.get('api/messages').then(resp =>{
+    store.dispatch({
+      type:actions.SENT_TO,
+      sentTo:resp.data
+    })
+  })
+}
