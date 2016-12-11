@@ -32,7 +32,10 @@ export default React.createClass({
     return (
       <div id="container">
         <div className="header">
-          <h1 className="logo_h1"><img className="logo_cg" src={Logo}/></h1>
+          <h1 className="logo_h1">
+            <img className="logo_cg" src={Logo}/> 
+          </h1>
+            <p className="header_title">Common Ground</p>  
         </div>
         <div className="loginForm">
           <form onSubmit={this.handleSubmit}>
