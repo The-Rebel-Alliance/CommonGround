@@ -25,7 +25,13 @@ window.addEventListener('beforeunload', leaveRoomIfJoined);
 
 
 $.getJSON('/token', function (data) {
-  identity = data.identity;
+  // identity = data.identity;
+  identity = {
+     path: path,
+    user: data.identity
+  }
+
+
 
   socket.emit('join', roomName)
   socket.on('vid message', function(msg) {
