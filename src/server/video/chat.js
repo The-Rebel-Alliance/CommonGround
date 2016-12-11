@@ -5,7 +5,7 @@ export default function(vid) {
 
     socket.on('join', function(roomName){
       socket.join(roomName)
-      room = roomName
+      room =  roomName
     })
 
     socket.on('vid message', function(msg){

@@ -1,14 +1,15 @@
 
-// $('body').addClass('') use some version of this to add different class to site.css
+
+// $('body').addClass('v') use some version of this to add different class to site.css
 
 var videoClient;
-var activeRoom;
+var activeRoom; 
 var previewMedia;
 var identity;
 var roomName = location.href.substr(location.href.lastIndexOf('/') + 1);
 var url = location.href.substr(0, location.href.indexOf(location.pathname))
-var user = "test"
 var path = location.pathname[1]
+var counter = 0
 
 var socket = io('/video').connect(url, {
   secure:true
@@ -25,7 +26,6 @@ window.addEventListener('beforeunload', leaveRoomIfJoined);
 
 $.getJSON('/token', function (data) {
   identity = data.identity;
-  console.log('path:', path)
 
   socket.emit('join', roomName)
   socket.on('vid message', function(msg) {
@@ -48,7 +48,6 @@ $.getJSON('/token', function (data) {
 
   $("form").submit(function(e) {
     e.preventDefault()
-    var user = 'test'
     var value = $("#message").val()
     socket.emit('vid message', {
       user: identity,
@@ -58,50 +57,52 @@ $.getJSON('/token', function (data) {
   })
 
 
-  $("#interactions-div > i").click(function(e) {
-    var value = ""
-    switch(e.toElement.id) {
-      case "interaction-agree":
-        value="<i class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>"
-        break;
-      case "interaction-disagree":
-        value="<i class='fa fa-thumbs-down interaction-icons' aria-hidden='true'></i>"
-        break;
-      case "interaction-question":
-        value="<i class='fa fa-question-circle interaction-icons' aria-hidden='true'></i>"
-        break;
-      case "interaction-strike":
-        value="<i id='interaction-strike' class='fa fa-times-circle interaction-icons' aria-hidden='true'></i>"
-        break;
-      default:
-        value=""
-    }
-    socket.emit('vid message', {
-      user: identity,
-      message: value
-    })
-  })
+  // $("#interactions-div > i").click(function(e) {
+  //   var value = ""
+  //   switch(e.toElement.id) {
+  //     case "interaction-agree":
+  //       value="<i class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>"
+  //       break;
+  //     case "interaction-disagree":
+  //       value="<i class='fa fa-thumbs-down interaction-icons' aria-hidden='true'></i>"
+  //       break;
+  //     case "interaction-question":
+  //       value="<i class='fa fa-question-circle interaction-icons' aria-hidden='true'></i>"
+  //       break;
+  //     case "interaction-strike":
+  //       value="<i id='interaction-strike' class='fa fa-times-circle interaction-icons' aria-hidden='true'></i>"
+  //       break;
+  //     default:
+  //       value=""
+  //   }
+
 });
 
 // Successfully connected!
 function roomJoined(room) {
   activeRoom = room;
+  // room.prototype.path = path
+  room.path = path
+  console.log('room', room)
 
   // log("Joined as '" + identity + "'");
   // document.getElementById('button-leave').style.display = 'inline';
 
   // Draw local video, if not already previewing
-  if (!previewMedia) {
-    room.localParticipant.media.attach('#local-media');
-  }
-
-  room.participants.forEach(function(participant) {
+  if (room.path === "v") {
+    // console.log('room.participants', room.participants.length())
+    room.localParticipant.media.attach('#local-media'); //attaches screen of participant A
+  }  
+    
+  room.participants.forEach(function(participant) { //attaches screen of participant A to participant B
+    console.log('room.participants participant', participant)
     participant.media.attach('#remote-media');
-    adjustVideo()
+    adjustVideo()  
   });
 
-  // When a participant joins, draw their video on screen
-  room.on('participantConnected', function (participant) {
+  
+  room.on('participantConnected', function (participant) { // attaches screen of participant B to participant A
+    console.log('room.on participant', participant)
     participant.media.attach('#remote-media');
     adjustVideo()
   });
@@ -112,6 +113,7 @@ function roomJoined(room) {
     adjustBackVideo()
   });
 }
+
 
 function leaveRoomIfJoined() {
   if (activeRoom) {
