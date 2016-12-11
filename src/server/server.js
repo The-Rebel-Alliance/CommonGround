@@ -62,10 +62,7 @@ export default function (conf) {
       )
 
       // Assign the generated identity to the token
-      token.identity = {
-        identity: identity,
-        type: type
-      }
+      token.identity = type + identity
 
       //grant the access token Twilio Video capabilities
       let grant = new VideoGrant()
