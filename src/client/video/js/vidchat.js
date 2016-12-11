@@ -95,16 +95,22 @@ function roomJoined(room) {
   }  
     
   room.participants.forEach(function(participant) { //attaches screen of participant A to participant B
-    console.log('room.participants participant', participant)
-    participant.media.attach('#remote-media');
-    adjustVideo()  
+    var participantIdentity = participant.identity.substring(0,1)
+    if(participantIdentity === "v") {
+      participant.media.attach('#remote-media');
+      adjustVideo()
+      console.log('participantIdentity', participantIdentity)  
+    }
   });
 
   
   room.on('participantConnected', function (participant) { // attaches screen of participant B to participant A
-    console.log('room.on participant', participant)
-    participant.media.attach('#remote-media');
-    adjustVideo()
+    var participantIdentity = participant.identity.substring(0,1)
+    if(participantIdentity === "v") {
+      participant.media.attach('#remote-media');
+      adjustVideo()
+      console.log('participantIdentity', participantIdentity)  
+    }
   });
 
   // When a participant disconnects, note in log
