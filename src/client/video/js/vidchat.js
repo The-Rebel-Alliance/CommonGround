@@ -115,8 +115,11 @@ function roomJoined(room) {
 
   // When a participant disconnects, note in log
   room.on('participantDisconnected', function (participant) {
-    participant.media.detach();
-    adjustBackVideo()
+    var participantIdentity = participant.identity.substring(0,1)
+    if(participantIdentity === "v"){
+      participant.media.detach();
+      adjustBackVideo()  
+    }
   });
 }
 
