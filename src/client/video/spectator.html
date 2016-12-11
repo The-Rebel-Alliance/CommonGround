@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8">
    <link rel="stylesheet" href="css/spectator.css"/>
+   <link href="https://fonts.googleapis.com/css?family=Titillium+Web:200" rel="stylesheet">
    <link rel="stylesheet" href="css/css/font-awesome.css">
   <title>Spectator's View</title>
 </head>
@@ -61,16 +62,27 @@
           <div id="chatWindow">
           <div class="tab-panels">
     <ul class="tabs">
-      <li rel="panel1"><i class="fa fa-users" aria-hidden="true"></i></li>
       <li rel="panel2"><i class="fa fa-commenting" aria-hidden="true"></i></li>
+      <li rel="panel1"><i class="fa fa-users" aria-hidden="true"></i></li>
     </ul>
 
-    <div id="panel1" class="panel active">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Tempora ad, fugiat consequuntur aliquid error temporibus, quaerat quia, dolorum dolorem, odio incidunt. Porro quas adipisci corporis voluptates nobis harum sequi incidunt.
+    <div id="panel1" class="panel">
+        <ul id="users">
+          <li>Jason</li>
+          <li>Tim</li>
+          <li>Carrie</li>
+          <li>Dustin</li>
+          <li>Ryan</li>
+        </ul>
     </div>
-    <div id="panel2" class="panel">
-        Hello!
-
+    <div id="panel2" class="panel active">
+        
+        <div id="textboxContainer">
+          <form onSubmit={this.handleSubmit}id="textBox">
+        <input type="text" name="textBox" id="message"/>
+          <button type="submit" id="submitButton">Submit</button>
+        </form>
+      </div>
     </div>
     </div>
     </div>

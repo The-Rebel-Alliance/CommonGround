@@ -8,8 +8,8 @@ img{
 }
 
 p{
-  margin:5px;
   text-align:left;
+  margin:0px;
 }
 
 ul{
@@ -19,6 +19,11 @@ ul{
 }
 
 #mainContainer{
+}
+
+ul #panel1{
+  list-style: none;
+  color:red;
 }
 
 #windowsContainer{
@@ -35,7 +40,7 @@ ul{
 #window1{
   border:3px solid blue;
   width:50%;
-  height:300px;
+  height:600px;
 }
 
 div#votingContainer{
@@ -55,11 +60,12 @@ div#votingContainer{
   display:inline-block;
   margin-bottom:120px;
   float:left;
+  font-family: 'Titillium Web', sans-serif;
+
 }
 
  .fa.fa-users{
-  font-size: 32px;
-  border-bottom:1px solid black;
+  font-size: 36px;
 }
 
 .fa.fa-commenting{
@@ -72,8 +78,6 @@ div#votingContainer{
 
 #votingContainer .fa-thumbs-down{
  font-size: 65px;
- border:1px solid green;
- padding:0;
 }
 
 #downvote1{
@@ -88,6 +92,7 @@ div#votingContainer{
   display:inline-block;
   margin-bottom:120px;
   float:left;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 #window2Container{
@@ -97,14 +102,14 @@ div#votingContainer{
 
 #window2{
   border:3px solid blue;
-  height:300px;
+  height:600px;
   width:50%;
   float:right;
-  margin-top:-300px;
+  margin-top:-600px;
 }
 
 #upvote2{
-  display: inline-block;
+  display:inline-block;
   float:right;
 }
 
@@ -114,6 +119,7 @@ div#votingContainer{
   border:1px solid green;
   display:inline-block;
   float:right;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 #downvote2{
@@ -122,11 +128,13 @@ div#votingContainer{
 }
 
 #downCounter2{
+  font-size: 20px;
   height:30px;
   width:30px;
   border:1px solid green;
   display:inline-block;
   float:right;
+  font-family: 'Titillium Web', sans-serif;
 }
 
 .tab-panels{
@@ -149,49 +157,51 @@ div#votingContainer{
 #chatWindow{
   width:35%;
   height:600px;
-  border:1px solid blue;
   float:right;
-  margin-top: -400px;
+  margin-top: -701px;
 }
 
 /* JQuery Tabs Styling */
 
 
 .tab-panels ul {
-    margin: 0;
-    padding: 0;
+  margin: 0px;
+  padding: 0;
+  height:45px;
+  border-bottom: 3px solid white;
+  background-color: #70a6ff;
 }
 .tab-panels ul li {
-    list-style-type: none;
-    display: inline-block;
-    background: #999;
-    margin: 0;
-    padding: 3px 10px;
-    border-radius: 10px 10px 0 0;
-    color: #fff;
-    font-weight: 200;
-    cursor: pointer;
+  list-style-type: none;
+  display: inline-block;
+  margin: 0;
+  padding: 3px 10px;
+  border-radius: 10px 10px 0 0;
+  color: #fff;
+  font-weight: 200;
+  cursor: pointer;
 
 }
 .tab-panels ul li:hover {
-    color: #fff;
-    background: #666;
+  color: #fff;
+  background: #0cd0e4;
 }
 
 .tab-panels ul li.active {
-    color: #fff;
-    background: #666;
+  color: #fff;
+  background: #d04c4c;
 }
 
 .tab-panels .panel {
-    display:none;
-    background: #c9c9c9;
-    padding: 30px;
-    border-radius: 0 0 10px 10px;
+  display:none;
+  background: #eaecef;
+  padding: 30px;
+  border-radius: 0 0 10px 10px;
 }
 
 .tab-panels .panel.active {
-    display:block;
+  display:block;
+  height:555px;
 }
 
 
