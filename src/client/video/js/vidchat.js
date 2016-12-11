@@ -24,14 +24,8 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
 window.addEventListener('beforeunload', leaveRoomIfJoined);
 
 
-$.getJSON('/token', function (data) {
-  // identity = data.identity;
-  identity = {
-     path: path,
-    user: data.identity
-  }
-
-
+$.getJSON('/token/' + path, function (data) {
+  identity = data.identity;
 
   socket.emit('join', roomName)
   socket.on('vid message', function(msg) {

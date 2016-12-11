@@ -46,7 +46,8 @@ export default function (conf) {
   app.use(cookieParser())
   app.use(express.static(path.resolve(conf.root)))
 
-  app.get('/token', function(req, res) {
+  app.get('/token/:type', function(req, res) {
+    const type = req.params.type
     const token = req.cookies['token'].trim()
     const sql = 'SELECT u.username FROM users u JOIN tokens t on t.user_id = u.id WHERE t.token=?'
 
@@ -61,7 +62,10 @@ export default function (conf) {
       )
 
       // Assign the generated identity to the token
-      token.identity = identity
+      token.identity = {
+        identity: identity,
+        type: type
+      }
 
       //grant the access token Twilio Video capabilities
       let grant = new VideoGrant()
