@@ -1,3 +1,4 @@
+
 var clicks = 0; //This is for the UpVote/Downvote Counters
       function counter(){
 
@@ -53,3 +54,6 @@ $(function() {
 
 
 });
+
+
+
