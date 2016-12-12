@@ -77,15 +77,36 @@ const CommonDashboard = React.createClass({
             })}
           </div>
         </div>
-        <h2 className="livefeed_header">Current Live Video Feeds</h2>
+        <h2 className="livefeed_header">Live Now</h2>
         <div id="videolink_container">
-        <div className="video_container">
-         <div className="videolink_img1"><img className="videolink_image" src="https://images-na.ssl-images-amazon.com/images/M/MV5BNzEzMTI2NjEyNF5BMl5BanBnXkFtZTcwNTA0OTE4OA@@._V1_UY1200_CR84,0,630,1200_AL_.jpg"/></div>
-         <div className="videolink_img2"><img className="videolink_image" src="http://media4.s-nbcnews.com/j/newscms/2016_39/1161485/highest-paid-tv-actors-galecki-inline-01-160927_3a619f58379ab35da2084823d293635c.today-inline-large.jpg"/></div>
-         <div className="videolink_name1"><p className="name_videolink">Ryan Lee</p></div>
-         <div className="videolink_name2"><p className="name_videolink">Dustin Rudy</p></div>
-         <div className="videolink_video"><p className="name_videolink_link"><i className="fa fa-video-camera" aria-hidden="true"></i> Link goes here</p></div>
-         </div>
+          <div className="video_container">
+           <div className="videolink_img1"><img className="videolink_image" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAdaAAAAJGY4ZGZkNTgzLWZmNjYtNGE2MC05ZmI0LWVlYTY0NDliOWM4Yg.jpg"/></div>
+           <div className="videolink_img2"><img className="videolink_image" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAj6AAAAJDU5OTg3ODgzLTNmNmItNDU2Yy1hYThlLTEwMzkwY2Q0Yzg0MQ.jpg"/></div>
+           <div className="videolink_name1"><p className="name_videolink">Ryan Lee</p></div>
+           <div className="videolink_name2"><p className="name_videolink">Dustin Rudy</p></div>
+           <div className="videolink_video"><p className="name_videolink_link"><i className="fa fa-video-camera" aria-hidden="true"></i> Link goes here</p></div>
+           </div>
+          <div className="video_container">
+           <div className="videolink_img1"><img className="videolink_image" src="https://media.licdn.com/media/AAEAAQAAAAAAAAmDAAAAJDU0YTA1M2MwLTFmZTQtNGI0NC1iZDlhLWExZTdhOTY1NmY1YQ.jpg"/></div>
+           <div className="videolink_img2"><img className="videolink_image" src="https://media.licdn.com/mpr/mpr/shrinknp_400_400/AAEAAQAAAAAAAAfpAAAAJDJjYjIzY2VmLTJjMmQtNDJlMS04N2MxLTVhMGVkOTFmMDkzNg.jpg"/></div>
+           <div className="videolink_name1"><p className="name_videolink">Tim Lee</p></div>
+           <div className="videolink_name2"><p className="name_videolink">Jason Shabo</p></div>
+           <div className="videolink_video"><p className="name_videolink_link"><i className="fa fa-video-camera" aria-hidden="true"></i> Link goes here</p></div>
+           </div>
+           <div className="video_container">
+           <div className="videolink_img1"><img className="videolink_image" src="https://media.licdn.com/media/p/2/000/1c7/38b/2679730.jpg"/></div>
+           <div className="videolink_img2"><img className="videolink_image" src="https://tiy-site-assets.s3.amazonaws.com/staff-images/mike-sweeney.jpg"/></div>
+           <div className="videolink_name1"><p className="name_videolink">Carrie Smidt</p></div>
+           <div className="videolink_name2"><p className="name_videolink">Mike Sweeney</p></div>
+           <div className="videolink_video"><p className="name_videolink_link"><i className="fa fa-video-camera" aria-hidden="true"></i> Link goes here</p></div>
+           </div>
+           <div className="video_container">
+           <div className="videolink_img1"><img className="videolink_image" src="https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAN5AAAAJGY0NzRlZjE3LTQ1ZjItNDIzNi05NzZiLWY2ZmM2YjZiOTc4Mw.jpg"/></div>
+           <div className="videolink_img2"><img className="videolink_image" src="https://d1qb2nb5cznatu.cloudfront.net/users/502399-large?1405700734"/></div>
+           <div className="videolink_name1"><p className="name_videolink">Gabe Shepard</p></div>
+           <div className="videolink_name2"><p className="name_videolink">Jeff Newburn</p></div>
+           <div className="videolink_video"><p className="name_videolink_link"><i className="fa fa-video-camera" aria-hidden="true"></i> Link goes here</p></div>
+           </div>
         </div>
       </div>
     )

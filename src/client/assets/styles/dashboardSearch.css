@@ -47,14 +47,17 @@ html {box-sizing: border-box;}
     border: 1px solid #31353e;
     transition: .5s;
     color: white;
-    background-color: #270621;
+    background-color: #23272f;
     color: white;
+    width: 610px;
+    height: 135px;
 }
 
 .user_li:hover {
-	background: linear-gradient(#CECFD2, #eaedef);
+	background: #333842;
 	color: #333842;
 	transition: .5s;
+    text-decoration: none;
 }
 .user_li:firstchild{
 	border-radius: 5px 5px 0 0; 
@@ -64,9 +67,10 @@ html {box-sizing: border-box;}
 }
 .userinfo {
 	font-size: 20px;
-    line-height: 95px;
+    line-height: 65px;
     float: right;
     margin-right: 20px;
+    text-decoration: none;
 }
 
 .user_list {
@@ -82,7 +86,7 @@ html {box-sizing: border-box;}
     border-radius: 19%;
     width: 100px;
     height: 100px;
-    margin-top: 15px;
+    
 }
 
 .profile_link {
@@ -109,50 +113,70 @@ html {box-sizing: border-box;}
 
 
 #videolink_container{
-    width: 500px;
-    margin-top: 15px;
+    width: 700px;
     float: right;
-    margin-right: 235px;
     display: flex;
     flex-wrap: wrap;
 }
 .livefeed_header{
-	width: 290px;
+	width: 200px;
+    height: 50px;
     float: right;
-    margin-top: -37px;
+    margin-top: -50px;
     margin-bottom: 0;
-    margin-right: 300px;
+    margin-right: 275px;
+    padding-left: 12px;
+    padding-bottom: -1px;
+    padding-top: 3px;
+    font-size: 40px;
+    border-radius: 2px;
+    color: white;
+    -webkit-animation-name: example; 
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite; 
 }
 .videolink_img1{
     width: 150px;
     height: 150px;
-    border: 1px solid black;
+    border: 1px solid #31353e;
     border-radius: 5px 0 0 0; 
 }
 .videolink_img2{
     width: 150px;
     height: 150px;
-    border: 1px solid black;
+    border: 1px solid #31353e;
     border-radius: 0 5px 0 0;  
 }
 .videolink_name1{
     width: 150px;
     height: 40px;
-    border: 1px solid black;
+    border: 1px solid #31353e;
+    -webkit-animation-name: example; 
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite; 
     margin: 0;
     background-color: #ED283C;  
+}
+@keyframes example {
+    0%   {background-color: #ED283C;}
+    25%  {background-color: #d52436;}
+    50%  {background-color: #bd2030;}
+    100% {background-color: #a51c2a;}
 }
 .videolink_name2{
     width: 150px;
     height: 40px;
-    border: 1px solid black; 
+    border: 1px solid #31353e; 
     margin: 0;
+    -webkit-animation-name: example; 
+    -webkit-animation-duration: 2s;
+    -webkit-animation-iteration-count: infinite; 
     background-color: #ED283C;
 }
 .videolink_video{
     width: 300px;
     height: 40px;
-    border: 1px solid black;
+    border: 1px solid #31353e;
     margin: 0;
     background-color: #07A9A2;
     border-radius: 0 0 5px 5px;
@@ -164,6 +188,8 @@ html {box-sizing: border-box;}
     flex-wrap: wrap;
     box-shadow: 5px 5px 40px black;
     border-radius: 5px;
+    margin-right: 50px;
+    margin-top: 30px;
 }
 .name_videolink{
     font-size: 18px;
