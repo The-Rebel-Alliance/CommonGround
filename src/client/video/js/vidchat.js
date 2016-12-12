@@ -9,11 +9,17 @@ var identity;
 var roomName = location.href.substr(location.href.lastIndexOf('/') + 1);
 var url = location.href.substr(0, location.href.indexOf(location.pathname))
 var path = location.pathname[1]
-var counter = 0
+var spectatorCounter = 0
 
 var socket = io('/video').connect(url, {
   secure:true
 })
+
+socket.on('spec count', function(count) {
+  // $("#spectators-counter").html(count)
+  console.log('socket.on spec count:', count)
+})
+
 // Check for WebRTC
 if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
   alert('WebRTC is not available in your browser.');
@@ -21,20 +27,30 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
 
 // When we are about to transition away from this page, disconnect
 // from the room, if joined.
-window.addEventListener('beforeunload', leaveRoomIfJoined);
+// window.addEventListener('beforeunload', leaveRoomIfJoined);
 
-console.log('path', path)
+// console.log('path', path)
 
 if (path === "s") {
   $('body *').addClass("s")
+  //JASON: YOU NEED TO FIGURE OUT JQUERY CODE TO ADD HTML BASED ON PATH === 'S'
 }
+
+
 
 $.getJSON('/token/' + path, function (data) {
   identity = data.identity;
 
+  console.log('data', data)
+
   socket.emit('join', roomName)
+  
   socket.on('vid message', function(msg) {
     updateMessaging(msg.user, msg.message)
+  })
+
+  socket.on('spec count', function(count) {
+    console.log(count)
   })
 
   // Create a Video Client and connect to Twilio
@@ -95,7 +111,6 @@ function roomJoined(room) {
 
   // Draw local video, if not already previewing
   if (room.path === "v") {
-    // console.log('room.participants', room.participants.length())
     room.localParticipant.media.attach('#local-media'); //attaches screen of participant A
   }  
     
@@ -104,8 +119,12 @@ function roomJoined(room) {
     if(participantIdentity === "v") {
       participant.media.attach('#remote-media');
       adjustVideo()
-      console.log('participantIdentity', participantIdentity)  
-    }
+      socket.emit('participant connect', {
+        username: participant.identity.substr(1)
+      })
+    } else {
+      socket.emit('spectator connect')
+    } 
   });
 
   
@@ -126,6 +145,8 @@ function roomJoined(room) {
       adjustBackVideo()  
     }
   });
+
+
 }
 
 
@@ -177,3 +198,9 @@ function updateMessaging(user, value) {
 //jason twillio primary account SID: AC9835cee05e5e5f37ee066ccd9554cf83
 //jason twillio account api key: SK538602cffe692e73127b5fc1626b4a2a
 //jason twillio account api secret: N4VFpdTYtfl5QiYbDxQH0Wzecyh8WEXA
+
+//else {
+    //   spectatorCounter++
+    //   console.log('spectatorCounter after counter function: ', spectatorCounter)
+    //   socket.emit('spec count', spectatorCounter)
+    // }
