@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
 
 body {
-  background: url('http://api.thumbr.it/whitenoise-361x370.png?');
+  background: #333842;
   height: 100%;
   width: 100%;
   padding: 0;
@@ -21,6 +21,12 @@ body {
   position: relative;
 }
 
+#remote-media .s {
+  height: 100%;
+  width: 76%;
+  position: relative;
+}
+
 #local-media {
   position: absolute;
   left: 0;
@@ -36,6 +42,16 @@ body {
   left: 0;
 }
 
+#controls .s {
+  background: green;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+}
+
 #interactions-sidebar {
   position: absolute;
   height: 100%;
@@ -46,7 +62,8 @@ body {
 }
 
 #interactions-sidebar > img {
-  height: 25%
+  height: 25%;
+  margin-bottom: 10px;
 }
 
 #waiting-overlay {
@@ -79,7 +96,7 @@ h2 span {
 }
 
 #chat-window {
-  height: 455px;
+  height: 240px;
   max-width: 368px;
   background: #fff;
   overflow: auto;
@@ -105,12 +122,6 @@ h2 span {
   margin-bottom: 30px; 
 }
 
-.interaction-icons {
-  margin: 10% 10%;
-  display: inline-block;
-  font-size: 40px !important;
-}
-
 #message {
   width: 82%;
   border-bottom-left-radius: 5px;
@@ -119,18 +130,11 @@ h2 span {
   font-size: 14px;
   font-family: 'Cabin', sans-serif;
   border: 2px solid #7AE0D9;
-  border-top: none;
-  border-left: 1px solid #E7E7E7;
-  border-bottom: 1px solid #E7E7E7;
-  border-right: 1px solid #E7E7E7;
+  border: 1px solid #E7E7E7;
 }
 
 #message:focus {
   outline: none;
-}
-
-#message-submit {
-
 }
 
 .user-style {
@@ -178,4 +182,18 @@ form {
   bottom: 40px;
   left: 0;
   width: 328px;
+}
+
+#spectators-row, #user1-response-row, #user2-response-row {
+  display: flex;
+  color: white;
+  font-size: 25px;
+  justify-content: space-around;
+  margin-bottom: 40px;
+}
+
+#spectators-row p {
+  font-size: 20px;
+  margin-top: 0;
+  margin-bottom: 0;
 }
