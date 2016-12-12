@@ -2,73 +2,78 @@ html {box-sizing: border-box;}
 *, *:after, *:before {box-sizing: inherit;}
 
 .dashboard_container {
-	position: fixed;
-	z-index: -1;
+  position: fixed;
+  z-index: -1;
+  float: left;
 }
 
 .search--topic--container{
-	width: 500px;
-	margin: auto;
-	border: none;	
+  width: 610px;
+  border: none;
+  margin-left: 140px;
 }
 
 .searchbar{
-	width: 400px;
-  height: 40px;
+  width: 470px;
+  height: 50px;
   margin-top: 20px;
   outline: none;
   background-color: #32062A;
   border: none;
   color: white;
+  font-size: 25px;
 }
 
 .searchbutton{
-	width: 75px;
-    height: 40px;
-    background-color: #2A4976;
-    color: white;
-    border-radius: 0px 5px 5px 0px;
-    margin-left: -1px;
-    outline: none;
-    margin-top: 20px;
-
+  width: 140px;
+  height: 50px;
+  background-color: #2A4976;
+  color: white;
+  border-radius: 0px 5px 5px 0px;
+  margin-left: -1px;
+  outline: none;
+  font-size: 25px;
 }
+
 .profiledummybutton{
-	width: 100px;
-	height: 100px;
-	background-color: white;
+  width: 100px;
+  height: 100px;
+  background-color: white;
 }
 
 .user_li {
-	margin-top: 20px;
-    border: 3px solid white;
-    border-radius: 5px;
-    transition: .5s;
-    color: white;
-    height: 160px;
-    width: 840px;
+  margin-top: -17px;
+  margin-left: 20px;
+  border: 1px solid #31353e;
+  transition: .5s;
+  color: white;
+  background-color: #270621;
+  color: white;
 }
 
 .user_li:hover {
-	margin-top: 20px;
-	margin-left: 20px;
-	border-radius: 5px;
-	background: linear-gradient(#CECFD2, #eaedef);
-	color: #333842;
-	transition: .5s;
+  background: linear-gradient(#CECFD2, #eaedef);
+  color: #333842;
+  transition: .5s;
+}
+
+.user_li:firstchild{
+  border-radius: 5px 5px 0 0; 
+}
+
+.user_li:lastchild{
+  border-radius: 0 0 5px 5px;
 }
 
 .userinfo {
-	font-size: 20px;
-    line-height: 95px;
-    float: right;
-    margin-right: 50px;
+  font-size: 20px;
+  line-height: 95px;
+  float: right;
+  margin-right: 20px;
 }
 
 .user_list {
-	font-size: 20px;
-  padding-top: 19px;
-  line-height: 72px;
+  font-size: 20px;
   list-style: none;
   color: white;
   padding: 0px;
@@ -78,10 +83,10 @@ html {box-sizing: border-box;}
 }
 
 .user_avatar {
-    border-radius: 19%;
-    width: 100px;
-    height: 100px;
-    margin-top: 15px;
+  border-radius: 19%;
+  width: 100px;
+  height: 100px;
+  margin-top: 15px;
 }
 
 .profile_link {
@@ -92,23 +97,70 @@ html {box-sizing: border-box;}
 }
 
 .usersSearch{
-	width: 100%;
-	height:100%;
-	background-color: #01A69A;
-	transition: .5s;
-	border-radius: 5px;
-	color: #FFF;
-	transition: .5s;
+  border-radius: 19%;
+  width: 100px;
+  height: 100px;
+  margin-top: 15px;
+}
+
+.profile_link {
+  margin-top: 20px;
+  margin-left: 20px;
+  text-decoration: none;
+  font-family: 'Muli', sans-serif;
+  border-radius: 5px;
+  color: #FFF;
+  transition: .5s;
 }
 
 .profile_link:hover {
-	background: linear-gradient(#CECFD2, #eaedef);
-	color: #333842;
-	transition: .5s;
+  background: linear-gradient(#CECFD2, #eaedef);
+  color: #333842;
+  transition: .5s;
 }
 
 .usersSearch{
-	margin: auto;
-   	width: 860px;
-    margin-top: 50px;
+  margin-left: 120px;
+  width: 630px;
+  margin-top: 50px;
+  float: left;
+}
+.link_li{
+  margin-top: 20px;
+  margin-left: 20px;
+  border-radius: 5px;
+  transition: .5s;
+  color: white;
+
+}
+.link_list{
+  font-size: 30px;
+  list-style: none;
+  border: 1px solid #31353e;
+  color: white;
+  padding: 0px;
+  transition: .5s;
+  margin-left: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  font-style: normal;
+  background-color: #270621;
+}
+#videolink_container{
+  width: 460px;
+  margin-top: 15px;
+  float: right;
+  margin-right: 235px;
+}
+.livefeed_header{
+  width: 290px;
+  float: right;
+  margin-top: -37px;
+  margin-bottom: 0;
+  margin-right: 300px;
+}
+.link_image{
+  width: 40px;
+  height: 40px;
+  margin-left: 10px;
 }

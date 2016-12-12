@@ -2,64 +2,106 @@ html{
   text-decoration-color: white;
 }
 
-aside{
-  max-width:100px;
-}
-
 p{
   font-size: 11px;
 }
 
 img{
   float:left;
-  height:35px;
-  width:35px;
+  height:30px;
+  width:30px;
   margin:5px;
-  padding:3px;
 }
 
-input#message {
-  margin-top: -4px;
+input {
+  width: 90%;
   border: 2px solid #7AE0D9;
+  position: relative;
   border-radius: 5px 0px 0px 5px;
   position: absolute;
   color: black;
   width: 430px;
 }
 
-h5{
-  margin: 0px 3px -18px;
-  color:#07A9A2;
+h6{
+  margin: 2px 0px -5px 96px;
+  color:white;
 }
 
-h6{
-  margin: 2px 590px -5px;
-  color:#B8B8B8;
-  font-weight: bold;
+h6 > #time{
+  color:grey;
   float:right;
 }
 
+.messages{
+  height: 400px;
+  overflow: scroll;
+}
 
 #messagingContainer{
   font-family: 'Muli', sans-serif;
-  color: #fff;
-  height: 100%;
-  width: 800px;
+  color: #333842;
+  height:100%;
+  width:800px;
   background-color: #333842;
   margin-left: 330px;
-  border: 1px solid white;
-  padding: 10px;
+  border:1px solid white;
+  padding:10px;
   top: 0px;
   position: fixed;
 }
 
+.them {
+  position:relative;
+  background: linear-gradient(#01A69A, #7AE0D9);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  text-align: right;
+  word-wrap: normal;
+  float: left;
+  clear: both;
+  flex-direction: column;
+  align-items: stretch;
+
+}
+
+.them::after {
+  content:'';
+  position: absolute; 
+  border-right: 20px solid transparent;
+  border-top: 15px solid #7AE0D9;
+  top:100%;
+  left:13px;
+}
+.you {
+  position:relative;
+  background: linear-gradient(#CECFD2, #eaedef);
+  border-radius: 5px;
+  padding: 10px;
+  margin-bottom: 20px;
+  word-wrap: normal;
+  float: right;
+  clear: both;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.you::after {
+  content:'';
+  position: absolute; 
+  border-left: 20px solid transparent;
+  border-top: 15px solid #eaedef;
+  top:100%;
+  right:13px;
+}
+
+
 ul{
   list-style: none;
-  padding-left: 5px;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  overflow: hidden;
-  margin:0px;
+  padding-left: 5px; 
+  margin-top: 0px;
+  
 }
 
 button#submitButton{
@@ -74,21 +116,47 @@ button#submitButton{
   position: absolute;
 }
 
+
 li{
   padding-top: 7px;
   font-size: 16px;
   font-style: italic;
-  display: flex;  
+  display: flex;
+  text-decoration: none;
+}
+/*I couldn't get the className="videoLink" on Drawer.css to pick up styling, so I had to use "a" */
+
+a{
+  text-decoration: none;
+  color:#fff; 
 }
 
-div.textboxContainer {
-  margin-top: -10%;
-  position:fixed;
+#videoLink:hover {
+  text-decoration: underline;
 }
 
-form.textbox {
-  position:fixed;
-  width: 90%;
-  height: 29px;
+.videoLlink {
+  color:#333842;
+}
+
+.videoLinkContainer{
+  margin-top: 10px;
+  margin-left: 20px;
+}
+
+.messagesHeader{
+  position: relative;
+}
+
+.profileLink {
+  height: 100px;
+  width: 100px;
+  margin-left: 10px;
+}
+
+.avatarLink {
+  height: 100px;
+  width: 100px;
+  margin-left: 10px;
 }
 

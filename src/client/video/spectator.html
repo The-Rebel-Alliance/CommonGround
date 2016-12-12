@@ -76,82 +76,22 @@
         </ul>
     </div>
     <div id="panel2" class="panel active">
-        
-        <div id="textboxContainer">
+        Hello!
+      <div id="textboxContainer">
           <form onSubmit={this.handleSubmit}id="textBox">
         <input type="text" name="textBox" id="message"/>
           <button type="submit" id="submitButton">Submit</button>
         </form>
       </div>
     </div>
-    </div>
-    </div>
-    </div>
-  
+  </div>
   </div>
 </div>
-</div>
+  
 </div>
 <script src="jquery-3.1.1.min.js"></script>
-<script>
-    var clicks = 0;
-      function counter(){
-
-        clicks += 1;
-        document.getElementById('counter').innerHTML = clicks;
-  }
-     var clicks2 = 0;
-      function counter2(){
-
-        clicks2 += 1;
-        document.getElementById('counter2').innerHTML = clicks2;
-  }
-
-      var clicks3 = 0;
-      function counter3(){
-
-        clicks3 += 1;
-        document.getElementById('counter3').innerHTML = clicks3;
-  }
-
-      var clicks4 = 0;
-      function counter4(){
-
-        clicks4 += 1;
-        document.getElementById('counter4').innerHTML = clicks4;
-  }
-
-//JQuery Tabs for Chat and Users
-$(function() {
-
-    $('.tab-panels .tabs li').on('click', function() {
-
-        var $panel = $(this).closest('.tab-panels');
-
-        $panel.find('.tabs li.active').removeClass('active');
-        $(this).addClass('active');
-
-        //figure out which panel to show
-        var panelToShow = $(this).attr('rel');
-
-        //hide current panel
-        $panel.find('.panel.active').hide(0, showNextPanel);
-
-        //show next panel
-        function showNextPanel() {
-            $(this).removeClass('active');
-
-            $('#'+panelToShow).show(0, function() {
-                $(this).addClass('active');
-            });
-        }
-    });
-
-
-});
-
-
-</script>
+<script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+<script src="js/spectator.js"></script>
 
 
 

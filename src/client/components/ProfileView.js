@@ -1,7 +1,10 @@
 import React from 'react'
+import store from 'store'
 import {Link, browserHistory} from 'react-router'
 import {getUserProfile} from 'api/profile'
-import store from 'store'
+import { sendMsg, sendMsgFromProfile, getMessageUsers } from 'api/messages'
+
+
 
 
 import 'assets/styles/profile.css'
@@ -17,9 +20,9 @@ const OtherProfileContainer = React.createClass({
       "state": "", 
       "avatar": "",
       "political_affiliation": "",
-      "topics": []
-      
-    }
+      "topics": [],
+       sentTo:[]
+    }   
   },
   componentWillMount: function(){
     getUserProfile(this.props.params.id)
@@ -27,6 +30,7 @@ const OtherProfileContainer = React.createClass({
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
         this.setState(appState.profile)
+        sentTo:appState.sentTo
     }) 
   },
   componentWillUnmount: function() {
@@ -35,11 +39,21 @@ const OtherProfileContainer = React.createClass({
   
   render: function(){
     return (
-      <CommonOtherProfile {...this.state} />
+      <CommonOtherProfile {...this.state} id={this.props.params.id} sentTo={this.state.sentTo}/>
     )
   } 
 })
 const CommonOtherProfile = React.createClass({
+  handleSubmit: function(e){
+    e.preventDefault()
+    var msg = {
+      message: "I'd like to chat!",
+      toId:this.props.id
+    }
+    sendMsgFromProfile(msg)
+    
+   
+  },
   render: function (){
     return(
       <div>
@@ -47,7 +61,7 @@ const CommonOtherProfile = React.createClass({
           <div className="profile_pic_container"><img className="profile_pic" src={this.props.avatar}/></div>
           <div>
             <Link to="/Drawer" >
-              <button className="edit_button">
+              <button onClick={this.handleSubmit} className="edit_button">
                 <i className="fa fa-comments" aria-hidden="true"></i> 
                 Message Me
               </button>

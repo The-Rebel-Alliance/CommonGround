@@ -1,16 +1,20 @@
 import React from 'react'
 import store from 'store'
 import { browserHistory, Link } from 'react-router'
-import { getConvo } from 'api/getConvo'
-import { sendMsg } from 'api/sendMsg'
 import 'assets/styles/MessagingContainer.css'
+import { getConvo, sendMsg, getMessageUsers } from 'api/messages'
+import { toggleDrawer, closeDrawer } from 'api/toggleDrawer'
+import ChatWindow from 'components/ChatWindow'
 
 const MessagingView = React.createClass({
   getInitialState: function() {
     return {
-      message:''
+      message:'',
+      toId: '',
+      avatar:'' 
     }
   },
+ 
   handleSubmit: function(e) {
     e.preventDefault()
     var msg = {
@@ -40,6 +44,11 @@ const MessagingView = React.createClass({
   generateRoomId: function() {
     return ("0000" + (Math.random()*Math.pow(36,4) << 0).toString(36)).slice(-4)
   },
+  goToProfile: function(e){
+    e.preventDefault()
+    closeDrawer()
+    browserHistory.push('/profile/' + this.props.fromId)
+  },
   render: function(){
     return(
       <div id="messagingContainer">
@@ -66,17 +75,36 @@ const MessagingView = React.createClass({
                 )
               }
              })}
-
-          </ul>
+            </ul>
+          </div>
         </div>
-                <div id="textboxContainer">
+         <div id="textboxContainer">
+            <form onSubmit={this.handleSubmit}id="textBox">
+              <input value={this.state.message} onChange={this.update} type="text" name="textBox" id="message"></input>
+              <button type="submit" id="submitButton">Submit</button>
+            </form>
+          </div>
+        <h4 className="messagesHeader">
+          <div className="profileLink">
+            <a onClick={this.goToProfile}>
+              <img className="avatarLink"src={this.props.avatar}/>            
+            </a>
+          </div>
+          <div className="videoLinkContainer">
+            <a onClick={this.generateRoom}>
+              Video Chat&nbsp;
+              <i id="videoLink" className="fa fa-video-camera" aria-hidden="true"></i>
+            </a>
+          </div>
+        </h4>
+          <ChatWindow myconvo={this.props.myconvo} />
+        <div id="textboxContainer">
           <form onSubmit={this.handleSubmit}id="textBox">
-            <input value={this.state.message} onChange={this.update} type="text" name="textBox" id="message"/>
-            <button type="submit" id="submitButton">Submit</button>
+            <input className="chat_submit" value={this.state.message} onChange={this.update} type="text" name="textBox" id="message"></input>
+            <button type="submit">Submit</button>
           </form>
         </div>
-      </div>
-      
+
     )
   }
 })
