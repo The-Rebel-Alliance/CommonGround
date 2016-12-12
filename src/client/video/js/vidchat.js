@@ -23,6 +23,11 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
 // from the room, if joined.
 window.addEventListener('beforeunload', leaveRoomIfJoined);
 
+console.log('path', path)
+
+if (path === "s") {
+  $('body *').addClass("s")
+}
 
 $.getJSON('/token/' + path, function (data) {
   identity = data.identity;
