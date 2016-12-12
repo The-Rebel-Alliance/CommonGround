@@ -19,12 +19,21 @@ body{
     background-color: #333842;
     display: inline-table;
     text-align: center;
+
 }
 .logo_h1{
     margin: 0px;
     background-color: #333842;
     text-align: center;
 }
+.header_title {
+    font-family: 'Cabin', sans-serif;
+    font-size: 40px;
+    margin-left: 38%;
+    margin-top: 0%;
+    position: relative;
+}
+
 p{
 	color: #FFF;
 	font-family: 'Muli', sans-serif;
