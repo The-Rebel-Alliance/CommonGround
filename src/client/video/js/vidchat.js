@@ -11,6 +11,7 @@ var url = location.href.substr(0, location.href.indexOf(location.pathname))
 var path = location.pathname[1]
 var counter = 0
 
+
 var socket = io('/video').connect(url, {
   secure:true
 })
@@ -25,9 +26,74 @@ window.addEventListener('beforeunload', leaveRoomIfJoined);
 
 console.log('path', path)
 
+
 if (path === "s") {
   $('body *').addClass("s")
 }
+
+$("#controls.s").append(
+
+  "<div id='votingContainer'>\
+    <div id='upvote1'>\
+      <button type='button' onclick='counter1()'>\
+        <i id='interaction-agree2' class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>\
+      </button>\
+    </div>\
+    <div id='upCounter1'>\
+      <p id='counter1'></p>\
+    </div>\
+    <div id='downvote1'>\
+      <button type='button' onclick='counter2()'>\
+        <i id='interaction-disagree2' class='fa fa-thumbs-down interaction-icons' aria-hidden='true'></i>\
+      </button>\
+    </div> \
+      <div id='downCounter1'>\
+        <p id='counter2'></p>\
+      </div>\
+    <div id='upvote2'>\
+      <button type='button' onclick='counter3()'>\
+        <i id='interaction-agree2' class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>\
+      </button>\
+    </div>\
+      <div id='upCounter2'>\
+        <p id='counter3'></p>\
+      </div>      \
+    <div id='downvote2'>\
+      <button type='button' onclick='counter4()'>\
+        <i id='interaction-disagree2' class='fa fa-thumbs-down interaction-icons' aria-hidden='true'></i>\
+      </button>\
+    </div>\
+      <div id='downCounter2'>\
+        <p id='clicks4'></p>\
+      </div>\
+  </div>")
+
+var clicks = 0; //This is for the UpVote/Downvote Counters
+var clicks2 = 0;
+var clicks3 = 0;
+var clicks4 = 0;
+
+function counter1() {
+  clicks += 1;
+  console.log(clicks)
+$('#counter1').add('#counter1')
+}
+function counter2() {
+  clicks2 += 1;
+  console.log(clicks2)
+ $('#counter2')
+}
+function counter3() {
+  clicks3 += 1;
+  console.log(clicks3)
+ $('#counter3')
+}
+function counter4() {
+  clicks4 += 1;
+  console.log(clicks4)
+ $('#counter4')
+}
+
 
 $.getJSON('/token/' + path, function (data) {
   identity = data.identity;

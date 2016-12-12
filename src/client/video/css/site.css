@@ -1,7 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
 
+
+video .s{
+  width:500px;
+  border:3px solid black;
+}
+
 body {
-  background: url('http://api.thumbr.it/whitenoise-361x370.png?');
+  background-color:#333842;
   height: 100%;
   width: 100%;
   padding: 0;
@@ -15,6 +21,11 @@ body {
   height: 100%;
 }
 
+#remote-media video .s{
+  width:500px;
+  border:3px solid black;
+}
+
 #remote-media {
   height: 100%;
   width: 80%;
@@ -22,9 +33,8 @@ body {
 }
 
 #remote-media .s {
-  height: 100%;
-  width: 76%;
-  position: relative;
+  height:65%;
+  width:65%;
 }
 
 #local-media {
@@ -32,6 +42,11 @@ body {
   left: 0;
   height: 550px;
   bottom: 35%;
+}
+
+#local-media .s{
+  height:45%;
+  width:500px;
 }
 
 #controls {
@@ -43,13 +58,20 @@ body {
 }
 
 #controls .s {
-  background: green;
   position: absolute;
   top: 0;
   right: 0;
   bottom: 0;
   left: 0;
-  display: flex;
+  display: inline-flex;
+  height: 92%;
+  width: 76%;
+}
+
+div#interactions-sidebar.s{
+  height:600px;
+  float:right;
+  margin-right: 30px;
 }
 
 #interactions-sidebar {
@@ -62,10 +84,21 @@ body {
 }
 
 #interactions-sidebar > img {
-  height: 25%
+  height: 100px;
+  width:100px;
 }
 
 #waiting-overlay {
+  opacity: 0.5;
+  width: 100%;
+  text-align: center;
+  position: absolute;
+  bottom: 0;
+  padding: 2%;
+  height: 10%;
+}
+
+#waiting-overlay .s {
   opacity: 0.5;
   width: 100%;
   text-align: center;
@@ -96,13 +129,19 @@ h2 span {
 
 #chat-window {
   height: 455px;
-  max-width: 368px;
+  min-width: 254px;
   background: #fff;
   overflow: auto;
   padding: 3% 3%;
   border-radius: 5px;
   border: 1px solid rgba(204, 204, 204, 0.47);
 }
+
+ul#chat-window.s{
+  margin-top: 5px;
+  border:1px solid #099b8a;
+}
+
 
 .chat-window-item {
   list-style: none;
@@ -127,6 +166,37 @@ h2 span {
   font-size: 40px !important;
 }
 
+input#message.s{
+  width:79%;
+  border-width:1px 0px 1px 0px;
+  border-color:black;
+  border-style: solid;
+
+}
+
+button{
+  border: none;
+  background: none;
+}
+
+#counter{
+  color: black;
+  border: 1px solid white;
+  height: 30px;
+  width: 30px;
+  float: left;
+  margin: 0;
+}
+
+#votingContainer{
+  margin-top: 470px;
+  border:1px solid white;
+  height:95px;
+  width:77%;
+  display: flex;
+
+}
+
 #message {
   width: 82%;
   border-bottom-left-radius: 5px;
@@ -146,7 +216,7 @@ h2 span {
 }
 
 #message-submit {
-
+  color:black;
 }
 
 .user-style {
