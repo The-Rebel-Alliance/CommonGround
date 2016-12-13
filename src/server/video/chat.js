@@ -25,7 +25,7 @@ export default function(vid) {
       //   `
       //   conn.query()
       //   vid.to('livetrack').emit({
-          
+
       //   })
       // }
     })
@@ -34,6 +34,9 @@ export default function(vid) {
       rooms[room].parts.push({
         username:user, 
         id:socket.id
+      })
+      vid.to(room).emit('participant connect', {
+        username: user
       })
     })
 
