@@ -91,8 +91,7 @@ div#interactions-sidebar.s{
 }
 
 #interactions-sidebar > img {
-<<<<<<< HEAD
-  height: 25%;
+  height: 152px;  
   margin-bottom: 10px;
 }
 
@@ -214,7 +213,7 @@ button{
 }
 
 #votingContainer{
-  margin-top: 490px;
+  margin-top: 600px;
   border:1px solid white;
   height:95px;
   width:77%;
@@ -296,4 +295,8 @@ form {
   font-size: 20px;
   margin-top: 0;
   margin-bottom: 0;
+}
+
+#user-identity {
+  text-align: center;
 }
