@@ -8,4 +8,4 @@ export const SEND_MSG ='SEND_MSG'
 export const GET_ROOM = 'GET_ROOM'
 export const CHANGE_DRAWER = 'CHANGE_DRAWER'
 export const SENT_MSG ='SENT_MSG'
-
+export const GET_LIVE_ROOMS = 'GET_LIVE_ROOMS'
