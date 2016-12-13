@@ -33,8 +33,8 @@ h6 > #time{
 }
 
 .messages{
-  height: 400px;
-  overflow: scroll;
+  height: 545px;
+  overflow-y: scroll;
 }
 
 #messagingContainer{
@@ -56,7 +56,8 @@ h6 > #time{
   background: linear-gradient(#01A69A, #7AE0D9);
   border-radius: 5px;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-right:10px;
   text-align: right;
   word-wrap: normal;
   float: left;
@@ -66,30 +67,37 @@ h6 > #time{
 
 }
 
-.them:after {
+.them::after {
   content:'';
-  position: absolute;
-  border-style:solid;
-  border-width: 15px 15px 0;
-  border-color: #7AE0D9 transparent;
-  display:block;
-  width: 0;
-  top:39px;
-  left:2px;
+  position: absolute; 
+  border-right: 20px solid transparent;
+  border-top: 15px solid #7AE0D9;
+  top:100%;
+  left:13px;
 }
 .you {
+  position:relative;
   background: linear-gradient(#CECFD2, #eaedef);
   border-radius: 5px;
   padding: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+  margin-right: 10px;
   word-wrap: normal;
   float: right;
   clear: both;
   flex-direction: column;
   align-items: stretch;
- 
-
 }
+
+.you::after {
+  content:'';
+  position: absolute; 
+  border-left: 20px solid transparent;
+  border-top: 15px solid #eaedef;
+  top:100%;
+  right:13px;
+}
+
 
 ul{
   list-style: none;
@@ -136,6 +144,7 @@ a {
 }
 .messagesHeader{
   position: relative;
+  height: 0px;
 }
 .profileLink {
   height: 100px;

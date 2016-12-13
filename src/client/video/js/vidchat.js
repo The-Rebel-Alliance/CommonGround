@@ -49,8 +49,9 @@ $.getJSON('/token/' + path, function (data) {
     updateMessaging(msg.user, msg.message)
   })
 
-  socket.on('spec count', function(count) {
+  socket.on('spec count', function(count){
     console.log(count)
+    $("#spectators-counter").html(count)
   })
 
   // Create a Video Client and connect to Twilio
@@ -104,7 +105,6 @@ function roomJoined(room) {
   activeRoom = room;
   // room.prototype.path = path
   room.path = path
-  console.log('room', room)
 
   // log("Joined as '" + identity + "'");
   // document.getElementById('button-leave').style.display = 'inline';
@@ -112,19 +112,17 @@ function roomJoined(room) {
   // Draw local video, if not already previewing
   if (room.path === "v") {
     room.localParticipant.media.attach('#local-media'); //attaches screen of participant A
-  }  
+    socket.emit('participant connect', identity)
+  } else {
+    socket.emit('spectator connect')
+  }
     
   room.participants.forEach(function(participant) { //attaches screen of participant A to participant B
     var participantIdentity = participant.identity.substring(0,1)
     if(participantIdentity === "v") {
       participant.media.attach('#remote-media');
       adjustVideo()
-      socket.emit('participant connect', {
-        username: participant.identity.substr(1)
-      })
-    } else {
-      socket.emit('spectator connect')
-    } 
+    }  
   });
 
   
@@ -132,8 +130,7 @@ function roomJoined(room) {
     var participantIdentity = participant.identity.substring(0,1)
     if(participantIdentity === "v") {
       participant.media.attach('#remote-media');
-      adjustVideo()
-      console.log('participantIdentity', participantIdentity)  
+      adjustVideo() 
     }
   });
 
