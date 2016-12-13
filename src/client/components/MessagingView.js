@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactDOM from 'react-dom'
 import store from 'store'
 import { browserHistory, Link } from 'react-router'
 import 'assets/styles/MessagingContainer.css'
@@ -16,7 +17,9 @@ const MessagingView = React.createClass({
       avatar:'' 
     }
   },
- 
+ componentDidUpdate: function(){
+       
+ },
   handleSubmit: function(e) {
     e.preventDefault()
     var msg = {

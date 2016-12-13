@@ -20,6 +20,7 @@ input {
   border-radius: 5px 0px 0px 5px;
   height: 29px;
   color:black;
+  margin-right:2px;
 }
 
 h6{
@@ -33,7 +34,7 @@ h6 > #time{
 }
 
 .messages{
-  height: 545px;
+  height: 90%;
   overflow-y: scroll;
 }
 
