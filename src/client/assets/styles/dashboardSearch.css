@@ -155,7 +155,10 @@ html {box-sizing: border-box;}
     -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: infinite; 
     margin: 0;
-    background-color: #ED283C;  
+    background-color: #ED283C;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;  
 }
 @keyframes example {
     0%   {background-color: #ED283C;}
@@ -172,6 +175,9 @@ html {box-sizing: border-box;}
     -webkit-animation-duration: 2s;
     -webkit-animation-iteration-count: infinite; 
     background-color: #ED283C;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .videolink_video{
     width: 300px;
