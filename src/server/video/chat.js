@@ -16,9 +16,5 @@ export default function(vid) {
       vid.to(room).emit('spec vote', vote)
     })
 
-    socket.on('spec count', function(count) {
-      vid.to(room).emit('spec count', count)
-    })
-
   })
 }
