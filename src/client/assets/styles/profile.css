@@ -82,9 +82,7 @@ html {box-sizing: border-box;}
 
 .topics_container {
     margin-top: 30px;
-    border-left: 3px solid #ccc;
-    border-right: 3px solid #ccc;
-    border-top: 3px solid #ccc;
+    border: 3px solid #ccc;
     width: 955px;
     margin: auto;
 

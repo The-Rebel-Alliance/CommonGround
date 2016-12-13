@@ -25,14 +25,7 @@ export function getUserProfile(id) {
 export function editProfile(obj) {
   console.log('obj', obj)
   return api.put('/api/profile/', obj).then(resp => {
-    browserHistory.push('/edittopics')
-  })
-}
 
-export function editTopics(obj) {
-  console.log('topics', obj)
-  return api.put('/api/profile/', obj).then(resp => {
-    browserHistory.push('/editstances')
-    console.log('resp', resp)
+    browserHistory.push('/profile')
   })
 }
