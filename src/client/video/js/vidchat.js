@@ -111,8 +111,10 @@ $.getJSON('/token/' + path, function (data) {
   })
 
   socket.on('participant connect', function(user) {
-    console.log('participant connect')
-    $("#user-identity").html(user.username)
+    for(var i = 0; i < user.users.length; i+=1) {
+      $(`#user${i}-identity`).html(user.users[i])
+    }    
+    // $("#user-identity").html(user.username)
     // if($(`#user${i}-identity`).html() === "Waiting for user...") {
     //   console.log('i', i)
     //   $(`#user${i}-identity1`).html(user.username)  
