@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono);
+@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono|Oswald);
 
 
 video .s{
@@ -6,10 +6,26 @@ video .s{
   border:3px solid black;
 }
 
-p#counter1, #counter2, #counter3, #counter4{
-  height:10px;
-  width:10px;
+p{
+  height:20px;
+  width:20px;
   color:white;
+  font-weight: bold;
+  font-family: 'Oswald', sans-serif;
+}
+
+.fa-thumbs-up{
+  color:#07A9A2;
+  font-size:150px;
+}
+
+.fa-thumbs-down{
+  color:#ED283C;
+}
+
+img{
+  height:100px;
+  width:100px;
 }
 
 body {
@@ -92,6 +108,7 @@ div#interactions-sidebar.s{
 #interactions-sidebar > img {
   height: 100px;
   width:100px;
+  border-bottom:1px solid white;
 }
 
 #waiting-overlay {
@@ -133,6 +150,17 @@ h2 span {
   color: #7AE0D9;
 }
 
+#chat-window.s{
+  height: 386px;
+  min-width: 257px;
+  background: #fff;
+  overflow: auto;
+  border-bottom-left-radius: 0;
+  padding: 3% 3%;
+  border-bottom-right-radius: 0;
+  border: 1px solid rgba(204, 204, 204, 0.47);
+}
+
 #chat-window {
   height: 455px;
   min-width: 254px;
@@ -145,7 +173,6 @@ h2 span {
 
 ul#chat-window.s{
   margin-top: 5px;
-  border:1px solid #099b8a;
 }
 
 
@@ -173,11 +200,14 @@ ul#chat-window.s{
 }
 
 input#message.s{
-  width:79%;
-  border-width:1px 0px 1px 0px;
-  border-color:black;
+  width: 272px;
+  border-width: 1px 0px 1px 0px;
+  border-color: black;
   border-style: solid;
-
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 5px;
+  margin-right: 3px;
+  border-top: 0;
 }
 
 button{
@@ -198,11 +228,13 @@ button{
 
 #votingContainer{
   margin-top: 490px;
-  border:1px solid white;
-  height:95px;
-  width:77%;
+  height: 95px;
+  border-top:1px solid white;
+  border-bottom:1px solid white;
+  width: 50%;
   display: flex;
-
+  margin-left: 160px;
+  justify-content: space-around;
 }
 
 #message {

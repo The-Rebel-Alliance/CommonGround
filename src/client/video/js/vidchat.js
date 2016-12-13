@@ -45,7 +45,7 @@ $("#controls.s").append(
       </button>\
     </div>\
     <div id='upCounter1'>\
-      <p class='user1up'>##</p>\
+      <p class='user1up'>0</p>\
     </div>\
     <div id='downvote1'>\
       <button id='user1down' type='button' class='vote'>\
@@ -53,15 +53,16 @@ $("#controls.s").append(
       </button>\
     </div> \
       <div id='downCounter1'>\
-        <p class='user1down'>##</p>\
+        <p class='user1down'>0</p>\
       </div>\
+      <img src='/v/css/cg-logo.png'/>\
     <div id='upvote2'>\
       <button id='user2up' type='button' class='vote'>\
         <i id='interaction-agree2' class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>\
       </button>\
     </div>\
       <div id='upCounter2'>\
-        <p class='user2up'>##</p>\
+        <p class='user2up'>0</p>\
       </div>      \
     <div id='downvote2'>\
       <button id='user2down' type='button' class='vote'>\
@@ -69,7 +70,7 @@ $("#controls.s").append(
       </button>\
     </div>\
       <div id='downCounter2'>\
-        <p class='user2down'>##</p>\
+        <p class='user2down'>0</p>\
       </div>\
   </div>")
 
@@ -289,7 +290,6 @@ function adjustBackVideo() {
       // top: 0
     }, 3000)
   $("#waiting-overlay").css({display:"block"})
-
 }
 
 // function adjustVideo() {
