@@ -159,7 +159,7 @@ export default React.createClass({
                 <button type="submit" className="button button--state-register--register">Register</button> 
             </div>          
             <div className="select--topic--container">
-              <div className="register_topic_select">Edit Topics of Interests:</div>
+              <div className="register_topic_select">Choose Topics of Interests:</div>
               {this.state.displayTopics.map((topic,i) => {
                 return ( 
                 <div key={'topic'+ i} className="topic_checkbox_container">
