@@ -3,6 +3,8 @@ import store from 'store'
 import {browswerHistory} from 'react-router'
 import api from 'lib/api'
 import * as actions from 'actions'
+import {toggleDrawer} from './toggleDrawer'
+
 
 api.new('/')
 

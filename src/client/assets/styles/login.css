@@ -28,10 +28,10 @@ body{
 }
 .header_title {
     font-family: 'Cabin', sans-serif;
-    font-size: 40px;
-    margin-left: 38%;
-    margin-top: 0%;
+    font-size: 40px; 
     position: relative;
+    float: none;
+    text-align: center;
 }
 
 p{
