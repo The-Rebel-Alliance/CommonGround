@@ -11,15 +11,6 @@ var url = location.href.substr(0, location.href.indexOf(location.pathname))
 var path = location.pathname[1]
 var spectatorCounter = 0
 
-var socket = io('/video').connect(url, {
-  secure:true
-})
-
-socket.on('spec count', function(count) {
-  // $("#spectators-counter").html(count)
-  console.log('socket.on spec count:', count)
-})
-
 // Check for WebRTC
 if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
   alert('WebRTC is not available in your browser.');
@@ -36,15 +27,20 @@ if (path === "s") {
   //JASON: YOU NEED TO FIGURE OUT JQUERY CODE TO ADD HTML BASED ON PATH === 'S'
 }
 
+var socket = io('/video').connect(url, {
+  secure:true
+})
 
+socket.emit('join', roomName)
 
 $.getJSON('/token/' + path, function (data) {
   identity = data.identity;
 
-  console.log('data', data)
+  socket.on('spec count', function(count) {
+    // $("#spectators-counter").html(count)
+    console.log('socket.on spec count:', count)
+  })
 
-  socket.emit('join', roomName)
-  
   socket.on('vid message', function(msg) {
     updateMessaging(msg.user, msg.message)
   })
