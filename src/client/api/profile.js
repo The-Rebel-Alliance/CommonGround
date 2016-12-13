@@ -25,6 +25,7 @@ export function getUserProfile(id) {
 export function editProfile(obj) {
   console.log('obj', obj)
   return api.put('/api/profile/', obj).then(resp => {
-    browserHistory.push('/edittopics')
+
+    browserHistory.push('/profile')
   })
 }

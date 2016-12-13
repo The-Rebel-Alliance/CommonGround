@@ -17,7 +17,7 @@ export default React.createClass({
       politicalAffiliation: '',
       displayTopics: [],
       positionTopics: [],
-      submitTopics: []
+      topics: []
     }
   },
   componentWillMount: function() {
@@ -33,12 +33,24 @@ export default React.createClass({
         avatar: appState.profile.avatar || '',
         politicalAffiliation: appState.profile.political_affiliation || '',
         displayTopics: appState.topics,
-        positionTopics: appState.profile.topics
+        positionTopics: appState.profile.topics,
+        mappedTopics: this.mapTheTopics(appState.topics, appState.profile.topics),
+        topics: appState.profile.topics.map(topic => topic.id)
       })
+      
     })
   },
   componentWillUnmount: function() {
     this.unsubscribe()
+  },
+  mapTheTopics: function(topicList, userTopics){
+    let mapArr = []
+    for(let topic of topicList){
+      userTopics.forEach(item =>{
+        if(topic.name === item.name) mapArr[topic.id] = item.stance;
+      })
+    }
+    return mapArr
   },
   update: function (e) {
     console.log(e.target)
@@ -58,8 +70,44 @@ export default React.createClass({
       }) 
     });
   },
+  updateTopics: function (e) {
+    var id = Number(e.target.id.substr(5))
+    
+    var topics = this.state.topics
+
+    console.log('topics before if', topics)
+    
+    if (topics.indexOf(id) === -1) {
+      topics.push(id)
+      console.log('topics',topics)
+    } else {
+      topics.splice(topics.indexOf(id), 1)
+    }
+    this.setState({
+      topics: topics
+    })
+    console.log('end', topics)  
+  },
+
+  updateStances: function (e) {
+    var mappedTopics = this.state.mappedTopics
+    mappedTopics[e.target.id] = e.target.value
+    this.setState({mappedTopics: mappedTopics})
+    console.log('mappedTopics', mappedTopics)
+
+  },
   handleSubmit: function(e) {
     e.preventDefault()
+    var finalArr = []
+    this.state.mappedTopics.forEach((stance, key) => {
+      var obj = {
+        id: key,
+        stance: stance 
+      }
+      finalArr.push(obj)
+    })
+    console.log('finalArr', finalArr)
+   
     editProfile({
       first_name:this.state.firstName,
       last_name:this.state.lastName,
@@ -67,7 +115,7 @@ export default React.createClass({
       city:this.state.city,
       state:this.state.state,
       political_affiliation:this.state.politicalAffiliation,
-      submitTopics: this.state.topics
+      topics: finalArr
     })
   },
   compareTopic: function(topicId) {
@@ -180,7 +228,7 @@ export default React.createClass({
             return (
               <div key={item.id} id={"topic" + i} className={"indiv_topic_container" + i}>
                 <h3 className="topic_header">{item.name}</h3>
-              <textarea defaultValue={item.stance} />
+              <textarea id={item.id} onChange={this.updateStances} defaultValue={this.state.mappedTopics[item.id]} />
           </div>
           )
         })}
@@ -193,3 +241,5 @@ export default React.createClass({
     )
   }
 })
+//
+
