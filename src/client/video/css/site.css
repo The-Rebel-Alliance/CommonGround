@@ -6,6 +6,12 @@ video .s{
   border:3px solid black;
 }
 
+p#counter1, #counter2, #counter3, #counter4{
+  height:10px;
+  width:10px;
+  color:white;
+}
+
 body {
   background-color:#333842;
   height: 100%;
@@ -64,7 +70,7 @@ body {
   bottom: 0;
   left: 0;
   display: inline-flex;
-  height: 92%;
+  height: 80%;
   width: 76%;
 }
 
@@ -177,6 +183,8 @@ input#message.s{
 button{
   border: none;
   background: none;
+  outline:none;
+  border:none;
 }
 
 #counter{
@@ -189,7 +197,7 @@ button{
 }
 
 #votingContainer{
-  margin-top: 470px;
+  margin-top: 490px;
   border:1px solid white;
   height:95px;
   width:77%;
