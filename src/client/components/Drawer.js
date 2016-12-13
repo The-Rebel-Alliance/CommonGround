@@ -23,7 +23,6 @@ const DrawerContainer = React.createClass ({
     getMessageUsers()
     this.unsubscribe = store.subscribe(()=>{
       const appState = store.getState()
-      console.log(appState)
       this.setState({
         messageUsers: appState.messageUsers,
         myconvo: appState.myconvo,
