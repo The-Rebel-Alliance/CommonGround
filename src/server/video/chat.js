@@ -28,7 +28,7 @@ export default function(vid) {
         id:socket.id
       })
       vid.to(room).emit('participant connect', {
-        username: user
+        users: rooms[room].parts.map(part => part.username)
       })
       if (rooms[room].parts.length === 2) {
         let sql = `
@@ -40,6 +40,7 @@ export default function(vid) {
         `
         let participants = rooms[room].parts.map(part => part.username)
         conn.query(sql, participants, function(err, results){
+          console.log(results)
           if (err) {
             console.log(err)
           }
