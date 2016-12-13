@@ -43,6 +43,8 @@ export default function (state = defaultState, action) {
       return {...state, roomLink: action.roomLink}
     case actions.CHANGE_DRAWER:
       return {...state, hidden: action.hidden}
+    case actions.GET_LIVE_ROOMS:
+      return {...state, liveRooms: action.liveRooms}
     default:
       return state
   }
