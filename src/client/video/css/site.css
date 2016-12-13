@@ -59,6 +59,7 @@ body {
   right: 12px;
   padding-left: 2%;
   text-align: center;
+  font-family: muli;
 }
 
 #interactions-sidebar > img {
@@ -97,7 +98,7 @@ h2 span {
 
 #chat-window {
   height: 240px;
-  max-width: 368px;
+  width: 252px;
   background: #fff;
   overflow: auto;
   padding: 3% 3%;
@@ -123,7 +124,7 @@ h2 span {
 }
 
 #message {
-  width: 82%;
+  width: 267px;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   height: 45px;

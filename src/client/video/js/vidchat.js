@@ -49,8 +49,7 @@ $.getJSON('/token/' + path, function (data) {
     updateMessaging(msg.user, msg.message)
   })
 
-  socket.on('spec count', function(count){
-    console.log(count)
+  socket.on('spec count', function(count) {
     $("#spectators-counter").html(count)
   })
 
@@ -125,6 +124,7 @@ function roomJoined(room) {
     }  
   });
 
+ // $(`#user${i}-identity`).html(participantName)
   
   room.on('participantConnected', function (participant) { // attaches screen of participant B to participant A
     var participantIdentity = participant.identity.substring(0,1)
