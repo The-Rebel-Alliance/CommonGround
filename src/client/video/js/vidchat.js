@@ -22,13 +22,6 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
   alert('WebRTC is not available in your browser.');
 }
 
-// When we are about to transition away from this page, disconnect
-// from the room, if joined.
-// window.addEventListener('beforeunload', leaveRoomIfJoined);
-
-// console.log('path', path)
-
-
 if (path === "s") {
   $('body *').addClass("s")
   //JASON: YOU NEED TO FIGURE OUT JQUERY CODE TO ADD HTML BASED ON PATH === 'S'
@@ -86,54 +79,6 @@ $(".vote").on('click', function(e){
   socket.emit('spec vote', counter)
 })
 
-// var clicks = 0; //This is for the UpVote/Downvote Counters
-// var clicks2 = 0;
-// var clicks3 = 0;
-// var clicks4 = 0;
-
-// function counter1() {
-//   clicks += 1;
-//   var obj = {
-//     count1: ,
-//     count2: ,
-//     count3: ,
-//     count4: 
-//   }
-//   socket.emit("spec vote", clicks)
-// }
-
-// function counter2() {
-//   clicks2 += 1;
-//   socket.emit("spec vote", clicks2)
-// }
-
-/*function counter3() {
-  clicks3 += 1;
- $('#counter3').html(clicks3);
-}
-function counter4() {
-  clicks4 += 1;
- $('#counter4').html(clicks4);
-}*/
-
-//function for Socket.IO
-// function updateVote1(value) {
-//   $("#counter1").html(value);
-// }
-
-// function updateVote2(value) {
-//   $("#counter2").html(value);
-// }
-
-/*
-function updateVote3(value) {
-  $("#counter3").html(value);
-}
-
-function updateVote4(value) {
-  $("#counter4").html(value);
-}*/
-
 function seeCounter(obj) {
   counter = obj
   console.log(counter)
@@ -161,32 +106,13 @@ $.getJSON('/token/' + path, function (data) {
     seeCounter(counter)
   })
 
-  // socket.on('spec vote', function(vote){
-  //   updateVote2(vote)
-  // })
-
-/*  socket.emit('spec vote', 'value')   
-  socket.on('spec vote', function(vote){
-    updateVote2(vote.value)
-  })
-
-  socket.emit('spec vote', 'value')   
-  socket.on('spec vote', function(vote){
-    updateVote3(vote.value)
-  })
-
-  socket.emit('spec vote', 'value')   
-  socket.on('spec vote', function(vote){
-    updateVote4(vote.value)
-  })  */
-
   socket.on('spec count', function(count) {
     $("#spectators-counter").html(count)
   })
 
-  socket.on('participant connect', function(user, i) {
+  socket.on('participant connect', function(user) {
     console.log('participant connect')
-    console.log($("#user-identity").html())
+    $("#user-identity").html(user.username)
     // if($(`#user${i}-identity`).html() === "Waiting for user...") {
     //   console.log('i', i)
     //   $(`#user${i}-identity1`).html(user.username)  
@@ -201,12 +127,6 @@ $.getJSON('/token/' + path, function (data) {
     videoClient.connect({ to: roomName}).then(roomJoined) 
   }
 
-  // Bind button to leave room
-  // document.getElementById('button-leave').onclick = function () {
-  //   // log('Leaving room...');
-  //   activeRoom.disconnect();
-  // };
-
   $("form").submit(function(e) {
     e.preventDefault()
     var value = $("#message").val()
@@ -217,26 +137,6 @@ $.getJSON('/token/' + path, function (data) {
     $("#message").val("");
   })
 
-
-  // $("#interactions-div > i").click(function(e) {
-  //   var value = ""
-  //   switch(e.toElement.id) {
-  //     case "interaction-agree":
-  //       value="<i class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>"
-  //       break;
-  //     case "interaction-disagree":
-  //       value="<i class='fa fa-thumbs-down interaction-icons' aria-hidden='true'></i>"
-  //       break;
-  //     case "interaction-question":
-  //       value="<i class='fa fa-question-circle interaction-icons' aria-hidden='true'></i>"
-  //       break;
-  //     case "interaction-strike":
-  //       value="<i id='interaction-strike' class='fa fa-times-circle interaction-icons' aria-hidden='true'></i>"
-  //       break;
-  //     default:
-  //       value=""
-  //   }
-
 });
 
 
@@ -246,9 +146,6 @@ function roomJoined(room) {
   activeRoom = room;
   // room.prototype.path = path
   room.path = path
-
-  // log("Joined as '" + identity + "'");
-  // document.getElementById('button-leave').style.display = 'inline';
 
   // Draw local video, if not already previewing
   if (room.path === "v") {
@@ -266,7 +163,6 @@ function roomJoined(room) {
     }  
   });
 
- // $(`#user${i}-identity`).html(participantName)
   
   room.on('participantConnected', function (participant) { // attaches screen of participant B to participant A
     var participantIdentity = participant.identity.substring(0,1)
@@ -284,8 +180,6 @@ function roomJoined(room) {
       adjustBackVideo()  
     }
   });
-
-
 }
 
 
@@ -307,40 +201,18 @@ function adjustBackVideo() {
   $("#local-media").animate({
       bottom: '+=35%',
       height: "+=350px"
-      // marginTop: '+=38%',
-      // height: '-=338px'
-      // top: 0
     }, 3000)
   $("#waiting-overlay").css({display:"block"})
 
 }
-
-// function adjustVideo() {
-//   $("#local-media").addClass("bottom")
-//   $("#waiting-overlay").css({display:"none"})
-// }
-
-
-// function addToChat(userName, message) {
-//   message = $("input").val()
-//   console.log(message) 
-// }
 
 function updateMessaging(user, value) {
     $("#chat-window").append(`<div class=${identity===user ? 'chat-window-row-left' : 'chat-window-row-right'}><li class= ${identity===user ? 'user-style' : 'other-style'}>${user}: ${value}</li></div>`).scrollTop($("#chat-window")[0].scrollHeight);
 }
 
 
-
-// $("#chat-window").append(`<div class=${identity===user ? 'user-style':'other-style'} chat-window-row>${user}: <li class=chat-window-item>${value}</li>`).scrollTop($("#chat-window")[0].scrollHeight);
-
 //jason twillio account config profile SID: VS9025d31d6b05358898fa6617bcc7cfc5
 //jason twillio primary account SID: AC9835cee05e5e5f37ee066ccd9554cf83
 //jason twillio account api key: SK538602cffe692e73127b5fc1626b4a2a
 //jason twillio account api secret: N4VFpdTYtfl5QiYbDxQH0Wzecyh8WEXA
 
-//else {
-    //   spectatorCounter++
-    //   console.log('spectatorCounter after counter function: ', spectatorCounter)
-    //   socket.emit('spec count', spectatorCounter)
-    // }
