@@ -13,7 +13,8 @@ const defaultState = {
   roomLink:'',
   fromId:null,
   avatar:'',
-  hidden:true
+  hidden:true,
+  liveRooms:[]
 }
 
 

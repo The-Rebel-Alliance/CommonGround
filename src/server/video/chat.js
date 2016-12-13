@@ -58,7 +58,7 @@ export default function(vid) {
                 avatar: results[1].avatar
               }
             })
-            vid.to('livetrack').emit('new room', livetrackRooms)
+            vid.to('livetrack').emit('rooms update', livetrackRooms)
           }
         })
       }
@@ -95,7 +95,7 @@ export default function(vid) {
           livetrackRooms = livetrackRooms.filter(function(livetrackroom){
             return livetrackroom.link.indexOf(room) === -1
           })
-          vid.to('livetrack').emit('new room', livetrackRooms)
+          vid.to('livetrack').emit('rooms update', livetrackRooms)
         }
       }
     })
