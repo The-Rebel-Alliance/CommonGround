@@ -49,6 +49,15 @@ $.getJSON('/token/' + path, function (data) {
     $("#spectators-counter").html(count)
   })
 
+  socket.on('participant connect', function(user, i) {
+    console.log('participant connect')
+    console.log($("#user-identity").html())
+    // if($(`#user${i}-identity`).html() === "Waiting for user...") {
+    //   console.log('i', i)
+    //   $(`#user${i}-identity1`).html(user.username)  
+    // }
+  })
+
   // Create a Video Client and connect to Twilio
   videoClient = new Twilio.Video.Client(data.token);
  
