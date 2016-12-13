@@ -44,20 +44,22 @@ export default function(vid) {
           if (err) {
             console.log(err)
           }
-          livetrackRooms.push({
-            link: '/s/' + room,
-            user1: {
-              first_name: results[0].first_name,
-              last_name: results[0].last_name,
-              avatar: results[0].avatar
-            },
-            user2: {
-              first_name: results[1].first_name,
-              last_name: results[1].last_name,
-              avatar: results[1].avatar
-            }
-          })
-          vid.to('livetrack').emit('new room', livetrackRooms)
+          if (results.length >= 2) {
+            livetrackRooms.push({
+              link: '/s/' + room,
+              user1: {
+                first_name: results[0].first_name,
+                last_name: results[0].last_name,
+                avatar: results[0].avatar
+              },
+              user2: {
+                first_name: results[1].first_name,
+                last_name: results[1].last_name,
+                avatar: results[1].avatar
+              }
+            })
+            vid.to('livetrack').emit('new room', livetrackRooms)
+          }
         })
       }
     })
