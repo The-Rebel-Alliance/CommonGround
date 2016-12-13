@@ -5,8 +5,8 @@
 <head>
   <title>Twilio Video - Video Quickstart</title>
   <link href="https://fonts.googleapis.com/css?family=Muli" rel="stylesheet">
-  <link rel="stylesheet" href="css/site.css"/>
-  <link rel="stylesheet" href="css/css/font-awesome.css">
+  <link rel="stylesheet" href="/v/css/site.css"/>
+  <link rel="stylesheet" href="/v/css/css/font-awesome.css">
 </head>
 
 
@@ -28,7 +28,42 @@
   </div>
 
   <div id="interactions-sidebar">
-    <img src="css/cg-logo.png"/>
+    
+    <img src="/v/css/cg-logo.png"/>
+  
+    <div id="user1-response-row">
+      <div>user 1</div>
+      <div>
+        <i id="interaction-agree" class="fa fa-thumbs-up interaction-icons" aria-hidden="true"></i>
+      </div>
+      <div>##</div>
+      <div>
+        <i id="interaction-disagree" class="fa fa-thumbs-down interaction-icons" aria-hidden="true"></i>
+      </div>
+      <div>##</div>
+    </div>  
+
+    <div id="user2-response-row">
+      <div>user 2</div>
+      <div>
+        <i id="interaction-agree" class="fa fa-thumbs-up interaction-icons" aria-hidden="true"></i>
+      </div>
+      <div>##</div>
+      <div>
+        <i id="interaction-disagree" class="fa fa-thumbs-down interaction-icons" aria-hidden="true"></i>
+      </div>
+      <div>##</div>
+    </div>  
+    
+    <div id="spectators-row">
+      <div>  
+        <i class="fa fa-users" aria-hidden="true"></i>
+        <p>Spectators</p>
+      </div>
+      <div id="spectators-counter"></div>
+    </div>
+    
+
     <ul id="chat-window"></ul>
   <!--   <div id="interactions-div">
       <i id="interaction-agree" class="fa fa-thumbs-up interaction-icons" aria-hidden="true"></i>
@@ -37,7 +72,7 @@
       <i id="interaction-strike" class="fa fa-times-circle interaction-icons" aria-hidden="true"></i>
     </div> -->
     <form>
-      <input id="message" autocomplete="off" type="text" name="message" value="Type a message..."/>
+      <input id="message" autocomplete="off" type="text" name="message" placeholder="Type a message..."/>
       <!-- <input id="message-submit" type="submit" value="submit"/> -->
     </form>
   </div>
@@ -46,7 +81,7 @@
   <script src="//media.twiliocdn.com/sdk/js/video/releases/1.0.0-beta2/twilio-video.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
   <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
-  <script src="js/vidchat.js"></script>
+  <script src="/v/js/vidchat.js"></script>
 </body>
 </html>
 
