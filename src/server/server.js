@@ -38,7 +38,6 @@ export default function (conf) {
 
   app.get('/s/:roomname', function(req, res, next){
     res.sendFile(path.resolve(conf.root + '/v/index.html'))
-    console.log('test')
   })
 
   app.use(bodyParser.json())

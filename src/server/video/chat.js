@@ -1,26 +1,26 @@
 export default function(vid) {
   var rooms = []
+  var parts = []
+  var specs = []
 
   vid.on('connection', function(socket){
     var room = ''
-    var particpants = []
-    var spectators = []
 
-    socket.on('particpant connect', function(user){
-      participants.push({
+    socket.on('join', function(roomName){
+      socket.join(roomName)
+      room =  roomName
+    })
+
+    socket.on('participant connect', function(user){
+      parts.push({
         username:user, 
         id:socket.id
       })
     })
 
     socket.on('spectator connect', function(){
-      spectators.push(socket.id)
-      socket.emit('spec count', spectators.length)
-    })
-
-    socket.on('join', function(roomName){
-      socket.join(roomName)
-      room =  roomName
+      specs.push(socket.id)
+      vid.to(room).emit('spec count', specs.length)
     })
 
     socket.on('vid message', function(msg){
@@ -32,16 +32,16 @@ export default function(vid) {
     })
 
     socket.on('disconnect', function(){
-      spectators = spectators.filter(function(id){
+      specs = specs.filter(function(id){
         return id !== socket.id
       })
-      socket.emit('spec count', spectators.length)
+      vid.to(room).emit('spec count', specs.length)
 
-      particpants = particpants.filter(function(user){
+      parts = parts.filter(function(user){
         return user.id !== socket.id
       })
 
-      if (participants.length < 2) {
+      if (parts.length < 2) {
         // change array of rooms
       }
     })
