@@ -26,6 +26,7 @@ if (path === "s") {
   $('body *').addClass("s")
   //JASON: YOU NEED TO FIGURE OUT JQUERY CODE TO ADD HTML BASED ON PATH === 'S'
   $("div").remove("#user1-response-row, #user2-response-row")
+
 }
 
 var socket = io('/video').connect(url, {
@@ -37,6 +38,7 @@ socket.emit('join', roomName)
 $("#controls.s").append(
 
   "<div id='votingContainer'>\
+    <div id='participant0-name'>test</div>\
     <div id='upvote1'>\
       <button id='user1up' type='button' class='vote'>\
         <i id='interaction-agree2' class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>\
@@ -54,6 +56,7 @@ $("#controls.s").append(
         <p class='user1down'>0</p>\
       </div>\
       <img src='/v/css/cg-logo.png'/>\
+    <div id='participant1-name'>test</div>\
     <div id='upvote2'>\
       <button id='user2up' type='button' class='vote'>\
         <i id='interaction-agree2' class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>\
@@ -115,6 +118,7 @@ $.getJSON('/token/' + path, function (data) {
   socket.on('participant connect', function(user) {
     for(var i = 0; i < user.users.length; i+=1) {
       $(`#user${i}-identity`).html(user.users[i])
+      $(`#participant${i}-name`).html(user.users[i])
     }    
     // $("#user-identity").html(user.username)
     // if($(`#user${i}-identity`).html() === "Waiting for user...") {
