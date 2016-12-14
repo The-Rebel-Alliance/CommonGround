@@ -92,22 +92,16 @@ function seeCounter(obj) {
 $.getJSON('/token/' + path, function (data) {
   identity = data.identity;
 
-  socket.on('spec count', function(count) {
-    // $("#spectators-counter").html(count)
-    console.log('socket.on spec count:', count)
-  })
-
   socket.on('vid message', function(msg) {
     updateMessaging(msg.user, msg.message)
   })
 //Sockets for ThumbUP/ThumbDown
-  // socket.emit('spec vote', clicks)   
+
   socket.on('spec vote', function(counter){
     for(let key in counter) {
       counter[key] = counter[key]
       $('.' + key).html(counter[key])
     }
-    console.log('counter after spec vote', counter)
     seeCounter(counter)
   })
 
