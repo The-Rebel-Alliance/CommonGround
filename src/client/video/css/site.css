@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono|Oswald);
+@import url(https://fonts.googleapis.com/css?family=Share+Tech+Mono|Muli);
 
 
 video .s{
@@ -11,7 +11,7 @@ p{
   width:20px;
   color:white;
   font-weight: bold;
-  font-family: 'Oswald', sans-serif;
+  font-family: 'Muli', sans-serif;
 }
 
 .fa-thumbs-up{
@@ -100,10 +100,11 @@ div#interactions-sidebar.s{
   position: absolute;
   height: 100%;
   width: 20%;
-  right: 12px;
+  right: 56px;
   padding-left: 2%;
   text-align: center;
   font-family: muli;
+  padding-left:0;
 }
 
 #interactions-sidebar > img {
@@ -157,27 +158,30 @@ h2 span {
 }
 
 #chat-window.s{
-  height: 386px;
-  min-width: 257px;
+  height: 309px;
+  width: 256px;
   background: #fff;
   overflow: auto;
   border-bottom-left-radius: 0;
   padding: 3% 3%;
   border-bottom-right-radius: 0;
   border: 1px solid rgba(204, 204, 204, 0.47);
+  margin-bottom: 0px;
 }
 
 #chat-window {
-  height: 240px;
-  width: 252px;
+  height: 257px;
+  width: 95%;
   background: #fff;
   overflow: auto;
   padding: 3% 3%;
-  border-radius: 5px;
-  border: 1px solid rgba(204, 204, 204, 0.47);
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border: 1px solid rgba(204, 204, 204, 0.47); 
+  margin-bottom: 0px;
 }
 
-#chat-window .s {
+/*#chat-window .s {
   height: 455px;
   min-width: 254px;
   background: #fff;
@@ -186,7 +190,7 @@ h2 span {
   border-radius: 5px;
   border: 1px solid rgba(204, 204, 204, 0.47);
 }
-
+*/
 ul#chat-window.s{
   margin-top: 5px;
 }
@@ -216,13 +220,13 @@ ul#chat-window.s{
 }
 
 input#message.s{
-  width: 272px;
+  width: 256px;
   border-width: 1px 0px 1px 0px;
   border-color: black;
   border-style: solid;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  margin-right: 3px;
+  margin-right: -5px;
   border-top: 0;
 }
 
@@ -254,13 +258,12 @@ button{
 }
 
 #message {
-  width: 267px;
+  width: 100.4%;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   height: 45px;
   font-size: 14px;
   font-family: 'Cabin', sans-serif;
-  border: 2px solid #7AE0D9;
   border: 1px solid #E7E7E7;
 }
 
@@ -312,7 +315,7 @@ form {
   position: absolute;
   bottom: 40px;
   left: 0;
-  width: 328px;
+  width: 280px;
 }
 
 #spectators-row, #user1-response-row, #user2-response-row {
@@ -328,6 +331,7 @@ form {
   margin-top: 0;
   margin-bottom: 0;
   float:right;
+  margin-left: 20px;
 }
 
 #user-identity {
