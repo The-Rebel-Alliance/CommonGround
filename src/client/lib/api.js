@@ -1,5 +1,6 @@
 import axios from 'axios';
 import Cookie from 'js-cookie';
+import {publish} from 'lib/pubsub'
 
 // 'api-token-auth':"Authorization: Token ${token}";
 var instance = axios.create();
@@ -36,6 +37,9 @@ instance.login = function(user, pass, cb) {
         return config;
       })
       cb()
+      publish('messageConnect', {
+        args:[token]
+      })
     })
 };
 

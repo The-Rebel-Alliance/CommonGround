@@ -14,6 +14,7 @@ import { AccessToken } from 'twilio'
 import conn from './api/lib/db'
 import socketio from 'socket.io'
 import videoChat from './video/chat'
+import messageEvents from './messages/messageEvents'
 const VideoGrant = AccessToken.VideoGrant
 
 export default function (conf) {
@@ -90,7 +91,9 @@ export default function (conf) {
 
   const io = socketio(httpsServer)
   const video = io.of('/video')
+  const messaging = io.of('/messaging')
 
+  messageEvents(messaging)
   videoChat(video)
 
   httpServer.listen(config.get('server.http.port'), conf.hostname)

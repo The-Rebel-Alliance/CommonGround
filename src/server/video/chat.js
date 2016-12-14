@@ -40,7 +40,6 @@ export default function(vid) {
         `
         let participants = rooms[room].parts.map(part => part.username)
         conn.query(sql, participants, function(err, results){
-          console.log(results)
           if (err) {
             console.log(err)
           }
@@ -78,7 +77,6 @@ export default function(vid) {
     })
 
     socket.on('disconnect', function(){
-      console.log(rooms)
       if (rooms[room] && rooms[room].specs) {
         rooms[room].specs = rooms[room].specs.filter(function(id){
           return id !== socket.id
