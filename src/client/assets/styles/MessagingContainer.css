@@ -119,11 +119,11 @@ button{
 
 
 li{
-    padding-top: 7px;
-    font-size: 16px;
-    font-style: italic;
-    display: flex;
-    text-decoration: none;
+  padding-top: 7px;
+  font-size: 16px;
+  font-style: italic;
+  display: flex;
+  text-decoration: none;
 
 }
 /*I couldn't get the className="videoLink" on Drawer.css to pick up styling, so I had to use "a" */
