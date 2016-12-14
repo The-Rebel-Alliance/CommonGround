@@ -49,6 +49,7 @@ h6 > #time{
   padding:10px;
   top: 0px;
   position: fixed;
+  z-index: 2;
  
   
 }
@@ -114,16 +115,15 @@ button{
   border-style: none;
   color:white;
   background-color: #01A69A;
-  z-index: 200;
 }
 
 
 li{
-    padding-top: 7px;
-    font-size: 16px;
-    font-style: italic;
-    display: flex;
-    text-decoration: none;
+  padding-top: 7px;
+  font-size: 16px;
+  font-style: italic;
+  display: flex;
+  text-decoration: none;
 
 }
 /*I couldn't get the className="videoLink" on Drawer.css to pick up styling, so I had to use "a" */
