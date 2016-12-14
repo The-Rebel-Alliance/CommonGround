@@ -2,47 +2,47 @@ html {box-sizing: border-box;}
 *, *:after, *:before {box-sizing: inherit;}
 
 .dashboard_container {
-	position: fixed;
-	z-index: -1;
-	float: left;
+  position: fixed;
+  z-index: -1;
+  float: left;
 }
 
 .search--topic--container{
-	width: 610px;
-    border: none;
-    margin-left: 140px;
+  width: 610px;
+  border: none;
+  margin-left: 140px;
 }
 
-
 .searchbar{
-	width: 470px;
-    height: 50px;
-    margin-top: 20px;
-    outline: none;
-    background-color: #32062A;
-    border: none;
-    color: white;
-    font-size: 25px;
+  width: 470px;
+  height: 50px;
+  margin-top: 20px;
+  outline: none;
+  background-color: #32062A;
+  border: none;
+  color: white;
+  font-size: 25px;
 }
 
 .searchbutton{
-	width: 140px;
-    height: 50px;
-    background-color: #2A4976;
-    color: white;
-    border-radius: 0px 5px 5px 0px;
-    margin-left: -1px;
-    outline: none;
-    font-size: 25px;
+  width: 140px;
+  height: 50px;
+  background-color: #2A4976;
+  color: white;
+  border-radius: 0px 5px 5px 0px;
+  margin-left: -1px;
+  outline: none;
+  font-size: 25px;
 }
+
 .profiledummybutton{
-	width: 100px;
-	height: 100px;
-	background-color: white;
+  width: 100px;
+  height: 100px;
+  background-color: white;
 }
 
 .user_li {
-	margin-top: -17px;
+	 margin-top: -17px;
     margin-left: 20px;
     border: 1px solid #31353e;
     transition: .5s;
@@ -59,14 +59,18 @@ html {box-sizing: border-box;}
 	transition: .5s;
     text-decoration: none;
 }
-.user_li:firstchild{
-	border-radius: 5px 5px 0 0; 
+
+
+.user_li:firstchild {
+  border-radius: 5px 5px 0 0; 
 }
+
 .user_li:lastchild{
-	border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
 }
+
 .userinfo {
-	font-size: 20px;
+  	font-size: 20px;
     line-height: 65px;
     float: right;
     margin-right: 20px;
@@ -74,43 +78,41 @@ html {box-sizing: border-box;}
 }
 
 .user_list {
-	font-size: 20px;
-    list-style: none;
-    color: white;
-    padding: 0px;
-    transition: .5s;
-    margin-top: -9px;
+  font-size: 20px;
+  list-style: none;
+  color: white;
+  padding: 0px;
+  transition: .5s;
+  margin-top: -9px;
 }
 
 .user_avatar {
     border-radius: 19%;
     width: 100px;
     height: 100px;
-    
 }
 
 .profile_link {
-	margin-top: 20px;
-	margin-left: 20px;
-	text-decoration: none;
-	font-family: 'Muli', sans-serif;
-	border-radius: 5px;
-	color: #FFF;
-	transition: .5s;
+  margin-top: 20px;
+  margin-left: 20px;
+  text-decoration: none;
+  font-family: 'Muli', sans-serif;
+  border-radius: 5px;
+  color: #FFF;
+  transition: .5s;
 }
 
 .profile_link:hover {
-	background: linear-gradient(#CECFD2, #eaedef);
-	color: #333842;
-	transition: .5s;
+  background: linear-gradient(#CECFD2, #eaedef);
+  color: #333842;
+  transition: .5s;
 }
 .usersSearch{
-	margin-left: 120px;
-    width: 630px;
-    margin-top: 50px;
-    float: left;
+  margin-left: 120px;
+  width: 630px;
+  margin-top: 50px;
+  float: left;
 }
-
 
 #videolink_container{
     width: 700px;
