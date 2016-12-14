@@ -7,7 +7,6 @@ html {
 }
 .layout {
 	position:relative;
-	z-index: auto;
 
 }
 .header{
@@ -74,6 +73,7 @@ a{
     transition: 2s;
     position: fixed;
     top: 0;
+    z-index: 1;
 }
 
 h4 {
@@ -91,7 +91,6 @@ button{
   border-style: none;
   color:white;
   background-color: #01A69A;
-  z-index: 200;
 }
 
 .myConvo {
