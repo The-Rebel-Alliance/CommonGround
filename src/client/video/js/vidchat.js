@@ -38,22 +38,6 @@ socket.emit('join', roomName)
 $("#controls.s").append(
 
   "<div id='votingContainer'>\
-    <div id='upvote1'>\
-      <button id='user1up' type='button' class='vote'>\
-        <i id='interaction-agree2' class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>\
-      </button>\
-    </div>\
-    <div id='upCounter1'>\
-      <p class='user1up'>0</p>\
-    </div>\
-    <div id='downvote1'>\
-      <button id='user1down' type='button' class='vote'>\
-        <i id='interaction-disagree2' class='fa fa-thumbs-down interaction-icons' aria-hidden='true'></i>\
-      </button>\
-    </div> \
-    <div id='downCounter1'>\
-      <p class='user1down'>0</p>\
-    </div>\
     <div id='upvote2'>\
       <button id='user2up' type='button' class='vote'>\
         <i id='interaction-agree2' class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>\
@@ -70,6 +54,22 @@ $("#controls.s").append(
       <div id='downCounter2'>\
         <p class='user2down'>0</p>\
       </div>\
+    <div id='upvote1'>\
+      <button id='user1up' type='button' class='vote'>\
+        <i id='interaction-agree2' class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>\
+      </button>\
+    </div>\
+    <div id='upCounter1'>\
+      <p class='user1up'>0</p>\
+    </div>\
+    <div id='downvote1'>\
+      <button id='user1down' type='button' class='vote'>\
+        <i id='interaction-disagree2' class='fa fa-thumbs-down interaction-icons' aria-hidden='true'></i>\
+      </button>\
+    </div> \
+    <div id='downCounter1'>\
+      <p class='user1down'>0</p>\
+    </div>\
   </div>")
 
 $(".vote").on('click', function(e){
