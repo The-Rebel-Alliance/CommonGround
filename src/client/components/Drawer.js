@@ -96,7 +96,7 @@ const DrawerView = React.createClass({
                      {this.props.messageUsers.map((user, i) =>{
                       return (
                         <li className="userList" id={'msguser' + user.id} onClick={this.selectUser} key={'messagesUser' + user.id}>
-                            <img src={user.avatar}/> {user.first_name} {user.last_name}
+                            <img src={user.avatar}/> {user.first_name + ' ' + user.last_name}
                         </li> 
                       )
                     })}

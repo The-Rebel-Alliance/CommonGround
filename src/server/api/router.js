@@ -39,19 +39,50 @@ router.get('/search/:topicId?', function(req, res, next){
 router.get('/messages', function(req, res, next){
   const token = req.token
   
+  // const sql = `
+  //   SELECT fp.id, fu.username, fp.first_name, fp.last_name, fp.city, fp.state, fp.avatar, fp.political_affiliation
+  //   FROM messages m
+  //   JOIN profiles tp ON tp.id = m.to_profile_id
+  //   JOIN profiles fp ON fp.id = m.from_profile_id
+  //   JOIN users fu ON fu.id = fp.user_id
+  //   JOIN users tu ON tu.id = tp.user_id
+  //   JOIN tokens tt ON tt.user_id = tu.id
+  //   WHERE tt.token = ?
+  //   GROUP BY m.from_profile_id
+  // `
+  // 
   const sql = `
-    SELECT fp.id, fu.username, fp.first_name, fp.last_name, fp.city, fp.state, fp.avatar, fp.political_affiliation
-    FROM messages m
-    JOIN profiles tp ON tp.id = m.to_profile_id
-    JOIN profiles fp ON fp.id = m.from_profile_id
-    JOIN users fu ON fu.id = fp.user_id
-    JOIN users tu ON tu.id = tp.user_id
-    JOIN tokens tt ON tt.user_id = tu.id
-    WHERE tt.token = ?
-    GROUP BY m.from_profile_id;
+    select usernames.* from (
+          select u.username, u.id, p.first_name, p.last_name, p.avatar, p.political_affiliation
+            from users u 
+            join profiles p on p.user_id = u.id
+            join messages mf on mf.from_profile_id = p.id
+            join messages mt on mt.to_profile_id = p.id
+            where 
+              mf.from_profile_id = (select p.id from users u
+                  join profiles p ON u.id = p.user_id
+                  join tokens t ON t.user_id = u.id
+                  where t.token = ?) or
+              mf.to_profile_id = (select p.id from users u
+                  join profiles p ON u.id = p.user_id
+                  join tokens t ON t.user_id = u.id
+                  where t.token = ?) or
+              mt.from_profile_id = (select p.id from users u
+                  join profiles p ON u.id = p.user_id
+                  join tokens t ON t.user_id = u.id
+                  where t.token = ?) or
+              mt.to_profile_id = (select p.id from users u
+                  join profiles p ON u.id = p.user_id
+                  join tokens t ON t.user_id = u.id
+                  where t.token = ?)
+            group by u.id
+          ) as usernames
+          join users on users.id = usernames.id
+          left join tokens on tokens.user_id = users.id
+          where tokens.token != ? or ISNULL(tokens.token)
   `
 
-  conn.query(sql, [token], function(err, results){
+  conn.query(sql, [token, token, token, token, token], function(err, results){
     res.err = false
     res.data = results
     res.message = ''

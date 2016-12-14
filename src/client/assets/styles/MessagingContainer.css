@@ -49,6 +49,7 @@ h6 > #time{
   padding:10px;
   top: 0px;
   position: fixed;
+  z-index: 2;
  
   
 }
@@ -114,7 +115,6 @@ button{
   border-style: none;
   color:white;
   background-color: #01A69A;
-  z-index: 200;
 }
 
 

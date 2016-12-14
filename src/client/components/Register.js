@@ -32,6 +32,9 @@ export default React.createClass({
       })
     })
   },
+  componentWillUnmount: function() {
+    this.unsubscribe()
+  },
   update: function(e){
 
         var val = e.target.value
