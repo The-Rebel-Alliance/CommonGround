@@ -25,6 +25,7 @@ if (!navigator.webkitGetUserMedia && !navigator.mozGetUserMedia) {
 if (path === "s") {
   $('body *').addClass("s")
   //JASON: YOU NEED TO FIGURE OUT JQUERY CODE TO ADD HTML BASED ON PATH === 'S'
+  $("div").remove("#user1-response-row, #user2-response-row")
 }
 
 var socket = io('/video').connect(url, {
