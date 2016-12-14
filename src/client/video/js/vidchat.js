@@ -39,13 +39,14 @@ $("#controls.s").append(
 
   "<div id='votingContainer'>\
     <div id='upvote2'>\
+      <p id='user0-name-label'>Test</p>\
       <button id='user2up' type='button' class='vote'>\
         <i id='interaction-agree2' class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>\
       </button>\
     </div>\
       <div id='upCounter2'>\
         <p class='user2up'>0</p>\
-      </div>      \
+      </div>\
     <div id='downvote2'>\
       <button id='user2down' type='button' class='vote'>\
         <i id='interaction-disagree2' class='fa fa-thumbs-down interaction-icons' aria-hidden='true'></i>\
@@ -55,6 +56,7 @@ $("#controls.s").append(
         <p class='user2down'>0</p>\
       </div>\
     <div id='upvote1'>\
+      <p id='user1-name-label'>Test</p>\
       <button id='user1up' type='button' class='vote'>\
         <i id='interaction-agree2' class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>\
       </button>\
@@ -110,6 +112,7 @@ $.getJSON('/token/' + path, function (data) {
     for(var i = 0; i < user.users.length; i+=1) {
       $(`#user${i}-identity`).html(user.users[i])
       $(`#participant${i}-name`).html(user.users[i])
+      $(`#user${i}-name-label`).html(user.users[i])
     }    
     // $("#user-identity").html(user.username)
     // if($(`#user${i}-identity`).html() === "Waiting for user...") {
