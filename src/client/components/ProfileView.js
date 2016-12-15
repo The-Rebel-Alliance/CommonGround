@@ -63,7 +63,7 @@ const CommonOtherProfile = React.createClass({
             <Link to="/Drawer" >
               <button onClick={this.handleSubmit} className="edit_button">
                 <i className="fa fa-comments" aria-hidden="true"></i> 
-                Message Me
+                &nbsp;Message Me
               </button>
             </Link>
            </div>

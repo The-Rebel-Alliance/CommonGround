@@ -39,7 +39,6 @@ $("#controls.s").append(
 
   "<div id='votingContainer'>\
     <div id='upvote2'>\
-      <p id='user0-name-label'>Test</p>\
       <button id='user2up' type='button' class='vote'>\
         <i id='interaction-agree2' class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>\
       </button>\
@@ -56,7 +55,6 @@ $("#controls.s").append(
         <p class='user2down'>0</p>\
       </div>\
     <div id='upvote1'>\
-      <p id='user1-name-label'>Test</p>\
       <button id='user1up' type='button' class='vote'>\
         <i id='interaction-agree2' class='fa fa-thumbs-up interaction-icons' aria-hidden='true'></i>\
       </button>\

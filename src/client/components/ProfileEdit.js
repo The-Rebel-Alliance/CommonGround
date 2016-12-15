@@ -197,7 +197,7 @@ export default React.createClass({
                   <option defaultValue="selected">Select Political Affilation</option>
                   <option value="Democrat">Democrat</option>
                   <option value="Republican">Republican</option>
-                  <option value="Interests">Independent</option>
+                  <option value="Independent">Independent</option>
                   <option value="Other">Other</option>
                 </select> 
                 <button onChange={this.update} value={this.state.avatar} type="button" id="avatar" onClick={this.upload}>Upload Avatar</button>
