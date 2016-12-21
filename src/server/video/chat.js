@@ -20,6 +20,9 @@ export default function(vid) {
           specs:[]
         }
       }
+      if (livetrackRooms.length > 0) {
+        vid.to(socket.id).emit('rooms update', livetrackRooms)
+      }
     })
 
     socket.on('participant connect', function(user){
