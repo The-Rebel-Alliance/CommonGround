@@ -47,11 +47,14 @@ export default function (conf) {
   app.use(express.static(path.resolve(conf.root)))
 
   app.get('/token/:type', function(req, res) {
+    console.log('token auth')
     const type = req.params.type
     const token = req.cookies['token'].trim()
     const sql = 'SELECT u.username FROM users u JOIN tokens t on t.user_id = u.id WHERE t.token=?'
 
     conn.query(sql, [token], function(err, response){
+      console.log('err', err)
+      console.log('response', response)
       const identity = response[0].username
       // Create an access token which we will sign and return to the client,
       // containing the grant we just created
